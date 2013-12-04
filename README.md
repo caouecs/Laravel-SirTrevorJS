@@ -5,12 +5,13 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 ## Installation
 
-This package is available through Packagist and Composer.
+This package is available through `Packagist` and `Composer`.
 
-Add `"caouecs/sirtrevorjs": "dev-master"` to your composer.json or run `composer require caouecs/sirtrevorjs`. Then you have to add `"Caouecs\Sirtrevorjs\SirtrevorjsServiceProvider"` to your list of providers in your `app/config/app.php`, and a list of elements for aliases (not all mandatory) :
+Add `"caouecs/sirtrevorjs": "dev-master"` to your composer.json or run `composer require caouecs/sirtrevorjs`.  
+Then you have to add `"Caouecs\Sirtrevorjs\SirtrevorjsServiceProvider"` to your list of providers in your `app/config/app.php`, and a list of elements for aliases :
 
-    'SirTrevorJs'           => 'Caouecs\Sirtrevorjs\SirTrevorJs',
-    'SirTrevorJsConverter'  => 'Caouecs\Sirtrevorjs\SirTrevorJsConverter'
+    'SirTrevorJs' => 'Caouecs\Sirtrevorjs\SirTrevorJs',
+    'STConverter' => 'Caouecs\Sirtrevorjs\SirTrevorJsConverter'
 
 So, I recommend you use [Package Installer](https://github.com/rtablada/package-installer), Laravel4-SirTrevorJS has a valid provides.json file. After installation of Package Installer, just run `php artisan package:install caouecs/sirtrevorjs` ; the lists of providers and aliases will be up-to-date.
 
@@ -20,6 +21,13 @@ Next, you must migrate assets and config :
 
     php artisan config:publish caouecs/sirtrevorjs
 
+### thujohn/twitter
+
+To get tweets, this project uses [twitter-l4](https://github.com/thujohn/twitter-l4), so you must have a valid developer account of Twitter and add config file of twitter-l4 :
+
+    php artisan config:publish thujohn/twitter
+   
+and add `"Thujohn\Twitter\TwitterServiceProvider"` to your list of providers in your `app/config/app.php`.
 
 ## Configuration file
 
@@ -78,7 +86,7 @@ The tweet converter is in *SirTrevorJsController* class, and the project has a *
 
     Route::any("/sirtrevorjs/tweet", array("uses" => "SirTrevorJsController@tweet"));
 
-## SirTrevorJsConverter class
+## SirTrevorJsConverter class (or STConverter class)
 
 Convert text from Sir Trevor Js to html :
 

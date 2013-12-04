@@ -1,6 +1,7 @@
 <?php namespace Caouecs\Sirtrevorjs;
 
 use \Config;
+use \HTML;
 
 class SirTrevorJs {
 

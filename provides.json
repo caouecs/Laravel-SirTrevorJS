@@ -8,7 +8,7 @@
       "facade": "Caouecs\\Sirtrevorjs\\SirTrevorJs"
     },
     {
-      "alias": "SirTrevorJsConverter",
+      "alias": "STConverter",
       "facade": "Caouecs\\Sirtrevorjs\\SirTrevorJsConverter"
     }
   ]
