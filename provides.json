@@ -1,0 +1,15 @@
+{
+  "providers": [
+    "Caouecs\\Sirtrevorjs\\SirtrevorjsServiceProvider"
+  ],
+  "aliases": [
+    {
+      "alias": "SirTrevorJs",
+      "facade": "Caouecs\\Sirtrevorjs\\SirTrevorJs"
+    },
+    {
+      "alias": "SirTrevorJsConverter",
+      "facade": "Caouecs\\Sirtrevorjs\\SirTrevorJsConverter"
+    }
+  ]
+}

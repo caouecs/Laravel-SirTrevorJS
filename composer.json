@@ -1,0 +1,27 @@
+{
+    "name": "caouecs/sirtrevorjs",
+    "description": "Sir Trevor JS in Laravel 4 project",
+    "keywords": ["laravel", "sir trevor js", "sir-trevor-js", "lpm"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "caouecs",
+            "email": "caouecs@caouecs.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.*",
+        "michelf/php-markdown": "1.4.*@dev",
+        "thujohn/twitter": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/controllers"
+        ],
+        "psr-0": {
+            "Caouecs\\Sirtrevorjs\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
