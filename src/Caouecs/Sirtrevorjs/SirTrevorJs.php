@@ -103,7 +103,7 @@ class SirTrevorJs {
         $return .= HTML::script($config['path']."/eventable.js");
         $return .= HTML::script($config['path']."/sir-trevor.min.js");
 
-        $return .= HTML::jscode("
+        $return .= "<script type=\"text/javascript\">
             $(function(){
               window.editor = new SirTrevor.Editor({
                 el: $('.".$config['class']."'),
@@ -122,7 +122,8 @@ class SirTrevorJs {
                 }
               });
 
-            });");
+            });
+            </script>".PHP_EOL;
 
         return $return;
     }
