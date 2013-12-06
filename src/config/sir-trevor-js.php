@@ -9,6 +9,9 @@ return array(
 
     // block types for Sir Trevor JS
     // by default: array('Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading')
-    "blocktypes" => array()
+    "blocktypes" => array(),
 
+    // language
+    // the file of translation must be in `locales` directory of your path
+    "language" => "en"
 );

@@ -19,7 +19,7 @@ class SirTrevorJs {
      * @access protected
      * @var string
      */
-    static protected $path = "/packages/caouecs/sirtrevorjs/0.3.0";
+    static protected $path = "/packages/caouecs/sirtrevorjs/0.3.1";
 
     /**
      * Block types
@@ -28,6 +28,14 @@ class SirTrevorJs {
      * @var string
      */
     static protected $blocktypes = array('Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading');
+
+    /**
+     * Language of Sir Trevor JS
+     *
+     * @access protected
+     * @var string
+     */
+    static protected $language = "en";
 
     /**
      * Transform text with image bug
@@ -71,11 +79,15 @@ class SirTrevorJs {
      * Stylesheet files
      *
      * @access public
+     * @param array $params
      * @return string
+     *
+     * Params :
+     * - path
      */
-    static public function stylesheets()
+    static public function stylesheets($params = array())
     {
-        $config = self::config();
+        $config = self::config($params);
 
         $return  = HTML::style($config['path']."/sir-trevor-icons.css");
         $return .= HTML::style($config['path']."/sir-trevor.css");
@@ -94,6 +106,7 @@ class SirTrevorJs {
      * - path
      * - class
      * - blocktypes
+     * - language
      */
     static public function javascripts($params = array())
     {
@@ -103,16 +116,18 @@ class SirTrevorJs {
         $return .= HTML::script($config['path']."/eventable.js");
         $return .= HTML::script($config['path']."/sir-trevor.min.js");
 
-        $return .= "<script type=\"text/javascript\">
-            $(function(){
-              window.editor = new SirTrevor.Editor({
-                el: $('.".$config['class']."'),
-                blockTypes: [
-                  ".$config['blocktypes']."
-                ]
-              });
+        if ($config['language'] != "en") {
+            $return .= HTML::script($config['path']."/locales/".$config['language'].".js");
+        }
 
-              SirTrevor.setDefaults({
+        $return .= "<script type=\"text/javascript\">
+            $(function(){ ";
+
+        if ($config['language'] != "en") {
+            $return .=  " SirTrevor.LANGUAGE = '".$config['language']."'; ";
+        }
+
+        $return .= " SirTrevor.setDefaults({
                 uploadUrl: '/sirtrevorjs/upload'
               });
 
@@ -120,6 +135,13 @@ class SirTrevorJs {
                 fetchUrl: function(tweetID) {
                     return '/sirtrevorjs/tweet?tweet_id=' + tweetID;
                 }
+              });
+
+              window.editor = new SirTrevor.Editor({
+                el: $('.".$config['class']."'),
+                blockTypes: [
+                  ".$config['blocktypes']."
+                ]
               });
 
             });
@@ -185,10 +207,25 @@ class SirTrevorJs {
 
         $blocktypes = "'".implode("', '", $blocktypes)."'";
 
+        /**
+         * Language
+         */
+        // params
+        if (isset($params['language']) && !empty($params['language'])) {
+            $language = $params['language'];
+        // config
+        } elseif (isset($config['language']) && !empty($config['language'])) {
+            $language = $config['language'];
+        // default
+        } else {
+            $language = self::$language;
+        }
+
         return array(
             "path"       => $path,
             "blocktypes" => $blocktypes,
-            "class"      => $class
+            "class"      => $class,
+            "language"   => e($language)
         );
     }
 
@@ -222,7 +259,7 @@ class SirTrevorJs {
         }
 
         foreach ($array['data'] as $arr) {
-            if ($arr['type'] == "image") {
+            if ($arr['type'] == "image" && isset($arr['data']['file']['url'])) {
                 return $arr['data']['file']['url'];
             }
         }

@@ -38,6 +38,7 @@ You can define :
 * the path for image upload
 * the path of Sir Trevor files (if you don't use the files by default)
 * the list of block types
+* the language
 
 ## SirTrevorJs class
 
@@ -51,13 +52,31 @@ For scripts, in your Blade files :
 
     SirTrevorJs::scripts()
 
-> version 0.3.0
-
 ### Fix for image block
 
 Function to fix a problem with image block when you add a new image
 
     $text = SirTrevorJs::transformText($text);
+
+### Find first image
+
+Get first image in text with `findImage` method :
+
+    string SirTrevorJS::findImage(string $text);
+
+In return, you have url of image or empty string.
+
+### Find elements by blocktypes
+
+Get all elements in text, in specified blocktype with `find` method :
+
+    mixed SirTrevorJS::find(string $text, string $blocktype[, string $output = "json"])
+
+In return, you can have :
+
+* array, if you choose "array" for $output
+* json, if you choose "json" for $output
+* false, if the script doesn't find an occurence of blocktype
 
 ## SirTrevorJsController
 
@@ -105,3 +124,14 @@ For the moment, the code can convert :
 * video (youtube, vimeo, dailymotion)
 * image
 * tweet
+
+## Changelog
+
+* v0.1.0
+    * add possibility to change language
+    * v0.3.1 of Sir Trevor Js
+
+## Next version
+
+* installation by Bower for Sir Trevor JS
+* do a method just for call Sir Trevor JS
