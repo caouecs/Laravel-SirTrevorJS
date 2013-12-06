@@ -166,13 +166,19 @@ class SirTrevorJsConverter
          * Vimeo
          */
         elseif ($source == "vimeo") {
-            $movie .= '<iframe src="//player.vimeo.com/video/'.$remote_id.'" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+            $movie .= '<iframe src="//player.vimeo.com/video/'.$remote_id.'?title=0&byline=0" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
         }
         /**
          * Dailymotion
          */
         elseif ($source == "dailymotion") {
-            $movie .= '<iframe frameborder="0" width="560" height="315" src="http://www.dailymotion.com/embed/video/'.$remote_id.'"></iframe>';
+            $movie .= '<iframe frameborder="0" width="580" height="320" src="//www.dailymotion.com/embed/video/'.$remote_id.'"></iframe>';
+        }
+        /**
+         * Vine
+         */
+        elseif ($source == "vine") {
+            $movie .= '<iframe class="vine-embed" src="//vine.co/v/'.$remote_id.'/embed/simple" width="580" height="320" frameborder="0"></iframe><script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>';
         }
 
         $movie .= '</p>';
