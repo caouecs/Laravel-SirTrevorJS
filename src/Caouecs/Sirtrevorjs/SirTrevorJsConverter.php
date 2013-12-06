@@ -1,7 +1,6 @@
 <?php namespace Caouecs\Sirtrevorjs;
 
-use \Michelf\Markdown;
-use \Exception;
+use \Michelf\MarkdownExtra as Markdown;
 
 /**
  * Class Converter
@@ -25,42 +24,26 @@ class SirTrevorJsConverter
 
         if (!empty($input) && is_array($input)) {
             // loop trough the data blocks
-            foreach($input['data'] as $block) {
+            foreach ($input['data'] as $block) {
 
+                // no data, problem
                 if (!isset($block['data']))
                     break;
 
-                switch ($block['type']) {
-                    // tweets
-                    case "tweet":
-                        $html .= $this->tweetToHtml($block['data']);
-                        break;
-
-                    // heading
-                    case "heading":
-                        $html .= $this->headingToHtml($block['data']['text']);
-                        break;
-
-                    // blockquote
-                    case "quote":
-                        $html .= $this->blockquoteToHtml($block['data']);
-                        break;
-
-                    // video
-                    case "video":
-                        $html .= $this->movieToHtml($block['data']['source'], $block['data']['remote_id']);
-                        break;
-
-                    // image
-                    case "image":
-                        $html .= $this->imageToHtml($block['data']['file']['url']);
-                        break;
-
-                    // default
-                    default:
-                        if (array_key_exists('text', $block['data'])) {
-                            $html .= $this->defaultToHtml($block['data']['text']);
-                        }
+                // check if we have a converter for this type
+                $converter = $block['type'] . 'ToHtml';
+                if (is_callable(array(__CLASS__, $converter))) {
+                    // call the function and add the data as parameters
+                    $html .= call_user_func_array(
+                        array(__CLASS__, $converter),
+                        $block['data']
+                    );
+                } elseif ($block['type'] == "tweet") {
+                    // special twitter
+                    $html .= $this->twitterToHtml($block['data']);
+                } elseif (array_key_exists('text', $block['data'])) {
+                    // we have a text block. Let's just try the default converter
+                    $html .= $this->defaultToHtml($block['data']['text']);
                 }
             }
         }
@@ -85,7 +68,7 @@ class SirTrevorJsConverter
      * @param array $data
      * @return string
      */
-    public function tweetToHtml($data)
+    public function twitterToHtml($data)
     {
         return '<blockquote class="twitter-tweet" align="center">
             <p>'.$data['text'].'</p>
@@ -112,15 +95,10 @@ class SirTrevorJsConverter
      * @param array $data
      * @return string
      */
-    public function blockquoteToHtml($data)
+    public function blockquoteToHtml($cite, $text)
     {
         // remove the indent thats added by Sir Trevor
-        $text = isset($data['text']) ? ltrim($data['text'], '>') : null;
-        $cite = isset($data['cite']) ? $data['cite'] : null;
-
-        if ($text == null) {
-            return null;
-        }
+        $text = ltrim($text, '>');
 
         $html = '<blockquote>';
 
@@ -138,51 +116,50 @@ class SirTrevorJsConverter
     /**
      * Converts the image to html
      * 
-     * @param string $url
+     * @param array $file
      * @return string
      */
-    public function imageToHtml($url)
+    public function imageToHtml($file)
     {
-        return '<p class="st-image"><img src="' . $url . '" /></p>';
+        return '<p class="st-image"><img src="' . $file['url'] . '" /></p>';
     }
 
     /**
      * Converts the video to html
      *
-     * @param string $source
-     * @param string $remote_id
+     * @param array $movie
      * @return string
      */
-    public function movieToHtml($source, $remote_id)
+    public function videoToHtml($source, $remote_id)
     {
-        $movie = '<p class="st-movie">';
+        $html = '<p class="st-movie">';
         /**
          * Youtube
          */
         if ($source == "youtube") {
-            $movie .= '<iframe width="580" height="320" src="//www.youtube.com/embed/'.$remote_id.'" frameborder="0" allowfullscreen></iframe>';
+            $html .= '<iframe width="580" height="320" src="//www.youtube.com/embed/'.$remote_id.'" frameborder="0" allowfullscreen></iframe>';
         }
         /**
          * Vimeo
          */
         elseif ($source == "vimeo") {
-            $movie .= '<iframe src="//player.vimeo.com/video/'.$remote_id.'?title=0&byline=0" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+            $html .= '<iframe src="//player.vimeo.com/video/'.$remote_id.'?title=0&byline=0" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
         }
         /**
          * Dailymotion
          */
         elseif ($source == "dailymotion") {
-            $movie .= '<iframe frameborder="0" width="580" height="320" src="//www.dailymotion.com/embed/video/'.$remote_id.'"></iframe>';
+            $html .= '<iframe frameborder="0" width="580" height="320" src="//www.dailymotion.com/embed/video/'.$remote_id.'"></iframe>';
         }
         /**
          * Vine
          */
         elseif ($source == "vine") {
-            $movie .= '<iframe class="vine-embed" src="//vine.co/v/'.$remote_id.'/embed/simple" width="580" height="320" frameborder="0"></iframe><script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>';
+            $html .= '<iframe class="vine-embed" src="//vine.co/v/'.$remote_id.'/embed/simple" width="580" height="320" frameborder="0"></iframe><script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>';
         }
 
-        $movie .= '</p>';
+        $html .= '</p>';
 
-        return $movie;
+        return $html;
     }
 }
