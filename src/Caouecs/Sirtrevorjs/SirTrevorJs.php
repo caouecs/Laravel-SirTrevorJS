@@ -268,15 +268,16 @@ class SirTrevorJs {
     }
 
     /**
-     * Find all occurences of a type of block in a text
+     * Find occurences of a type of block in a text
      *
      * @access public
      * @param string $text
      * @param string $blocktype
      * @param string $output json or array
+     * @param int $nbr Number of occurences ( 0 = all )
      * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
      */
-    static public function find($text, $blocktype, $output = "json")
+    static public function find($text, $blocktype, $output = "json", $nbr = 0)
     {
         $array = json_decode($text, true);
 
@@ -285,10 +286,17 @@ class SirTrevorJs {
         }
 
         $return = null;
+        $_nbr = 1;
 
         foreach ($array['data'] as $arr) {
             if ($arr['type'] == $blocktype) {
                 $return[] = $arr['data'];
+
+                if ($nbr > 0 && $_nbr == $nbr) {
+                    break;
+                }
+
+                $_nbr++;
             }
         }
 
@@ -301,5 +309,19 @@ class SirTrevorJs {
         }
 
         return json_encode($return, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    }
+
+    /**
+     * Find first occurence of a type of block in a text
+     *
+     * @access public
+     * @param string $text
+     * @param string $blocktype
+     * @param string $output json or array
+     * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
+     */
+    static public function first($text, $blocktype, $output = "json")
+    {
+        return self::find($text, $blocktype, $output, 1);
     }
 }
