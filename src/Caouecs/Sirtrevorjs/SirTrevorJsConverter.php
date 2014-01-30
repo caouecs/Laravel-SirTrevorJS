@@ -121,7 +121,7 @@ class SirTrevorJsConverter
      */
     public function imageToHtml($file)
     {
-        return '<p class="st-image"><img src="' . $file['url'] . '" /></p>';
+        return '<p class="st-image"><img src="' . $file['url'] . '" alt="" /></p>';
     }
 
     /**
