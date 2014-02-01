@@ -18,7 +18,8 @@ class SirTrevorJsController extends BaseController {
             // config
             $config = Config::get("sirtrevorjs::sir-trevor-js");
 
-            $filename = $_FILES['attachment']['name']['file'];
+            // filename
+            $filename = Str::slug($_FILES['attachment']['name']['file']);
 
             // verif if files exists
             $i = "01";
