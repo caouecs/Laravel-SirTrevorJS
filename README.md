@@ -7,7 +7,7 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 This package is available through `Packagist` and `Composer`.
 
-Add `"caouecs/sirtrevorjs": "dev-master"` to your composer.json or run `composer require caouecs/sirtrevorjs`.  
+Add `"caouecs/sirtrevorjs": "dev-master"` to your composer.json or run `composer require caouecs/sirtrevorjs`.
 Then you have to add `"Caouecs\Sirtrevorjs\SirtrevorjsServiceProvider"` to your list of providers in your `app/config/app.php`, and a list of elements for aliases :
 
     'SirTrevorJs' => 'Caouecs\Sirtrevorjs\SirTrevorJs',
@@ -15,18 +15,20 @@ Then you have to add `"Caouecs\Sirtrevorjs\SirtrevorjsServiceProvider"` to your 
 
 So, I recommend you use [Package Installer](https://github.com/rtablada/package-installer), Laravel4-SirTrevorJS has a valid provides.json file. After installation of Package Installer, just run `php artisan package:install caouecs/sirtrevorjs` ; the lists of providers and aliases will be up-to-date.
 
-Next, you must migrate assets and config :
-
-    php artisan asset:publish caouecs/sirtrevorjs
+Next, you must migrate config :
 
     php artisan config:publish caouecs/sirtrevorjs
+
+And assets, but it's not mandatory if you have your own files :
+
+    php artisan asset:publish caouecs/sirtrevorjs
 
 ### thujohn/twitter
 
 To get tweets, this project uses [twitter-l4](https://github.com/thujohn/twitter-l4), so you must have a valid developer account of Twitter and add config file of twitter-l4 :
 
     php artisan config:publish thujohn/twitter
-   
+
 and add `"Thujohn\Twitter\TwitterServiceProvider"` to your list of providers in your `app/config/app.php`.
 
 ## Configuration file
@@ -36,9 +38,10 @@ After installation, the config file is located at *app/config/packages/caouecs/s
 You can define :
 
 * the path for image upload
-* the path of Sir Trevor files (if you don't use the files by default)
+* the path of Sir Trevor files
 * the list of block types
 * the language
+* the paths for Eventable.js and Underscore.js
 
 ## SirTrevorJs class
 
@@ -109,8 +112,10 @@ The tweet converter is in *SirTrevorJsController* class, and the project has a *
 
 Convert text from Sir Trevor Js to html :
 
-    {{ SirTrevorJsConverter::toHtml($text) }}
-    
+    $convert = new STConverter();
+    $convert->toHtml($text)
+
+
 Or via SirTrevorJS class :
 
     {{ SirTrevorJs::render($text) }}
@@ -127,11 +132,11 @@ For the moment, the code can convert :
 
 ## Changelog
 
+* v1.0.0
+    * update of readme.md
+    * new management of stylesheet and script files
+    * v0.3.2 of Sir Trevor JS
+
 * v0.1.0
     * add possibility to change language
     * v0.3.1 of Sir Trevor Js
-
-## Next version
-
-* installation by Bower for Sir Trevor JS
-* do a method just for call Sir Trevor JS

@@ -14,14 +14,6 @@ class SirTrevorJs {
     static protected $class = "sir-trevor";
 
     /**
-     * Path of files
-     *
-     * @access protected
-     * @var string
-     */
-    static protected $path = "/packages/caouecs/sirtrevorjs/0.3.1";
-
-    /**
      * Block types
      *
      * @access protected
@@ -77,20 +69,31 @@ class SirTrevorJs {
 
     /**
      * Stylesheet files
+     *   see config file
      *
      * @access public
-     * @param array $params
      * @return string
-     *
-     * Params :
-     * - path
      */
-    static public function stylesheets($params = array())
+    static public function stylesheets()
     {
-        $config = self::config($params);
+        // params in config file
+        $config = Config::get("sirtrevorjs::sir-trevor-js");
 
-        $return  = HTML::style($config['path']."/sir-trevor-icons.css");
+        /**
+         * Files of Sir Trevor JS
+         */
+        $return = HTML::style($config['path']."/sir-trevor-icons.css");
         $return .= HTML::style($config['path']."/sir-trevor.css");
+
+        /**
+         * Others files if you need it
+         */
+        if (isset($config['stylesheet']) && is_array($config['stylesheet'])) {
+            foreach ($config['stylesheet'] as $arr) {
+                if (file_exists(public_path($arr)))
+                    $return .= HTML::style($arr);
+            }
+        }
 
         return $return;
     }
@@ -103,18 +106,29 @@ class SirTrevorJs {
      * @return string
      *
      * Params :
-     * - path
      * - class
      * - blocktypes
      * - language
      */
     static public function javascripts($params = array())
     {
+        // params
         $config = self::config($params);
 
-        $return  = HTML::script($config['path']."/underscore-min.1.4.4.js");
-        $return .= HTML::script($config['path']."/eventable.js");
-        $return .= HTML::script($config['path']."/sir-trevor.min.js");
+        /**
+         * File of Sir Trevor JS
+         */
+        $return = HTML::script($config['path']."/sir-trevor.min.js");
+
+        /**
+         * Others files
+         */
+        if (isset($config['script']) && is_array($config['script'])) {
+            foreach ($config['script'] as $arr) {
+                if (file_exists(public_path($arr)))
+                    $return .= HTML::script($arr);
+            }
+        }
 
         if ($config['language'] != "en") {
             $return .= HTML::script($config['path']."/locales/".$config['language'].".js");
@@ -178,20 +192,6 @@ class SirTrevorJs {
         }
 
         /**
-         * Path
-         */
-        // params
-        if (isset($params['path']) && !empty($params['path'])) {
-            $path = $params['path'];
-        // config
-        } elseif (isset($config['path']) && !empty($config['path'])) {
-            $path = $config['path'];
-        // default
-        } else {
-            $path = self::$path;
-        }
-
-        /**
          * Block types
          */
         // params
@@ -222,7 +222,8 @@ class SirTrevorJs {
         }
 
         return array(
-            "path"       => $path,
+            "path"       => $config['path'],
+            "script"     => $config['script'],
             "blocktypes" => $blocktypes,
             "class"      => $class,
             "language"   => e($language)
@@ -264,7 +265,7 @@ class SirTrevorJs {
             }
         }
 
-        return null;        
+        return null;
     }
 
     /**
