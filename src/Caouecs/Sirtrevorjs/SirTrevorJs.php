@@ -115,10 +115,7 @@ class SirTrevorJs {
         // params
         $config = self::config($params);
 
-        /**
-         * File of Sir Trevor JS
-         */
-        $return = HTML::script($config['path']."/sir-trevor.min.js");
+        $return = null;
 
         /**
          * Others files
@@ -129,6 +126,11 @@ class SirTrevorJs {
                     $return .= HTML::script($arr);
             }
         }
+
+        /**
+         * File of Sir Trevor JS
+         */
+        $return = HTML::script($config['path']."/sir-trevor.min.js");
 
         if ($config['language'] != "en") {
             $return .= HTML::script($config['path']."/locales/".$config['language'].".js");
