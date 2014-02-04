@@ -110,7 +110,7 @@ class SirTrevorJs {
      * - blocktypes
      * - language
      */
-    static public function javascripts($params = array())
+    static public function scripts($params = array())
     {
         // params
         $config = self::config($params);

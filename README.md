@@ -136,6 +136,7 @@ For the moment, the code can convert :
     * update of readme.md
     * new management of stylesheet and script files
     * v0.3.2 of Sir Trevor JS
+    * fix for SirTrevorJS::scripts()
 
 * v0.1.0
     * add possibility to change language
