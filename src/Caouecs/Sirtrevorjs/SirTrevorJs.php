@@ -82,8 +82,8 @@ class SirTrevorJs {
         /**
          * Files of Sir Trevor JS
          */
-        $return = HTML::style($config['path']."/sir-trevor-icons.css");
-        $return .= HTML::style($config['path']."/sir-trevor.css");
+        $return = HTML::style($config['path']."sir-trevor-icons.css");
+        $return .= HTML::style($config['path']."sir-trevor.css");
 
         /**
          * Others files if you need it
@@ -130,7 +130,7 @@ class SirTrevorJs {
         /**
          * File of Sir Trevor JS
          */
-        $return = HTML::script($config['path']."/sir-trevor.min.js");
+        $return .= HTML::script($config['path']."sir-trevor.min.js");
 
         if ($config['language'] != "en") {
             $return .= HTML::script($config['path']."/locales/".$config['language'].".js");
