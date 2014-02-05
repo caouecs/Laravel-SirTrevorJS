@@ -30,6 +30,22 @@ class SirTrevorJs {
     static protected $language = "en";
 
     /**
+     * Upload url for images
+     *
+     * @access protected
+     * @var string
+     */
+    static protected $uploadUrl = "/sirtrevorjs/upload";
+
+    /**
+     * Url for tweets
+     *
+     * @access protected
+     * @var string
+     */
+    static protected $tweetUrl = "/sirtrevorjs/tweet";
+
+    /**
      * Transform text with image bug
      *
      * @access public
@@ -109,6 +125,8 @@ class SirTrevorJs {
      * - class
      * - blocktypes
      * - language
+     * - uploadUrl
+     * - tweetUrl
      */
     static public function scripts($params = array())
     {
@@ -140,26 +158,23 @@ class SirTrevorJs {
             $(function(){ ";
 
         if ($config['language'] != "en") {
-            $return .=  " SirTrevor.LANGUAGE = '".$config['language']."'; ";
+            $return .= " SirTrevor.LANGUAGE = '".$config['language']."'; ";
         }
 
         $return .= " SirTrevor.setDefaults({
-                uploadUrl: '/sirtrevorjs/upload'
+                uploadUrl: '".$config['uploadUrl']."'
               });
 
               SirTrevor.setBlockOptions('Tweet', {
                 fetchUrl: function(tweetID) {
-                    return '/sirtrevorjs/tweet?tweet_id=' + tweetID;
+                    return '".$config['tweetUrl']."?tweet_id=' + tweetID;
                 }
               });
 
               window.editor = new SirTrevor.Editor({
                 el: $('.".$config['class']."'),
-                blockTypes: [
-                  ".$config['blocktypes']."
-                ]
+                blockTypes: [".$config['blocktypes']."]
               });
-
             });
             </script>".PHP_EOL;
 
@@ -210,6 +225,34 @@ class SirTrevorJs {
         $blocktypes = "'".implode("', '", $blocktypes)."'";
 
         /**
+         * Upload url for images
+         */
+        // params
+        if (isset($params['uploadUrl']) && !empty($params['uploadUrl'])) {
+            $uploadUrl = $params['uploadUrl'];
+        // config
+        } elseif (isset($config['uploadUrl']) && !empty($config['uploadUrl'])) {
+            $uploadUrl = $config['uploadUrl'];
+        // default
+        } else {
+            $uploadUrl = self::$uploadUrl;
+        }
+
+        /**
+         * Url for tweets
+         */
+        // params
+        if (isset($params['tweetUrl']) && !empty($params['tweetUrl'])) {
+            $tweetUrl = $params['tweetUrl'];
+        // config
+        } elseif (isset($config['tweetUrl']) && !empty($config['tweetUrl'])) {
+            $tweetUrl = $config['tweetUrl'];
+        // default
+        } else {
+            $tweetUrl = self::$tweetUrl;
+        }
+
+        /**
          * Language
          */
         // params
@@ -228,7 +271,9 @@ class SirTrevorJs {
             "script"     => $config['script'],
             "blocktypes" => $blocktypes,
             "class"      => $class,
-            "language"   => e($language)
+            "language"   => e($language),
+            "uploadUrl"  => $uploadUrl,
+            "tweetUrl"   => $tweetUrl
         );
     }
 

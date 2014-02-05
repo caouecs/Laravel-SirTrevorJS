@@ -4,6 +4,12 @@ return array(
     // path for image uploads, from public_path (ex: img/uploads)
     "directory_upload" => "img/uploads",
 
+    // upload url for image
+    "uploadUrl" => null,
+
+    // url for tweet
+    "tweetUrl" => null,
+
     // block types for Sir Trevor JS
     // by default: array('Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading')
     "blocktypes" => array(),
