@@ -132,6 +132,9 @@ For the moment, the code can convert :
 
 ## Changelog
 
+* v1.0.2
+    * fix on upload image
+
 * v1.0.0
     * update of readme.md
     * new management of stylesheet and script files
