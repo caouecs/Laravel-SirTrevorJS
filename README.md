@@ -129,8 +129,17 @@ For the moment, the code can convert :
 * video (youtube, vimeo, dailymotion)
 * image
 * tweet
+* getty images
+* slideshare
+* facebook post
 
 ## Changelog
+
+* v1.0.4
+    * add converter for getty image, slideshare and facebook
+
+* v1.0.3
+    * fix on tweets
 
 * v1.0.2
     * fix on upload image

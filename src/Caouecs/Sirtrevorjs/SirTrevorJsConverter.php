@@ -12,7 +12,7 @@ class SirTrevorJsConverter
 {
     /**
      * Converts the outputted json from Sir Trevor to html
-     * 
+     *
      * @param string $json
      * @return string
      */
@@ -91,8 +91,9 @@ class SirTrevorJsConverter
 
     /**
      * Converts quotes to html
-     * 
-     * @param array $data
+     *
+     * @param string $cite
+     * @param string $text
      * @return string
      */
     public function blockquoteToHtml($cite, $text)
@@ -115,7 +116,7 @@ class SirTrevorJsConverter
 
     /**
      * Converts the image to html
-     * 
+     *
      * @param array $file
      * @return string
      */
@@ -125,36 +126,71 @@ class SirTrevorJsConverter
     }
 
     /**
-     * Converts the video to html
+     * Converts Facebook to html
      *
-     * @param array $movie
+     * @param string $author
+     * @param string $remote_id
      * @return string
      */
-    public function videoToHtml($source, $remote_id)
+    public function facebookToHtml($author, $remote_id)
+    {
+        return '<p class="st-facebook"><div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, \'script\', \'facebook-jssdk\'));</script><div class="fb-post" data-href="https://www.facebook.com/'.$author.'/posts/'.$remote_id.'" data-width="466" style="overflow-x: hidden;overflow-y:hidden; max-width: 100%;"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/'.$author.'/posts/'.$remote_id.'">Post</a> by <a href="https://www.facebook.com/'.$author.'">'.$author.'</a>.</div></div></p>';
+    }
+
+    /**
+     * Converts the GettyImages to html
+     *
+     * @param string $remote_id
+     * @return string
+     */
+    public function gettyimagesToHtml($remote_id)
+    {
+        return '<p class="st-gettyimages"><iframe src="//embed.gettyimages.com/embed/'.$remote_id.'" width="594" height="465" frameborder="0" scrolling="no"></iframe></p>';
+    }
+
+    /**
+     * Converts Slideshare to html
+     *
+     * @param string $remote_id
+     * @return string
+     */
+    public function slideshareToHtml($remote_id)
+    {
+        return '<p class="st-slideshare"><iframe src="http://www.slideshare.net/slideshow/embed_code/'.$remote_id.'?rel=0" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe></p>';
+    }
+
+    /**
+     * Converts the video to html
+     *
+     * @param string $provider
+     * @param string $remote_id
+     * @return string
+     */
+    public function videoToHtml($provider, $remote_id)
     {
         $html = '<p class="st-movie">';
         /**
          * Youtube
          */
-        if ($source == "youtube") {
+        if ($provider == "youtube") {
             $html .= '<iframe width="580" height="320" src="//www.youtube.com/embed/'.$remote_id.'" frameborder="0" allowfullscreen></iframe>';
         }
         /**
          * Vimeo
          */
-        elseif ($source == "vimeo") {
-            $html .= '<iframe src="//player.vimeo.com/video/'.$remote_id.'?title=0&byline=0" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+        elseif ($provider == "vimeo") {
+            $html .= '<iframe src="//player.vimeo.com/video/'.$remote_id.'?title=0&amp;byline=0" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
         }
         /**
          * Dailymotion
          */
-        elseif ($source == "dailymotion") {
+        elseif ($provider == "dailymotion") {
             $html .= '<iframe frameborder="0" width="580" height="320" src="//www.dailymotion.com/embed/video/'.$remote_id.'"></iframe>';
         }
         /**
          * Vine
          */
-        elseif ($source == "vine") {
+        elseif ($provider == "vine") {
             $html .= '<iframe class="vine-embed" src="//vine.co/v/'.$remote_id.'/embed/simple" width="580" height="320" frameborder="0"></iframe><script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>';
         }
 
