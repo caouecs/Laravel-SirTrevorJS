@@ -126,7 +126,7 @@ For the moment, the code can convert :
 * list
 * heading
 * blockquote
-* video (youtube, vimeo, dailymotion)
+* video (youtube, vimeo, dailymotion, vine, metacafe, yahoo, ustream, veoh, vevo)
 * image
 * tweet
 * getty images
@@ -135,8 +135,17 @@ For the moment, the code can convert :
 
 ## Changelog
 
+* v1.0.5
+    * add converter for metacafe video
+    * add converter for yahoo video
+    * add converter for ustream video
+    * add converter for veoh video
+    * add converter for vevo video
+
 * v1.0.4
-    * add converter for getty image, slideshare and facebook
+    * add converter for getty image
+    * add converter for slideshare
+    * add converter for facebook post
 
 * v1.0.3
     * fix on tweets

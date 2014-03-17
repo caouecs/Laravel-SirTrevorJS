@@ -168,34 +168,76 @@ class SirTrevorJsConverter
      */
     public function videoToHtml($provider, $remote_id)
     {
-        $html = '<p class="st-movie">';
-        /**
-         * Youtube
-         */
-        if ($provider == "youtube") {
-            $html .= '<iframe width="580" height="320" src="//www.youtube.com/embed/'.$remote_id.'" frameborder="0" allowfullscreen></iframe>';
-        }
-        /**
-         * Vimeo
-         */
-        elseif ($provider == "vimeo") {
-            $html .= '<iframe src="//player.vimeo.com/video/'.$remote_id.'?title=0&amp;byline=0" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
-        }
-        /**
-         * Dailymotion
-         */
-        elseif ($provider == "dailymotion") {
-            $html .= '<iframe frameborder="0" width="580" height="320" src="//www.dailymotion.com/embed/video/'.$remote_id.'"></iframe>';
-        }
-        /**
-         * Vine
-         */
-        elseif ($provider == "vine") {
-            $html .= '<iframe class="vine-embed" src="//vine.co/v/'.$remote_id.'/embed/simple" width="580" height="320" frameborder="0"></iframe><script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>';
+        $html = null;
+
+        switch ($provider) {
+            /**
+             * Youtube
+             */
+            case "youtube":
+                $html = '<iframe width="580" height="320" src="//www.youtube.com/embed/'.$remote_id.'" frameborder="0" allowfullscreen></iframe>';
+                break;
+
+            /**
+             * Vimeo
+             */
+            case "vimeo";
+                $html = '<iframe src="//player.vimeo.com/video/'.$remote_id.'?title=0&amp;byline=0" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+                break;
+
+            /**
+             * Dailymotion
+             */
+            case "dailymotion":
+                $html = '<iframe frameborder="0" width="580" height="320" src="//www.dailymotion.com/embed/video/'.$remote_id.'"></iframe>';
+                break;
+
+            /**
+             * Vine
+             */
+            case "vine":
+                $html = '<iframe class="vine-embed" src="//vine.co/v/'.$remote_id.'/embed/simple" width="580" height="320" frameborder="0"></iframe><script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>';
+                break;
+
+            /**
+             * Metacafe
+             */
+            case "metacafe":
+                $html = '<iframe src="http://www.metacafe.com/embed/'.$remote_id.'/" width="540" height="304" allowFullScreen frameborder=0></iframe>';
+                break;
+
+            /**
+             * Yahoo video
+             */
+            case "yahoo":
+                $html = '<iframe width="640" height="360" scrolling="no" frameborder="0" src="http://screen.yahoo.com/embed/'.$remote_id.'.html" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" allowtransparency="true"></iframe>';
+                break;
+
+            /**
+             * UStream
+             */
+            case "ustream":
+                $html = '<iframe width="640" height="392" src="http://www.ustream.tv/embed/'.$remote_id.'?v=3&amp;wmode=direct" scrolling="no" frameborder="0" style="border: 0px none transparent;"></iframe>';
+                break;
+
+            /**
+             * Veoh
+             */
+            case "veoh":
+                $html = '<object width="640" height="532" id="veohFlashPlayer" name="veohFlashPlayer"><param name="movie" value="http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1444&amp;permalinkId='.$remote_id.'&amp;player=videodetailsembedded&amp;videoAutoPlay=0&amp;id=anonymous"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.veoh.com/swf/webplayer/WebPlayer.swf?version=AFrontend.5.7.0.1444&amp;permalinkId='.$remote_id.'&amp;player=videodetailsembedded&amp;videoAutoPlay=0&amp;id=anonymous" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="532" id="veohFlashPlayerEmbed" name="veohFlashPlayerEmbed"></embed></object>';
+                break;
+
+            /**
+             * Vevo
+             */
+            case "vevo":
+                $html = '<iframe width="575" height="324" src="http://cache.vevo.com/m/html/embed.html?video='.$remote_id.'" frameborder="0" allowfullscreen></iframe>';
+                break;
         }
 
-        $html .= '</p>';
+        if ($html != null)
+            return '<p class="st-movie">'.$html.'</p>';
 
-        return $html;
+        return null;
     }
 }
