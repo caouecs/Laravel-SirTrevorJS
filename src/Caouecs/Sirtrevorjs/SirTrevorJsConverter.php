@@ -138,7 +138,18 @@ class SirTrevorJsConverter
     }
 
     /**
-     * Converts the GettyImages to html
+     * Converts Spotify track to html
+     *
+     * @param string $remote_id
+     * @return string
+     */
+    public function spotifyToHtml($remote_id)
+    {
+        return '<iframe src="https://embed.spotify.com/?uri=spotify:track:'.$remote_id.'" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+    }
+
+    /**
+     * Converts GettyImage to html
      *
      * @param string $remote_id
      * @return string
@@ -232,6 +243,34 @@ class SirTrevorJsConverter
              */
             case "vevo":
                 $html = '<iframe width="575" height="324" src="http://cache.vevo.com/m/html/embed.html?video='.$remote_id.'" frameborder="0" allowfullscreen></iframe>';
+                break;
+
+            /**
+             * AOL
+             */
+            case "aol":
+                $html = '<script type="text/javascript" src="http://pshared.5min.com/Scripts/PlayerSeed.js?sid=281&amp;width=560&amp;height=345&amp;playList='.$remote_id.'"></script>';
+                break;
+
+            /**
+             * Metatube
+             */
+            case "metatube":
+                $html = '<iframe width="640" height="480" src="http://www.metatube.com/en/videos/'.$remote_id.'/embed/" frameborder="0" allowfullscreen></iframe>';
+                break;
+
+            /**
+             * Wat.tv
+             */
+            case "wat":
+                $html = '<iframe src="http://www.wat.tv/embedframe/'.$remote_id.'\" frameborder="0" style="width: 640px; height: 360px;"></iframe>';
+                break;
+
+            /**
+             * Daily Mail UK
+             */
+            case "dailymailuk":
+                $html = '<iframe frameborder="0" width="698" height="503" scrolling="no" id="molvideoplayer" title="MailOnline Embed Player" src="http://www.dailymail.co.uk/embed/video/'.$remote_id.'.html" ></iframe>';
                 break;
         }
 

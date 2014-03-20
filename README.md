@@ -126,14 +126,34 @@ For the moment, the code can convert :
 * list
 * heading
 * blockquote
-* video (youtube, vimeo, dailymotion, vine, metacafe, yahoo, ustream, veoh, vevo)
+* video
+    * aol
+    * daily mail uk
+    * dailymotion
+    * metacafe
+    * metatube
+    * ustream
+    * veoh
+    * vevo
+    * vimeo
+    * vine
+    * yahoo
+    * youtube
 * image
 * tweet
 * getty images
 * slideshare
+* spotify
 * facebook post
 
 ## Changelog
+
+* v1.0.6
+    * add converter for aol video
+    * add converter for metatube video
+    * add converter for wat.tv video
+    * add converter for daily mail uk video
+    * add converter for Spotify track
 
 * v1.0.5
     * add converter for metacafe video
