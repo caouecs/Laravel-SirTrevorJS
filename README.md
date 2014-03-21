@@ -132,7 +132,7 @@ For the moment, the code can convert :
     * dailymotion
     * metacafe
     * metatube
-    * ustream
+    * ustream (live and recorded)
     * veoh
     * vevo
     * vimeo
@@ -147,6 +147,9 @@ For the moment, the code can convert :
 * facebook post
 
 ## Changelog
+
+* v1.0.7
+    * add converter for ustream recorded video
 
 * v1.0.6
     * add converter for aol video
