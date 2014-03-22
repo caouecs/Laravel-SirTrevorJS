@@ -32,10 +32,10 @@ class SirTrevorJsConverter
 
                 // check if we have a converter for this type
                 $converter = $block['type'] . 'ToHtml';
-                if (is_callable(array(__CLASS__, $converter))) {
+                if (is_callable(array($this, $converter))) {
                     // call the function and add the data as parameters
                     $html .= call_user_func_array(
-                        array(__CLASS__, $converter),
+                        array($this, $converter),
                         $block['data']
                     );
                 } elseif ($block['type'] == "tweet") {
@@ -118,11 +118,19 @@ class SirTrevorJsConverter
      * Converts the image to html
      *
      * @param array $file
+     * @param string $caption
      * @return string
      */
-    public function imageToHtml($file)
+    public function imageToHtml($file, $caption = '')
     {
-        return '<p class="st-image"><img src="' . $file['url'] . '" alt="" /></p>';
+        $_return = '<figure class="st-image"><img src="' . $file['url'] . '" alt="" />';
+
+        if ($caption != null)
+            $_return .= '<figcaption>'.$caption.'</figcaption>';
+
+        $_return .= '</figure>';
+
+        return $_return;
     }
 
     /**

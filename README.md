@@ -126,7 +126,7 @@ For the moment, the code can convert :
 * list
 * heading
 * blockquote
-* video
+* video ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/video.js )
     * aol
     * daily mail uk
     * dailymotion
@@ -140,13 +140,19 @@ For the moment, the code can convert :
     * yahoo
     * youtube
 * image
+    * basic version
+    * version with caption ( see: https://github.com/neyre/sir-trevor-wp/blob/master/custom-blocks/ImageCaption.js )
 * tweet
-* getty images
-* slideshare
-* spotify
-* facebook post
+* getty images ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/gettyimage.js )
+* slideshare ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/slideshare.js )
+* spotify ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/spotify.js )
+* facebook post ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/facebook.js )
 
 ## Changelog
+
+* v1.1.0
+    * update SirTrevorJsConverter::imageToHtml() with html element, figure
+    * update SirTrevorJsConverter::imageToHtml() for image with caption
 
 * v1.0.7
     * add converter for ustream recorded video
