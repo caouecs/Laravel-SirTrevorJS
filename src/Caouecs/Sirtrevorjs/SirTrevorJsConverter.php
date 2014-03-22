@@ -8,8 +8,8 @@ use \Michelf\MarkdownExtra as Markdown;
  * A Sir Trevor to HTML conversion helper for PHP
  * inspired by work of Wouter Sioen <info@woutersioen.be>
  */
-class SirTrevorJsConverter
-{
+class SirTrevorJsConverter {
+
     /**
      * Converts the outputted json from Sir Trevor to html
      *
