@@ -193,3 +193,7 @@ For the moment, the code can convert :
 * v0.1.0
     * add possibility to change language
     * v0.3.1 of Sir Trevor Js
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/caouecs/laravel4-sirtrevorjs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
