@@ -1,6 +1,8 @@
 Laravel4-SirTrevorJS
 ====================
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/caouecs/laravel4-sirtrevorjs/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a project, with stylesheets and scripts, and possibility to param it (next evolution).
 
 ## Installation
