@@ -11,6 +11,14 @@ use \Michelf\MarkdownExtra as Markdown;
 class SirTrevorJsConverter {
 
     /**
+     * Code JS needed by elements
+     *
+     * @access protected
+     * @var array
+     */
+    protected $codejs = null;
+
+    /**
      * Converts the outputted json from Sir Trevor to html
      *
      * @param string $json
@@ -46,6 +54,13 @@ class SirTrevorJsConverter {
                     $html .= $this->defaultToHtml($block['data']['text']);
                 }
             }
+
+            // code js
+            if ($this->codejs != null && is_array($this->codejs)) {
+                foreach ($this->codejs as $arr) {
+                    $html .= $arr;
+                }
+            }
         }
 
         return $html;
@@ -70,12 +85,26 @@ class SirTrevorJsConverter {
      */
     public function twitterToHtml($data)
     {
+        $this->codejs['twitter'] = '<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>';
+
         return '<blockquote class="twitter-tweet tw-align-center">
             <p>'.$data['text'].'</p>
             &mdash; '.$data['user']['name'].' (@'.$data['user']['screen_name'].')
             <a href="'.$data['status_url'].'" data-datetime="'.$data['created_at'].'">'.$data['created_at'].'</a>
-        </blockquote>
-        <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>';
+        </blockquote>';
+    }
+
+    /**
+     * Converts Embedly card to html
+     *
+     * @param string $url
+     * @return string
+     */
+    public function embedlycardToHtml($url)
+    {
+        $this->codejs['embedly_card'] = '<script>(function(a){var b="embedly-platform",c="script";if(!a.getElementById(b)){var d=a.createElement(c);d.id=b;d.async=true;d.src=("https:"===document.location.protocol?"https":"http")+"://cdn.embedly.com/widgets/platform.js";var e=document.getElementsByTagName(c)[0];e.parentNode.insertBefore(d,e)}})(document);</script>';
+
+        return '<a class="embedly-card" href="'.$url.'">&nbsp;</a>';
     }
 
     /**
@@ -90,7 +119,7 @@ class SirTrevorJsConverter {
     }
 
     /**
-     * Converts quotes to html
+     * Converts block quotes to html
      *
      * @param string $cite
      * @param string $text
@@ -112,6 +141,18 @@ class SirTrevorJsConverter {
 
         $html .= '</blockquote>';
         return $html;
+    }
+
+    /**
+     * Converts quote to html
+     *
+     * @param string $cite
+     * @param string $text
+     * @return string
+     */
+    public function quoteToHtml($cite, $text)
+    {
+        return $this->blockquoteToHtml($cite, $text);
     }
 
     /**
@@ -142,7 +183,9 @@ class SirTrevorJsConverter {
      */
     public function facebookToHtml($author, $remote_id)
     {
-        return '<p class="st-facebook"><div id="fb-root"></div> <script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, \'script\', \'facebook-jssdk\'));</script><div class="fb-post" data-href="https://www.facebook.com/'.$author.'/posts/'.$remote_id.'" data-width="466" style="overflow-x: hidden;overflow-y:hidden; max-width: 100%;"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/'.$author.'/posts/'.$remote_id.'">Post</a> by <a href="https://www.facebook.com/'.$author.'">'.$author.'</a>.</div></div></p>';
+        $this->codejs['facebook'] = '<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, \'script\', \'facebook-jssdk\'));</script>';
+
+        return '<p class="st-facebook"><div id="fb-root"></div> <div class="fb-post" data-href="https://www.facebook.com/'.$author.'/posts/'.$remote_id.'" data-width="466" style="overflow-x: hidden;overflow-y:hidden; max-width: 100%;"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/'.$author.'/posts/'.$remote_id.'">Post</a> by <a href="https://www.facebook.com/'.$author.'">'.$author.'</a>.</div></div></p>';
     }
 
     /**
@@ -215,7 +258,9 @@ class SirTrevorJsConverter {
              * Vine
              */
             case "vine":
-                $html = '<iframe class="vine-embed" src="//vine.co/v/'.$remote_id.'/embed/simple" width="580" height="320" frameborder="0"></iframe><script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>';
+                $this->codejs['vine'] = '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>';
+
+                $html = '<iframe class="vine-embed" src="//vine.co/v/'.$remote_id.'/embed/simple" width="580" height="320" frameborder="0"></iframe>';
                 break;
 
             /**

@@ -125,7 +125,7 @@ For the moment, the code can convert :
 * text
 * list
 * heading
-* blockquote
+* blockquote / quote
 * video ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/video.js )
     * aol
     * daily mail uk
@@ -147,8 +147,14 @@ For the moment, the code can convert :
 * slideshare ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/slideshare.js )
 * spotify ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/spotify.js )
 * facebook post ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/facebook.js )
+* embedly card
 
 ## Changelog
+
+* v1.1.1
+    * add converter for embedly card
+    * update SirTrevorJsConverter class with no duplicate call of js
+    * add quoteToHtml() for quote blocks ( see [#3](https://github.com/caouecs/Laravel4-SirTrevorJS/issues/3) )
 
 * v1.1.0
     * update SirTrevorJsConverter::imageToHtml() with html element, figure
