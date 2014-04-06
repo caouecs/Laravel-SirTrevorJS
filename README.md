@@ -124,12 +124,23 @@ Or via SirTrevorJS class :
 
 For the moment, the code can convert :
 
-* text
-* list
-* heading
 * blockquote / quote
+* embedly card
+* facebook post ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/facebook.js )
+* getty images ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/gettyimage.js )
+* heading
+* image
+    * basic version
+    * version with caption ( see: https://github.com/neyre/sir-trevor-wp/blob/master/custom-blocks/ImageCaption.js )
+* pinterest ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/pinterest.js )
+* slideshare ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/slideshare.js )
+* spotify ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/spotify.js )
+* text with Markdown
+* tweet
+* unordered list
 * video ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/video.js )
     * aol
+    * canal plus
     * daily mail uk
     * dailymotion
     * metacafe
@@ -141,17 +152,14 @@ For the moment, the code can convert :
     * vine
     * yahoo
     * youtube
-* image
-    * basic version
-    * version with caption ( see: https://github.com/neyre/sir-trevor-wp/blob/master/custom-blocks/ImageCaption.js )
-* tweet
-* getty images ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/gettyimage.js )
-* slideshare ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/slideshare.js )
-* spotify ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/spotify.js )
-* facebook post ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/facebook.js )
-* embedly card
+    * video with caption
 
 ## Changelog
+
+* v1.1.2
+    * add converter for video with caption
+    * add converter for pin from pinterest
+    * add converter for canal plus video
 
 * v1.1.1
     * add converter for embedly card

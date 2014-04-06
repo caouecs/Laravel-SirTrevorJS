@@ -222,13 +222,39 @@ class SirTrevorJsConverter {
     }
 
     /**
-     * Converts the video to html
+     * Converts Pinterest to html
      *
      * @param string $provider
      * @param string $remote_id
      * @return string
      */
-    public function videoToHtml($provider, $remote_id)
+    public function pinterestToHtml($provider, $remote_id)
+    {
+        $html = null;
+
+        switch ($provider) {
+            /**
+             * Pin
+             */
+            case "pin":
+                $html = '<p class="st-pinterest"><a data-pin-do="embedPin" href="http://pinterest.com/pin/'.$remote_id.'/">Pin on Pinterest</a></p>';
+
+                $this->codejs['pin'] = '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>';
+                break;
+        }
+
+        return $html;
+    }
+
+    /**
+     * Converts the video to html
+     *
+     * @param string $provider
+     * @param string $remote_id
+     * @param string $caption
+     * @return string
+     */
+    public function videoToHtml($provider, $remote_id, $caption = null)
     {
         $html = null;
 
@@ -332,10 +358,23 @@ class SirTrevorJsConverter {
             case "dailymailuk":
                 $html = '<iframe frameborder="0" width="698" height="503" scrolling="no" id="molvideoplayer" title="MailOnline Embed Player" src="http://www.dailymail.co.uk/embed/video/'.$remote_id.'.html" ></iframe>';
                 break;
+
+            /**
+             * Canal Plus
+             */
+            case "cplus":
+                $html = '<iframe width="640" height="360" frameborder="0" scrolling="no" src="http://player.canalplus.fr/embed/?param=cplus&amp;vid='.$remote_id.'"></iframe>';
+                break;
         }
 
+        /**
+         * Caption
+         */
+        if ($html != null && $caption != null)
+            $html .= '<figcaption>'.$caption.'</figcaption>';
+
         if ($html != null)
-            return '<p class="st-movie">'.$html.'</p>';
+            return '<figure class="st-movie">'.$html.'</figure>';
 
         return null;
     }
