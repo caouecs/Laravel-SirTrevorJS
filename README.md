@@ -133,6 +133,7 @@ For the moment, the code can convert :
     * basic version
     * version with caption ( see: https://github.com/neyre/sir-trevor-wp/blob/master/custom-blocks/ImageCaption.js )
 * pinterest ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/pinterest.js )
+* sketchlab ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/sketchlab.js )
 * slideshare ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/slideshare.js )
 * spotify ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/spotify.js )
 * text with Markdown
@@ -143,6 +144,7 @@ For the moment, the code can convert :
     * canal plus
     * daily mail uk
     * dailymotion
+    * france tv
     * metacafe
     * metatube
     * ustream (live and recorded)
@@ -155,6 +157,10 @@ For the moment, the code can convert :
     * video with caption
 
 ## Changelog
+
+* v1.1.3
+    * add converter for france tv video
+    * add converter for sketchlab
 
 * v1.1.2
     * add converter for video with caption

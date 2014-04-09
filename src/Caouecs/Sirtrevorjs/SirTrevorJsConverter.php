@@ -247,6 +247,17 @@ class SirTrevorJsConverter {
     }
 
     /**
+     * Converts Sketchlab to html
+     *
+     * @param string $remote_id
+     * @return string
+     */
+    public function sketchlabToHtml($remote_id)
+    {
+        return '<p class="st-sketchlab"><iframe allowFullScreen webkitallowfullscreen mozallowfullscreen src="https://sketchfab.com/models/'.$remote_id.'/embed" width="640\ height="480" frameborder="0" scrolling="no"></iframe></p>';
+    }
+
+    /**
      * Converts the video to html
      *
      * @param string $provider
@@ -364,6 +375,13 @@ class SirTrevorJsConverter {
              */
             case "cplus":
                 $html = '<iframe width="640" height="360" frameborder="0" scrolling="no" src="http://player.canalplus.fr/embed/?param=cplus&amp;vid='.$remote_id.'"></iframe>';
+                break;
+
+            /**
+             * France Television
+             */
+            case "francetv":
+                $html = '<iframe frameborder="0" width="640" height="360" src="http://api.dmcloud.net/player/embed/'.$remote_id.'?exported=1"></iframe>';
                 break;
         }
 
