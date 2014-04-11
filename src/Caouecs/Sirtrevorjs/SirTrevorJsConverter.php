@@ -8,8 +8,8 @@ use \Michelf\MarkdownExtra as Markdown;
  * A Sir Trevor to HTML conversion helper for PHP
  * inspired by work of Wouter Sioen <info@woutersioen.be>
  */
-class SirTrevorJsConverter {
-
+class SirTrevorJsConverter
+{
     /**
      * Code JS needed by elements
      *
@@ -35,8 +35,9 @@ class SirTrevorJsConverter {
             foreach ($input['data'] as $block) {
 
                 // no data, problem
-                if (!isset($block['data']))
+                if (!isset($block['data'])) {
                     break;
+                }
 
                 // check if we have a converter for this type
                 $converter = $block['type'] . 'ToHtml';
@@ -166,8 +167,9 @@ class SirTrevorJsConverter {
     {
         $_return = '<figure class="st-image"><img src="' . $file['url'] . '" alt="" />';
 
-        if ($caption != null)
+        if ($caption != null) {
             $_return .= '<figcaption>'.$caption.'</figcaption>';
+        }
 
         $_return .= '</figure>';
 
@@ -280,7 +282,7 @@ class SirTrevorJsConverter {
             /**
              * Vimeo
              */
-            case "vimeo";
+            case "vimeo":
                 $html = '<iframe src="//player.vimeo.com/video/'.$remote_id.'?title=0&amp;byline=0" width="580" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
                 break;
 
@@ -388,11 +390,13 @@ class SirTrevorJsConverter {
         /**
          * Caption
          */
-        if ($html != null && $caption != null)
+        if ($html != null && $caption != null) {
             $html .= '<figcaption>'.$caption.'</figcaption>';
+        }
 
-        if ($html != null)
+        if ($html != null) {
             return '<figure class="st-movie">'.$html.'</figure>';
+        }
 
         return null;
     }

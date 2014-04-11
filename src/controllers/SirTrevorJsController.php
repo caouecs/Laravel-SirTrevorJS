@@ -1,8 +1,8 @@
 <?php
 use Thujohn\Twitter\TwitterFacade as Tweet;
 
-class SirTrevorJsController extends BaseController {
-
+class SirTrevorJsController extends BaseController
+{
     /**
      * Upload image
      *
@@ -29,8 +29,9 @@ class SirTrevorJsController extends BaseController {
 
                 $i++;
 
-                if ($i < 10)
+                if ($i < 10) {
                     $i = "0".$i;
+                }
             }
 
             if (move_uploaded_file($_FILES["attachment"]["tmp_name"]['file'], public_path($config['directory_upload'])."/".$filename)) {

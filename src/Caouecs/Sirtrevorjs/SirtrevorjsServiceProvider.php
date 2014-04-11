@@ -2,8 +2,8 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class SirtrevorjsServiceProvider extends ServiceProvider {
-
+class SirtrevorjsServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -42,5 +42,4 @@ class SirtrevorjsServiceProvider extends ServiceProvider {
     {
         return array();
     }
-
 }

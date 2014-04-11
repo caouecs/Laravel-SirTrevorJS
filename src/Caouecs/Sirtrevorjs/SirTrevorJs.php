@@ -3,8 +3,8 @@
 use \Config;
 use \HTML;
 
-class SirTrevorJs {
-
+class SirTrevorJs
+{
     /**
      * Textarea class
      *
@@ -52,7 +52,7 @@ class SirTrevorJs {
      * @param string $txt Text to fix
      * @return string
      */
-    static public function transformText($txt)
+    public static function transformText($txt)
     {
         $txt = json_decode($txt, true);
 
@@ -76,7 +76,7 @@ class SirTrevorJs {
                     $return[] = $data;
                 }
             }
-            
+
             return json_encode(array("data" => $return), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
@@ -90,7 +90,7 @@ class SirTrevorJs {
      * @access public
      * @return string
      */
-    static public function stylesheets()
+    public static function stylesheets()
     {
         // params in config file
         $config = Config::get("sirtrevorjs::sir-trevor-js");
@@ -106,8 +106,9 @@ class SirTrevorJs {
          */
         if (isset($config['stylesheet']) && is_array($config['stylesheet'])) {
             foreach ($config['stylesheet'] as $arr) {
-                if (file_exists(public_path($arr)))
+                if (file_exists(public_path($arr))) {
                     $return .= HTML::style($arr);
+                }
             }
         }
 
@@ -128,7 +129,7 @@ class SirTrevorJs {
      * - uploadUrl
      * - tweetUrl
      */
-    static public function scripts($params = array())
+    public static function scripts($params = array())
     {
         // params
         $config = self::config($params);
@@ -140,8 +141,9 @@ class SirTrevorJs {
          */
         if (isset($config['script']) && is_array($config['script'])) {
             foreach ($config['script'] as $arr) {
-                if (file_exists(public_path($arr)))
+                if (file_exists(public_path($arr))) {
                     $return .= HTML::script($arr);
+                }
             }
         }
 
@@ -192,7 +194,7 @@ class SirTrevorJs {
      * @param array $params Personnalized params
      * @return array
      */
-    static public function config($params = null)
+    public static function config($params = null)
     {
         // params in config file
         $config = Config::get("sirtrevorjs::sir-trevor-js");
@@ -284,7 +286,7 @@ class SirTrevorJs {
      * @param string $text
      * @return string
      */
-    static public function render($text)
+    public static function render($text)
     {
         $converter = new SirTrevorJsConverter();
 
@@ -298,7 +300,7 @@ class SirTrevorJs {
      * @param string $text
      * @return string Url of image
      */
-    static public function findImage($text)
+    public static function findImage($text)
     {
         $array = json_decode($text, true);
 
@@ -325,7 +327,7 @@ class SirTrevorJs {
      * @param int $nbr Number of occurences ( 0 = all )
      * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
      */
-    static public function find($text, $blocktype, $output = "json", $nbr = 0)
+    public static function find($text, $blocktype, $output = "json", $nbr = 0)
     {
         $array = json_decode($text, true);
 
@@ -368,7 +370,7 @@ class SirTrevorJs {
      * @param string $output json or array
      * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
      */
-    static public function first($text, $blocktype, $output = "json")
+    public static function first($text, $blocktype, $output = "json")
     {
         return self::find($text, $blocktype, $output, 1);
     }
