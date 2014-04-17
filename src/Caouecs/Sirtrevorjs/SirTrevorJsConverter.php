@@ -121,7 +121,17 @@ class SirTrevorJsConverter
      */
     public function imageToHtml($file)
     {
-        return '<p class="st-image"><img src="' . $file['url'] . '" alt="" /></p>';
+        // Here we get the file url
+        $file_data = $file['url'];
+
+        // Here we strip out the data not needed and we find 
+        // the base file name from the end of the string
+        $info = pathinfo($file_data);
+
+        // here we grab the file data in its raw format and
+        // create the data attribute to pull from
+        $file_name = $info['filename'];
+        return '<p class="st-image"><img src="' . $file['url'] . '" alt="' . $file_name . '" /></p>';
     }
 
     /**
