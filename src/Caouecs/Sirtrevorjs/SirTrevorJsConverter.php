@@ -224,6 +224,17 @@ class SirTrevorJsConverter
     }
 
     /**
+     * Converts Issuu to html
+     *
+     * @param string $remote_id
+     * @return string
+     */
+    public function issuuToHtml($remote_id)
+    {
+        return '<p class="issuu"><div data-configid="'.$remote_id.'" style="width: 600px; height: 480px;" class="issuuembed"></div><script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>';
+    }
+
+    /**
      * Converts Pinterest to html
      *
      * @param string $provider
