@@ -132,6 +132,7 @@ For the moment, the code can convert :
 * image
     * basic version
     * version with caption ( see: https://github.com/neyre/sir-trevor-wp/blob/master/custom-blocks/ImageCaption.js )
+* issuu ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/issuu.js )
 * pinterest ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/pinterest.js )
 * sketchlab ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/sketchlab.js )
 * slideshare ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/slideshare.js )
@@ -157,6 +158,9 @@ For the moment, the code can convert :
     * video with caption
 
 ## Changelog
+
+* v1.1.4
+    * add converter for issuu
 
 * v1.1.3
     * add converter for france tv video

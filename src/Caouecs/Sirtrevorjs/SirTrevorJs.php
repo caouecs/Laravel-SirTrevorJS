@@ -129,7 +129,7 @@ class SirTrevorJs
      * - uploadUrl
      * - tweetUrl
      */
-    public static function scripts($params = array())
+    public static function scripts(array $params = array())
     {
         // params
         $config = self::config($params);

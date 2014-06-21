@@ -34,7 +34,10 @@ class SirTrevorJsController extends BaseController
                 }
             }
 
-            if (move_uploaded_file($_FILES["attachment"]["tmp_name"]['file'], public_path($config['directory_upload'])."/".$filename)) {
+            if (move_uploaded_file(
+                $_FILES["attachment"]["tmp_name"]['file'],
+                public_path($config['directory_upload'])."/".$filename
+            )) {
 
                 $return = array(
                     "file" => array(
