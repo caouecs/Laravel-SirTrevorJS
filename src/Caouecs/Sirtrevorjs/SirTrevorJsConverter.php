@@ -231,7 +231,9 @@ class SirTrevorJsConverter
      */
     public function issuuToHtml($remote_id)
     {
-        return '<p class="issuu"><div data-configid="'.$remote_id.'" style="width: 600px; height: 480px;" class="issuuembed"></div><script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>';
+        $this->codejs['issuu'] = '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>';
+
+        return '<p class="issuu"><div data-configid="'.$remote_id.'" style="width: 600px; height: 480px;" class="issuuembed"></div>';
     }
 
     /**
@@ -395,6 +397,13 @@ class SirTrevorJsConverter
              */
             case "francetv":
                 $html = '<iframe frameborder="0" width="640" height="360" src="http://api.dmcloud.net/player/embed/'.$remote_id.'?exported=1"></iframe>';
+                break;
+
+            /**
+             * Zoomin.tv
+             */
+            case "zoomin":
+                $html = '<iframe src="http://blackbird.zoomin.tv/players/.pla?pid=corporatefr&amp;id='.$remote_id.'&amp;w=655&amp;h=433" style="width:655px; height:433px; border:none; overflow:hidden;" frameborder="0" scrolling="no" allowtransparency="yes"></iframe>';
                 break;
         }
 

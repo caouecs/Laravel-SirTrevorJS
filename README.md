@@ -155,9 +155,13 @@ For the moment, the code can convert :
     * vine
     * yahoo
     * youtube
+    * zoomin.tv
     * video with caption
 
 ## Changelog
+
+* v1.1.5
+    * add zoomin.tv
 
 * v1.1.4
     * add converter for issuu
