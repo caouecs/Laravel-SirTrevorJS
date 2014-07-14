@@ -146,6 +146,7 @@ For the moment, the code can convert :
     * daily mail uk
     * dailymotion
     * france tv
+    * global news
     * metacafe
     * metatube
     * ustream (live and recorded)
@@ -159,6 +160,9 @@ For the moment, the code can convert :
     * video with caption
 
 ## Changelog
+
+* v1.1.6
+    * add global news
 
 * v1.1.5
     * add zoomin.tv

@@ -405,6 +405,13 @@ class SirTrevorJsConverter
             case "zoomin":
                 $html = '<iframe src="http://blackbird.zoomin.tv/players/.pla?pid=corporatefr&amp;id='.$remote_id.'&amp;w=655&amp;h=433" style="width:655px; height:433px; border:none; overflow:hidden;" frameborder="0" scrolling="no" allowtransparency="yes"></iframe>';
                 break;
+
+            /**
+             * Global News
+             */
+            case "globalnews":
+                $html = '<iframe src="http://globalnews.ca/video/embed/'.$remote_id.'/" width="670" height="437" frameborder="0" allowfullscreen></iframe>';
+                break;
         }
 
         /**
