@@ -1,6 +1,7 @@
 <?php namespace Caouecs\Sirtrevorjs;
 
 use \Michelf\MarkdownExtra as Markdown;
+use \Config;
 
 /**
  * Class Converter
@@ -17,6 +18,11 @@ class SirTrevorJsConverter
      * @var array
      */
     protected $codejs = null;
+
+    public function _construct()
+    {
+        $this->config = Config::get("sirtrevorjs::sir-trevor-js");
+    }
 
     /**
      * Converts the outputted json from Sir Trevor to html
@@ -234,6 +240,22 @@ class SirTrevorJsConverter
         $this->codejs['issuu'] = '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>';
 
         return '<p class="issuu"><div data-configid="'.$remote_id.'" style="width: 600px; height: 480px;" class="issuuembed"></div>';
+    }
+
+    /**
+     * Converts SoundCloud player
+     * you can define the type of player in config file
+     *
+     * @param string $remote_id
+     * @return string
+     */
+    public function soundcloud($remote_id)
+    {
+        if (isset($config['soundcloud']) && $config['soundcloud'] == "full") {
+            return '<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'.$remote_id.'&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>';
+        }
+
+        return '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/'.$remote_id.'&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;color=ff5500"></iframe>';
     }
 
     /**

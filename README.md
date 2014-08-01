@@ -136,6 +136,7 @@ For the moment, the code can convert :
 * pinterest ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/pinterest.js )
 * sketchlab ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/sketchlab.js )
 * slideshare ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/slideshare.js )
+* soundcloud
 * spotify ( see: https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/spotify.js )
 * text with Markdown
 * tweet
@@ -161,8 +162,12 @@ For the moment, the code can convert :
 
 ## Changelog
 
+* v1.1.7
+    * add soundcloud players
+    * possibility to choose type of player in config file
+
 * v1.1.6
-    * add global news
+    * add global news videos
 
 * v1.1.5
     * add zoomin.tv

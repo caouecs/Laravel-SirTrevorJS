@@ -32,5 +32,9 @@ return array(
     "script" => array(
         "/packages/caouecs/sirtrevorjs/0.3.2/underscore-min.1.4.4.js",
         "/packages/caouecs/sirtrevorjs/0.3.2/eventable.js"
-    )
+    ),
+
+    // type of soundcloud
+    // small or full
+    "songcloud" => "small"
 );

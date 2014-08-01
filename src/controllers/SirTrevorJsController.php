@@ -1,5 +1,7 @@
 <?php
 use Thujohn\Twitter\TwitterFacade as Tweet;
+use \Config;
+use \Input;
 
 class SirTrevorJsController extends BaseController
 {
