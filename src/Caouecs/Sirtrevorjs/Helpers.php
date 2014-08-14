@@ -1,5 +1,17 @@
-<?php namespace Caouecs\Sirtrevorjs;
+<?php
+/**
+ * Laravel4-SirTrevorJs
+ *
+ * @link https://github.com/caouecs/Laravel4-SirTrevorJS
+ */
 
+namespace Caouecs\Sirtrevorjs;
+
+/**
+ * Helpers
+ *
+ * @package Caouecs\Sirtrevorjs
+ */
 class Helpers
 {
     /**
@@ -8,8 +20,7 @@ class Helpers
      * @access public
      * @param string $code Javascript code
      * @return string
-     *
-     * @todo Change name of function
+     * @static
      */
     public static function jscode($code)
     {

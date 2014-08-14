@@ -150,6 +150,7 @@ For the moment, the code can convert :
     * global news
     * metacafe
     * metatube
+    * nhl
     * ustream (live and recorded)
     * veoh
     * vevo
@@ -161,6 +162,9 @@ For the moment, the code can convert :
     * video with caption
 
 ## Changelog
+
+* v1.1.8
+    * add nhl videos
 
 * v1.1.7
     * add soundcloud players

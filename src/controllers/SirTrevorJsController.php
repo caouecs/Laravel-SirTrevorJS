@@ -1,8 +1,21 @@
 <?php
+/**
+ * Laravel4-SirTrevorJs
+ *
+ * @link https://github.com/caouecs/Laravel4-SirTrevorJS
+ */
+
 use Thujohn\Twitter\TwitterFacade as Tweet;
 use \Config;
 use \Input;
 
+/**
+ * Controller Sir Trevor Js
+ * - upload image
+ * - display tweet
+ *
+ * @package Caouecs\Sirtrevorjs
+ */
 class SirTrevorJsController extends BaseController
 {
     /**

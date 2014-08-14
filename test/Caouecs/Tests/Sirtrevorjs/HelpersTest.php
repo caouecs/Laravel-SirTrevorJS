@@ -1,4 +1,5 @@
-<?php namespace Caouecs\Tests\Sirtrevorjs;
+<?php
+namespace Caouecs\Tests\Sirtrevorjs;
 
 use Caouecs\Sirtrevorjs\Helpers;
 
@@ -13,6 +14,23 @@ class HelpersTest extends \PHPUnit_Framework_TestCase
     {
         $test = "ok";
 
+        $result = Helpers::jscode($test);
+
+        $this->assertEquals(
+            $result,
+            '<script type="text/javascript">'.$test.'</script>'.PHP_EOL,
+            'The html return is bad'
+        );
+
+        return $test;
+    }
+
+    /**
+     * @depends testJscode
+     * @covers \Caouecs\Sirtrevorjs\Helpers::jscode
+     */
+    public function testJscode2($test)
+    {
         $result = Helpers::jscode($test);
 
         $this->assertEquals(

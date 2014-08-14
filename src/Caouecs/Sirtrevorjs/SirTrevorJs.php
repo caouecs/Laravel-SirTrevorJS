@@ -1,8 +1,20 @@
-<?php namespace Caouecs\Sirtrevorjs;
+<?php
+/**
+ * Laravel4-SirTrevorJs
+ *
+ * @link https://github.com/caouecs/Laravel4-SirTrevorJS
+ */
+
+namespace Caouecs\Sirtrevorjs;
 
 use \Config;
 use \HTML;
 
+/**
+ * Sir Trevor Js
+ *
+ * @package Caouecs\Sirtrevorjs
+ */
 class SirTrevorJs
 {
     /**
@@ -10,40 +22,45 @@ class SirTrevorJs
      *
      * @access protected
      * @var string
+     * @static
      */
-    static protected $class = "sir-trevor";
+    protected static $class = "sir-trevor";
 
     /**
      * Block types
      *
      * @access protected
      * @var string
+     * @static
      */
-    static protected $blocktypes = array('Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading');
+    protected static $blocktypes = array('Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading');
 
     /**
      * Language of Sir Trevor JS
      *
      * @access protected
      * @var string
+     * @static
      */
-    static protected $language = "en";
+    protected static $language = "en";
 
     /**
      * Upload url for images
      *
      * @access protected
      * @var string
+     * @static
      */
-    static protected $uploadUrl = "/sirtrevorjs/upload";
+    protected static $uploadUrl = "/sirtrevorjs/upload";
 
     /**
      * Url for tweets
      *
      * @access protected
      * @var string
+     * @static
      */
-    static protected $tweetUrl = "/sirtrevorjs/tweet";
+    protected static $tweetUrl = "/sirtrevorjs/tweet";
 
     /**
      * Transform text with image bug
@@ -51,6 +68,7 @@ class SirTrevorJs
      * @access public
      * @param string $txt Text to fix
      * @return string
+     * @static
      */
     public static function transformText($txt)
     {
@@ -89,6 +107,7 @@ class SirTrevorJs
      *
      * @access public
      * @return string
+     * @static
      */
     public static function stylesheets()
     {
@@ -98,8 +117,8 @@ class SirTrevorJs
         /**
          * Files of Sir Trevor JS
          */
-        $return = HTML::style($config['path']."sir-trevor-icons.css");
-        $return .= HTML::style($config['path']."sir-trevor.css");
+        $return = HTML::style($config['path']."sir-trevor-icons.css")
+            .HTML::style($config['path']."sir-trevor.css");
 
         /**
          * Others files if you need it
@@ -121,6 +140,7 @@ class SirTrevorJs
      * @access public
      * @param array $params
      * @return string
+     * @static
      *
      * Params :
      * - class
@@ -193,6 +213,7 @@ class SirTrevorJs
      * @access public
      * @param array $params Personnalized params
      * @return array
+     * @static
      */
     public static function config($params = null)
     {
@@ -285,6 +306,7 @@ class SirTrevorJs
      * @access public
      * @param string $text
      * @return string
+     * @static
      */
     public static function render($text)
     {
@@ -299,6 +321,7 @@ class SirTrevorJs
      * @access public
      * @param string $text
      * @return string Url of image
+     * @static
      */
     public static function findImage($text)
     {
@@ -326,6 +349,7 @@ class SirTrevorJs
      * @param string $output json or array
      * @param int $nbr Number of occurences ( 0 = all )
      * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
+     * @static
      */
     public static function find($text, $blocktype, $output = "json", $nbr = 0)
     {
@@ -369,6 +393,7 @@ class SirTrevorJs
      * @param string $blocktype
      * @param string $output json or array
      * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
+     * @static
      */
     public static function first($text, $blocktype, $output = "json")
     {
