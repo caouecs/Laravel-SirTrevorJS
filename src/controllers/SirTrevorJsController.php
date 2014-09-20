@@ -16,7 +16,7 @@ use \Input;
  *
  * @package Caouecs\Sirtrevorjs
  */
-class SirTrevorJsController extends BaseController
+class SirTrevorJsController extends \Controller
 {
     /**
      * Upload image
