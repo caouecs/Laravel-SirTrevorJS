@@ -77,7 +77,6 @@ class SirTrevorJs
         $return = null;
 
         if (is_array($txt) && isset($txt['data'])) {
-
             foreach ($txt['data'] as $data) {
                 /**
                  * The bug is with new image, the data is in an array where each character is an element of this array

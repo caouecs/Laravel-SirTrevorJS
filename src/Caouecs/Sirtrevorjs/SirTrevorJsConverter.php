@@ -54,7 +54,6 @@ class SirTrevorJsConverter
         if (!empty($input) && is_array($input)) {
             // loop trough the data blocks
             foreach ($input['data'] as $block) {
-
                 // no data, problem
                 if (!isset($block['data'])) {
                     break;
@@ -510,6 +509,21 @@ class SirTrevorJsConverter
                 $html = '<iframe src="http://video.nhl.com/videocenter/embed?playlist='.$remote_id.'" '
                     .'frameborder="0" width="640" height="395"></iframe>';
                 break;
+            /**
+             * Livestream
+             */
+            case "livestream":
+                $html = '<iframe src="http://new.livestream.com/accounts/'.$remote_id.'/player?autoPlay=false&amp;'
+                    .'height=360&amp;mute=false&amp;width=640" width="640" height="360" frameborder="0" scrolling="no">'
+                    .'</iframe>';
+                break;
+            /**
+             * Ooyala
+             */
+            case "ooyala":
+                $html = '<script height="349px" width="620px" src="http://player.ooyala.com/iframe.js#pbid='.$remote_id
+                    .'"></script>';
+                break;
         }
 
         /**
@@ -518,7 +532,9 @@ class SirTrevorJsConverter
         if ($html != null && $caption != null) {
             $html .= '<figcaption>'.$caption.'</figcaption>';
         }
-
+        /**
+         * HTML
+         */
         if ($html != null) {
             return '<figure class="st-movie">'.$html.'</figure>';
         }

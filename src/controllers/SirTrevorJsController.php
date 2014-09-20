@@ -29,7 +29,6 @@ class SirTrevorJsController extends BaseController
     public function upload()
     {
         if (isset($_FILES["attachment"])) {
-
             // config
             $config = Config::get("sirtrevorjs::sir-trevor-js");
 
@@ -53,7 +52,6 @@ class SirTrevorJsController extends BaseController
                 $_FILES["attachment"]["tmp_name"]['file'],
                 public_path($config['directory_upload'])."/".$filename
             )) {
-
                 $return = array(
                     "file" => array(
                         "url" => "/".$config['directory_upload']."/".$filename

@@ -148,9 +148,11 @@ For the moment, the code can convert :
     * dailymotion
     * france tv
     * global news
+    * livestream
     * metacafe
     * metatube
     * nhl
+    * ooyala
     * ustream (live and recorded)
     * veoh
     * vevo
@@ -162,6 +164,12 @@ For the moment, the code can convert :
     * video with caption
 
 ## Changelog
+
+* v1.1.10
+    * add ooyala videos
+
+* v1.1.9
+    * add livestream videos
 
 * v1.1.8
     * add nhl videos
