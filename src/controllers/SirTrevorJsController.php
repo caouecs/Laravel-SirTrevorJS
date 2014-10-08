@@ -75,13 +75,13 @@ class SirTrevorJsController extends \Controller
 
         $tweet_id = isset($input['tweet_id']) ? e($input['tweet_id']) : null;
 
-        if ($tweet_id == null) {
+        if (empty($tweet_id)) {
             return null;
         }
 
         $tweet = Tweet::getTweet($tweet_id);
 
-        if ($tweet != false && $tweet != null) {
+        if ($tweet !== false && !empty($tweet)) {
             $return = array(
                 "id_str"     => $tweet_id,
                 "text"       => $tweet->text,

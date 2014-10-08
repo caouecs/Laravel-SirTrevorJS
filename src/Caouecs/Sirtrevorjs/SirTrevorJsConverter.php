@@ -77,7 +77,7 @@ class SirTrevorJsConverter
             }
 
             // code js
-            if ($this->codejs != null && is_array($this->codejs)) {
+            if (!empty($this->codejs) && is_array($this->codejs)) {
                 foreach ($this->codejs as $arr) {
                     $html .= $arr;
                 }
@@ -198,7 +198,7 @@ class SirTrevorJsConverter
     {
         $_return = '<figure class="st-image"><img src="' . $file['url'] . '" alt="" />';
 
-        if ($caption != null) {
+        if (!empty($caption)) {
             $_return .= '<figcaption>'.$caption.'</figcaption>';
         }
 
@@ -526,16 +526,14 @@ class SirTrevorJsConverter
                 break;
         }
 
-        /**
-         * Caption
-         */
-        if ($html != null && $caption != null) {
-            $html .= '<figcaption>'.$caption.'</figcaption>';
-        }
-        /**
-         * HTML
-         */
-        if ($html != null) {
+        if (!empty($html)) {
+            /**
+             * Caption
+             */
+            if (!empty($caption)) {
+                $html .= '<figcaption>'.$caption.'</figcaption>';
+            }
+
             return '<figure class="st-movie">'.$html.'</figure>';
         }
 
