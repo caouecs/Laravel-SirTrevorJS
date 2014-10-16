@@ -326,12 +326,12 @@ class SirTrevorJs
     {
         $array = json_decode($text, true);
 
-        if ($array === false || $array == null || !isset($array['data'])) {
+        if ($array === false || empty($array) || !isset($array['data'])) {
             return null;
         }
 
         foreach ($array['data'] as $arr) {
-            if ($arr['type'] == "image" && isset($arr['data']['file']['url'])) {
+            if ($arr['type'] === "image" && isset($arr['data']['file']['url'])) {
                 return $arr['data']['file']['url'];
             }
         }
@@ -354,7 +354,7 @@ class SirTrevorJs
     {
         $array = json_decode($text, true);
 
-        if ($array === false || $array == null || !isset($array['data'])) {
+        if ($array === false || empty($array) || !isset($array['data'])) {
             return null;
         }
 
@@ -373,11 +373,11 @@ class SirTrevorJs
             }
         }
 
-        if ($return == null) {
+        if (empty($return)) {
             return false;
         }
 
-        if ($output == "array") {
+        if ($output === "array") {
             return $return;
         }
 
