@@ -163,6 +163,9 @@ For the moment, the code can convert :
 
 ## Changelog
 
+* v1.2.0
+    * Parsedown Extra for Markdown text
+
 * v1.1.10
     * add ooyala videos
 
