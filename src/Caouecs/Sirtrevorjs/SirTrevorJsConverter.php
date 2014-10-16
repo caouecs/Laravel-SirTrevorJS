@@ -67,7 +67,7 @@ class SirTrevorJsConverter
                         array($this, $converter),
                         $block['data']
                     );
-                } elseif ($block['type'] == "tweet") {
+                } elseif ($block['type'] === "tweet") {
                     // special twitter
                     $html .= $this->twitterToHtml($block['data']);
                 } elseif (array_key_exists('text', $block['data'])) {
@@ -157,11 +157,7 @@ class SirTrevorJsConverter
     public function blockquoteToHtml($cite, $text)
     {
         // remove the indent thats added by Sir Trevor
-        $text = ltrim($text, '>');
-
-        $html = '<blockquote>';
-
-        $html .= Markdown::defaultTransform($text);
+        $html = '<blockquote>'.Markdown::defaultTransform(ltrim($text, '>'));
 
         // Add the cite if necessary
         if (!empty($cite)) {
@@ -294,7 +290,7 @@ class SirTrevorJsConverter
      */
     public function soundcloud($remote_id)
     {
-        if (isset($config['soundcloud']) && $config['soundcloud'] == "full") {
+        if (isset($config['soundcloud']) && $config['soundcloud'] === "full") {
             return '<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com'
                 .'/player/?url=https%3A//api.soundcloud.com/tracks/'.$remote_id.'&amp;auto_play=false&amp;'
                 .'hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"'
@@ -318,17 +314,15 @@ class SirTrevorJsConverter
     {
         $html = null;
 
-        switch ($provider) {
-            /**
-             * Pin
-             */
-            case "pin":
-                $html = '<p class="st-pinterest"><a data-pin-do="embedPin" href="http://pinterest.com/pin/'.$remote_id
-                    .'/">Pin on Pinterest</a></p>';
+        /**
+         * Pin
+         */
+        if ($provider === "pin") {
+            $html = '<p class="st-pinterest"><a data-pin-do="embedPin" href="http://pinterest.com/pin/'.$remote_id
+                .'/">Pin on Pinterest</a></p>';
 
-                $this->codejs['pin'] = '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js">'
-                    .'</script>';
-                break;
+            $this->codejs['pin'] = '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js">'
+                .'</script>';
         }
 
         return $html;
