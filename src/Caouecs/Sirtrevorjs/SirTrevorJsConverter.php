@@ -7,7 +7,6 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use \Michelf\MarkdownExtra as Markdown;
 use \Config;
 
 /**
@@ -96,7 +95,9 @@ class SirTrevorJsConverter
      */
     public function defaultToHtml($text)
     {
-        return Markdown::defaultTransform($text);
+        $parsedown = new \ParsedownExtra();
+
+        return $parsedown->text($text);
     }
 
     /**
