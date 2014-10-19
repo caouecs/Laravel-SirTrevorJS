@@ -149,6 +149,7 @@ For the moment, the code can convert :
     * livestream
     * metacafe
     * metatube
+    * nbc bay area
     * nhl
     * ooyala
     * ustream (live and recorded)
@@ -162,6 +163,12 @@ For the moment, the code can convert :
     * video with caption
 
 ## Changelog
+
+* v1.2.2
+    * add nbc bay area videos
+
+* v1.2.1
+    * New composer
 
 * v1.2.0
     * Parsedown Extra for Markdown text

@@ -519,6 +519,14 @@ class SirTrevorJsConverter
                 $html = '<script height="349px" width="620px" src="http://player.ooyala.com/iframe.js#pbid='.$remote_id
                     .'"></script>';
                 break;
+            /**
+             * NBC Bay Area
+             */
+            case "nbcbayarea":
+                $html = '<script type="text/javascript" charset="UTF-8" src="http://www.nbcbayarea.com/portableplayer/'
+                    .'?cmsID='.$remote_id.'&origin=nbcbayarea.com&sec=news&subsec=sports&width=600&height=360">'
+                    .'</script>';
+                break;
         }
 
         if (!empty($html)) {
