@@ -1,31 +1,29 @@
 {
-    "name": "caouecs/sirtrevorjs",
-    "description": "Sir Trevor JS in Laravel 4 project",
-    "keywords": ["laravel", "sir trevor js", "sir-trevor-js", "lpm"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "caouecs",
-            "email": "caouecs@caouecs.net"
-        }
+  "name": "caouecs/sirtrevorjs",
+  "description": "Sir Trevor JS in Laravel 4 project",
+  "keywords": ["laravel", "sir trevor js", "sir-trevor-js", "lpm"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "caouecs",
+      "email": "caouecs@caouecs.net"
+    }
+  ],
+  "require": {
+    "illuminate/support": "~4",
+    "erusev/parsedown-extra": "0.2.0",
+    "thujohn/twitter": "1.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.1.*"
+  },
+  "autoload": {
+    "classmap": [
+      "src/controllers",
+      "test"
     ],
-    "require": {
-        "php": ">=5.3.0",
-        "illuminate/support": "~4",
-        "erusev/parsedown-extra": "0.2.0",
-        "thujohn/twitter": "dev-master"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "4.1.*"
-    },
-    "autoload": {
-        "classmap": [
-            "src/controllers",
-            "test"
-        ],
-        "psr-0": {
-            "Caouecs\\Sirtrevorjs\\": "src/"
-        }
-    },
-    "minimum-stability": "stable"
+    "psr-0": {
+      "Caouecs\\Sirtrevorjs\\": "src/"
+    }
+  }
 }
