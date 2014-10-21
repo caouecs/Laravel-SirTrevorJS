@@ -164,6 +164,9 @@ For the moment, the code can convert :
 
 ## Changelog
 
+* v1.2.3
+    * fix for blockquoteToHtml
+
 * v1.2.2
     * add nbc bay area videos
 

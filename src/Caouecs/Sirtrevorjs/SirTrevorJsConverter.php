@@ -158,7 +158,8 @@ class SirTrevorJsConverter
     public function blockquoteToHtml($cite, $text)
     {
         // remove the indent thats added by Sir Trevor
-        $html = '<blockquote>'.Markdown::defaultTransform(ltrim($text, '>'));
+        $parsedown = new \ParsedownExtra();
+        $html = '<blockquote>'.$parsedown->text(ltrim($text, '>'));
 
         // Add the cite if necessary
         if (!empty($cite)) {
