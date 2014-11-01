@@ -7,7 +7,8 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use \Config;
+use Config;
+use ParsedownExtra;
 
 /**
  * Class Converter
@@ -95,7 +96,7 @@ class SirTrevorJsConverter
      */
     public function defaultToHtml($text)
     {
-        $parsedown = new \ParsedownExtra();
+        $parsedown = new ParsedownExtra();
 
         return $parsedown->text($text);
     }
@@ -194,6 +195,10 @@ class SirTrevorJsConverter
      */
     public function imageToHtml($file, $caption = '')
     {
+        if (!isset($file['url'])) {
+            return null;
+        }
+
         $_return = '<figure class="st-image"><img src="' . $file['url'] . '" alt="" />';
 
         if (!empty($caption)) {

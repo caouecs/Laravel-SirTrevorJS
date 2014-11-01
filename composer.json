@@ -19,7 +19,6 @@
   },
   "autoload": {
     "classmap": [
-      "src/controllers",
       "test"
     ],
     "psr-0": {
