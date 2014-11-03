@@ -7,8 +7,8 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use \Config;
-use \HTML;
+use Config;
+use HTML;
 
 /**
  * Sir Trevor Js
@@ -152,7 +152,6 @@ class SirTrevorJs
     {
         // params
         $config = self::config($params);
-
         $return = null;
 
         /**
@@ -165,7 +164,6 @@ class SirTrevorJs
                 }
             }
         }
-
         /**
          * File of Sir Trevor JS
          */
@@ -175,23 +173,18 @@ class SirTrevorJs
             $return .= HTML::script($config['path']."/locales/".$config['language'].".js");
         }
 
-        $return .= "<script type=\"text/javascript\">
-            $(function(){ ";
+        $return .= "<script type=\"text/javascript\">$(function(){ ";
 
         if ($config['language'] != "en") {
             $return .= " SirTrevor.LANGUAGE = '".$config['language']."'; ";
         }
 
-        $return .= " SirTrevor.setDefaults({
-                uploadUrl: '".$config['uploadUrl']."'
-              });
-
+        $return .= " SirTrevor.setDefaults({uploadUrl: '".$config['uploadUrl']."'});
               SirTrevor.setBlockOptions('Tweet', {
                 fetchUrl: function(tweetID) {
                     return '".$config['tweetUrl']."?tweet_id=' + tweetID;
                 }
               });
-
               window.editor = new SirTrevor.Editor({
                 el: $('.".$config['class']."'),
                 blockTypes: [".$config['blocktypes']."]
@@ -246,47 +239,12 @@ class SirTrevorJs
 
         $blocktypes = "'".implode("', '", $blocktypes)."'";
 
-        /**
-         * Upload url for images
-         */
-        // params
-        if (isset($params['uploadUrl']) && !empty($params['uploadUrl'])) {
-            $uploadUrl = $params['uploadUrl'];
-        // config
-        } elseif (isset($config['uploadUrl']) && !empty($config['uploadUrl'])) {
-            $uploadUrl = $config['uploadUrl'];
-        // default
-        } else {
-            $uploadUrl = self::$uploadUrl;
-        }
-
-        /**
-         * Url for tweets
-         */
-        // params
-        if (isset($params['tweetUrl']) && !empty($params['tweetUrl'])) {
-            $tweetUrl = $params['tweetUrl'];
-        // config
-        } elseif (isset($config['tweetUrl']) && !empty($config['tweetUrl'])) {
-            $tweetUrl = $config['tweetUrl'];
-        // default
-        } else {
-            $tweetUrl = self::$tweetUrl;
-        }
-
-        /**
-         * Language
-         */
-        // params
-        if (isset($params['language']) && !empty($params['language'])) {
-            $language = $params['language'];
-        // config
-        } elseif (isset($config['language']) && !empty($config['language'])) {
-            $language = $config['language'];
-        // default
-        } else {
-            $language = self::$language;
-        }
+        // Upload url for images
+        $uploadUrl = self::defineParam("uploadUrl", $params, $config);
+        // Url for tweets
+        $tweetUrl = self::defineParam("tweetUrl", $params, $config);
+        // Language
+        $language = self::defineParam("language", $params, $config);
 
         return array(
             "path"       => $config['path'],
@@ -297,6 +255,29 @@ class SirTrevorJs
             "uploadUrl"  => $uploadUrl,
             "tweetUrl"   => $tweetUrl
         );
+    }
+
+    /**
+     * Define param
+     *
+     * @access private
+     * @param string $type
+     * @param array $params
+     * @param array $config
+     * @return string
+     */
+    private static function defineParam($type, $params, $config)
+    {
+        // params
+        if (isset($params[$type]) && !empty($params[$type])) {
+            return $params[$type];
+        // config
+        } elseif (isset($config[$type]) && !empty($config[$type])) {
+            return $config[$type];
+        }
+
+        // default
+        return self::$$type;
     }
 
     /**
