@@ -19,7 +19,7 @@ return array(
     "language" => "en",
 
     // path of Sir Trevor JS files from public_path()
-    "path" => "/packages/caouecs/sirtrevorjs/0.3.2/",
+    "path" => "/asset/sirtrevorjs/",
 
     // others stylesheet files path from public_path()
     //   not files of Sir Trevor JS
@@ -30,8 +30,8 @@ return array(
     //
     // because Sir Trevor JS needs Underscore.js and Eventable.js
     "script" => array(
-        "/packages/caouecs/sirtrevorjs/0.3.2/underscore-min.1.4.4.js",
-        "/packages/caouecs/sirtrevorjs/0.3.2/eventable.js"
+        "/asset/underscore-min.1.4.4.js",
+        "/asset/eventable.js"
     ),
 
     // type of soundcloud

@@ -19,10 +19,6 @@ Next, you must migrate config :
 
     php artisan config:publish caouecs/sirtrevorjs
 
-And assets, but it's not mandatory if you have your own files :
-
-    php artisan asset:publish caouecs/sirtrevorjs
-
 ### thujohn/twitter
 
 To get tweets, this project uses [twitter-l4](https://github.com/thujohn/twitter-l4), so you must have a valid developer account of Twitter and add config file of twitter-l4 :
@@ -163,6 +159,12 @@ For the moment, the code can convert :
     * video with caption
 
 ## Changelog
+
+* v1.3.0
+    * no public directory needed
+
+* v1.2.4
+    * cleaning
 
 * v1.2.3
     * fix for blockquoteToHtml
