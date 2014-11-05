@@ -1,7 +1,7 @@
 Laravel4-SirTrevorJS
 ====================
 
-Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a project, with stylesheets and scripts, and possibility to param it (next evolution).
+Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a project.
 
 ## Installation
 
