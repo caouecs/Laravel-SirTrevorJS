@@ -7,6 +7,9 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Exception;
+use View;
+
 /**
  * Videos for Sir Trevor Js
  *

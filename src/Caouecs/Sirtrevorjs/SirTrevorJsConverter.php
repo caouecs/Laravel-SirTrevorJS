@@ -8,7 +8,6 @@
 namespace Caouecs\Sirtrevorjs;
 
 use Config;
-use ParsedownExtra;
 
 /**
  * Class Converter

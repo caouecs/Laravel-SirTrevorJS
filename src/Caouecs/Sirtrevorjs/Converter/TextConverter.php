@@ -8,6 +8,7 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use ParsedownExtra;
+use View;
 
 /**
  * Text for Sir Trevor Js by Markdown
@@ -53,7 +54,7 @@ class TextConverter extends ParsedownExtra
         // remove the indent thats added by Sir Trevor
         return View::make("sirtrevorjs::quote", array(
             "cite" => $cite,
-            "text" => $this->text(ltrim($text, '>'));
+            "text" => $this->text(ltrim($text, '>'))
         ));
     }
 
