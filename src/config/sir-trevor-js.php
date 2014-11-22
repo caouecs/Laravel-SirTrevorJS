@@ -36,5 +36,11 @@ return array(
 
     // type of soundcloud
     // small or full
-    "songcloud" => "small"
+    "songcloud" => "small",
+
+    // Getty Images
+    "gettyimages" => array(
+        "width"  => 594,
+        "height" => 465
+    )
 );

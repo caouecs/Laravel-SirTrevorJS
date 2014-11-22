@@ -28,3 +28,6 @@ indent_size = 2
 
 [**.css]
 indent_size = 2
+
+[**.blade]
+indent_size = 2

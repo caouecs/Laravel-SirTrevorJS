@@ -84,7 +84,7 @@ class SirTrevorJs
                  * This code transforms this array into a string (JSON format)
                  * and after it transforms it into an another array for Sir Trevor
                  */
-                if ($data['type'] == "image" && !isset($data['data']['file'])) {
+                if ($data['type'] === "image" && !isset($data['data']['file'])) {
                     $return[] = array(
                         "type" => "image",
                         "data" => json_decode(implode($data['data']), true)
@@ -213,17 +213,6 @@ class SirTrevorJs
         $config = Config::get("sirtrevorjs::sir-trevor-js");
 
         /**
-         * Class or ID of textarea
-         */
-        // params
-        if (isset($params['class']) && !empty($params['class'])) {
-            $class = $params['class'];
-        // default
-        } else {
-            $class = self::$class;
-        }
-
-        /**
          * Block types
          */
         // params
@@ -239,6 +228,8 @@ class SirTrevorJs
 
         $blocktypes = "'".implode("', '", $blocktypes)."'";
 
+        // Class
+        $class = self::defineParam("class", $params);
         // Upload url for images
         $uploadUrl = self::defineParam("uploadUrl", $params, $config);
         // Url for tweets
@@ -266,7 +257,7 @@ class SirTrevorJs
      * @param array $config
      * @return string
      */
-    private static function defineParam($type, $params, $config)
+    private static function defineParam($type, $params, $config = array())
     {
         // params
         if (isset($params[$type]) && !empty($params[$type])) {

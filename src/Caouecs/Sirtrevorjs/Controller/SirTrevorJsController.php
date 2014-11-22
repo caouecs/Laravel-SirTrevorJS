@@ -5,7 +5,7 @@
  * @link https://github.com/caouecs/Laravel4-SirTrevorJS
  */
 
-namespace Caouecs\Sirtrevorjs\Controllers;
+namespace Caouecs\Sirtrevorjs\Controller;
 
 use Thujohn\Twitter\TwitterFacade as Tweet;
 use Config;
@@ -38,16 +38,17 @@ class SirTrevorJsController extends Controller
             // filename
             $filename = $_FILES['attachment']['name']['file'];
 
-            // verif if files exists
-            $i = "01";
+            // suffixe if file exists
+            $suffixe = "01";
 
+            // verif if file exists
             while (file_exists(public_path($config['directory_upload'])."/".$filename)) {
-                $filename = $i."_".$filename;
+                $filename = $suffixe."_".$filename;
 
-                $i++;
+                $suffixe++;
 
-                if ($i < 10) {
-                    $i = "0".$i;
+                if ($suffixe < 10) {
+                    $suffixe = "0".$suffixe;
                 }
             }
 

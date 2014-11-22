@@ -8,6 +8,7 @@
 namespace Caouecs\Sirtrevorjs;
 
 use Illuminate\Support\ServiceProvider;
+use View;
 
 /**
  * Sir Trevor Js service provider
@@ -36,6 +37,8 @@ class SirtrevorjsServiceProvider extends ServiceProvider
         $this->package('caouecs/sirtrevorjs');
 
         include __DIR__.'/../../routes.php';
+
+        View::addNamespace('sirtrevorjs', __DIR__.'/../../views/');
     }
 
     /**
