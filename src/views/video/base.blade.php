@@ -1,5 +1,5 @@
 <figure class="st-movie">
-  {{ $video }}
+  @yield('video')
 
 @if (!empty($caption))
   <figcaption>{{ $caption }}</figcaption>

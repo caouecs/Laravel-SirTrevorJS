@@ -1,9 +1,7 @@
 Laravel4-SirTrevorJS
 ====================
 
-Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a project.
-
-[ ![Codeship Status for caouecs/sir-trevor-js](https://www.codeship.io/projects/045dc3e0-4732-0132-77d0-2aca4095c0f5/status)](https://www.codeship.io/projects/45511)
+Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel](http://laravel.com) project.
 
 ## Installation
 
@@ -40,6 +38,9 @@ You can define :
 * the list of block types
 * the language
 * the paths for Eventable.js and Underscore.js
+* configuration for blocks
+    * soundcloud
+    * gettyimages
 
 ## SirTrevorJs class
 
