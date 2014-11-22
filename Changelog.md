@@ -1,5 +1,9 @@
 # Changelog
 
+* v1.4.0
+    * class Converter
+    * views for render
+
 * v1.3.0
     * no public directory needed
 
