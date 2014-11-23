@@ -58,39 +58,53 @@ class SirTrevorJsConverter
                     break;
                 }
 
-                // Block Video
-                if ($block['type'] === "video") {
-                    $converter = new Converter\VideoConverter($block['data']);
-                    $converter->jscode($this->codejs);
-
-                    $html .= $converter->render();
-                // Blocks Image or Service for Images
-                } elseif (in_array($block['type'], array("image", "gettyimages", "pinterest"))) {
-                    $converter = new Converter\ImageConverter($block['type'], $block['data']);
-
-                    $html .= $converter->render($this->codejs);
-                } else {
-                    $converter = $block['type'] . 'ToHtml';
-                    if (is_callable(array($this, $converter))) {
-                        // call the function and add the data as parameters
-                        $html .= call_user_func_array(
-                            array($this, $converter),
-                            $block['data']
-                        );
-                    } else {
-                        // Text converter
-                        $textConverter = new Converter\TextConverter();
-
-                        if (is_callable(array($textConverter, $converter))) {
+                switch ($block['type']) {
+                    // Blocks Sound
+                    case "soundcloud":
+                    case "spotify":
+                        $converter = new Converter\SoundConverter($block['type'], $block['data']);
+                        $html .= $converter->render($this->codejs);
+                        break;
+                    // Block Video
+                    case "video":
+                        $converter = new Converter\VideoConverter($block['data']);
+                        $html .= $converter->render($this->codejs);
+                        break;
+                    // Blocks Images or Services for Images
+                    case "image":
+                    case "gettyimages":
+                    case "pinterest":
+                        $converter = new Converter\ImageConverter($block['type'], $block['data']);
+                        $html .= $converter->render($this->codejs);
+                        break;
+                    // Block Embedly
+                    case "embedly":
+                        $converter = new Converter\EmbedlyConverter($block['data']);
+                        $html .= $converter->render($this->codejs);
+                        break;
+                    // Default
+                    default:
+                        $converter = $block['type'] . 'ToHtml';
+                        if (is_callable(array($this, $converter))) {
+                            // call the function and add the data as parameters
                             $html .= call_user_func_array(
-                                array($textConverter, $converter),
+                                array($this, $converter),
                                 $block['data']
                             );
-                        } elseif (array_key_exists('text', $block['data'])) {
-                            // we have a text block. Let's just try the default converter
-                            $html .= $textConverter->defaultToHtml($block['data']['text']);
+                        } else {
+                            // Text converter
+                            $textConverter = new Converter\TextConverter();
+
+                            if (is_callable(array($textConverter, $converter))) {
+                                $html .= call_user_func_array(
+                                    array($textConverter, $converter),
+                                    $block['data']
+                                );
+                            } elseif (array_key_exists('text', $block['data'])) {
+                                // we have a text block. Let's just try the default converter
+                                $html .= $textConverter->defaultToHtml($block['data']['text']);
+                            }
                         }
-                    }
                 }
             }
 
@@ -123,23 +137,6 @@ class SirTrevorJsConverter
     }
 
     /**
-     * Converts Embedly card to html
-     *
-     * @access public
-     * @param string $url
-     * @return string
-     */
-    public function embedlycardToHtml($url)
-    {
-        $this->codejs['embedly_card'] = '<script>(function(a){var b="embedly-platform",c="script";'
-            .'if(!a.getElementById(b)){var d=a.createElement(c);d.id=b;d.async=true;d.src=("https:"===document.location'
-            .'protocol?"https":"http")+"://cdn.embedly.com/widgets/platform.js";var e=document.getElementsByTagName(c)'
-            .'[0];e.parentNode.insertBefore(d,e)}})(document);</script>';
-
-        return '<a class="embedly-card" href="'.$url.'">&nbsp;</a>';
-    }
-
-    /**
      * Converts Facebook to html
      *
      * @access public
@@ -158,19 +155,6 @@ class SirTrevorJsConverter
             .'com/'.$author.'/posts/'.$remote_id.'" data-width="466" style="overflow-x: hidden;overflow-y:hidden; '
             .'max-width: 100%;"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/'.$author.'/posts/'
             .$remote_id.'">Post</a> by <a href="https://www.facebook.com/'.$author.'">'.$author.'</a>.</div></div></p>';
-    }
-
-    /**
-     * Converts Spotify track to html
-     *
-     * @access public
-     * @param string $remote_id
-     * @return string
-     */
-    public function spotifyToHtml($remote_id)
-    {
-        return '<iframe src="https://embed.spotify.com/?uri=spotify:track:'.$remote_id.'" width="300" height="380" '
-            .'frameborder="0" allowtransparency="true"></iframe>';
     }
 
     /**
@@ -201,28 +185,6 @@ class SirTrevorJsConverter
 
         return '<p class="issuu"><div data-configid="'.$remote_id.'" style="width: 600px; height: 480px;" '
             .'class="issuuembed"></div>';
-    }
-
-    /**
-     * Converts SoundCloud player
-     * you can define the type of player in config file
-     *
-     * @access public
-     * @param string $remote_id
-     * @return string
-     */
-    public function soundcloudToHtml($remote_id)
-    {
-        if (isset($config['soundcloud']) && $config['soundcloud'] === "full") {
-            return '<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com'
-                .'/player/?url=https%3A//api.soundcloud.com/tracks/'.$remote_id.'&amp;auto_play=false&amp;'
-                .'hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"'
-                .'></iframe>';
-        }
-
-        return '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player'
-            .'/?url=https%3A//api.soundcloud.com/tracks/'.$remote_id.'&amp;auto_play=false&amp;hide_related=false'
-            .'&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;color=ff5500"></iframe>';
     }
 
     /**

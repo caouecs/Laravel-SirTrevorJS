@@ -101,27 +101,21 @@ class VideoConverter
     }
 
     /**
-     * Js Code
-     *
-     * @access public
-     * @return string
-     */
-    public function jscode(&$arr)
-    {
-        if (isset($this->codejs[$this->provider])) {
-            $arr[$this->provider] = $this->codejs[$this->provider];
-        }
-    }
-
-    /**
      * Render of video tag
      *
      * @access public
+     * @param array $codejs Array of Js
      * @return string
      */
-    public function render()
+    public function render(&$codejs)
     {
         if (in_array($this->provider, $this->providers)) {
+            // JS Code
+            if (isset($this->codejs[$this->provider])) {
+                $codejs[$this->provider] = $this->codejs[$this->provider];
+            }
+
+            // View
             return View::make("sirtrevorjs::video.".$this->provider, array(
                 "remote" => $this->remote_id,
                 "caption" => $this->caption

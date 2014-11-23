@@ -34,6 +34,18 @@ class ImageConverter
     protected $data = null;
 
     /**
+     * List of types
+     *
+     * @access protected
+     * @var array
+     */
+    protected $types = array(
+        "image",
+        "gettyimages",
+        "pinterest"
+    );
+
+    /**
      * Construct
      *
      * @access public
@@ -55,10 +67,14 @@ class ImageConverter
      */
     public function render(&$codejs)
     {
-        return call_user_func_array(
-            array($this, $this->type."toHtml"),
-            array($codejs)
-        );
+        if (in_array($this->type, $this->types)) {
+            return call_user_func_array(
+                array($this, $this->type."ToHtml"),
+                array($codejs)
+            );
+        }
+
+        return null;
     }
 
     /**

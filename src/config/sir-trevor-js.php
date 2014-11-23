@@ -42,5 +42,19 @@ return array(
     "gettyimages" => array(
         "width"  => 594,
         "height" => 465
+    ),
+
+    // Embedly
+    "embedly" => array(
+        "card" => array(
+            "dark" => false,
+            "analytics" => false
+        )
+    ),
+
+    // Spotify
+    "spotify" => array(
+        "width" => 300,
+        "height" => 380
     )
 );
