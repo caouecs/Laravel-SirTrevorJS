@@ -24,7 +24,7 @@ class SirtrevorjsServiceProvider extends ServiceProvider
      * @var bool
      * @access protected
      */
-    protected $defer = true;
+    protected $defer = false;
 
     /**
      * Bootstrap the application events.
