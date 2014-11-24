@@ -21,7 +21,7 @@
     "classmap": [
       "test"
     ],
-    "psr-4": {
+    "psr-0": {
       "Caouecs\\Sirtrevorjs\\": "src/"
     }
   }
