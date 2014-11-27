@@ -5,9 +5,11 @@ return array(
     "directory_upload" => "img/uploads",
 
     // upload url for image
+    // by default: /sirtrevorjs/upload (the controller of this package)
     "uploadUrl" => null,
 
     // url for tweet
+    // by default: /sirtrevorjs/tweet (the controller of this package)
     "tweetUrl" => null,
 
     // block types for Sir Trevor JS

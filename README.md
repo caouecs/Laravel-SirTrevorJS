@@ -1,23 +1,27 @@
 Laravel4-SirTrevorJS
 ====================
 
-Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel](http://laravel.com) project.
+Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 4/5](http://laravel.com) project.
 
 ## Installation
 
 This package is available through `Packagist` and `Composer`.
 
-Add `"caouecs/sirtrevorjs": "dev-master"` to your composer.json or run `composer require caouecs/sirtrevorjs`.
-Then you have to add `"Caouecs\Sirtrevorjs\SirtrevorjsServiceProvider"` to your list of providers in your `app/config/app.php`, and a list of elements for aliases :
+* add to your composer.json `"caouecs/sirtrevorjs": "dev-master"` at your own risk
+* or add to your composer.json `"caouecs/sirtrevorjs": "~1.4"` for stable version
+* or run `composer require caouecs/sirtrevorjs`
+* or you can use [Package Installer](https://github.com/rtablada/package-installer), Laravel4-SirTrevorJS has a valid provides.json file. After installation of Package Installer, just run `php artisan package:install caouecs/sirtrevorjs` ; the lists of providers and aliases will be up-to-date.
+
+### Aliases
+
+In your `app/config/app.php`, add in aliases :
 
     'SirTrevorJs' => 'Caouecs\Sirtrevorjs\SirTrevorJs',
     'STConverter' => 'Caouecs\Sirtrevorjs\SirTrevorJsConverter'
 
-So, I recommend you use [Package Installer](https://github.com/rtablada/package-installer), Laravel4-SirTrevorJS has a valid provides.json file. After installation of Package Installer, just run `php artisan package:install caouecs/sirtrevorjs` ; the lists of providers and aliases will be up-to-date.
+### Service Provider
 
-Next, you must migrate config :
-
-    php artisan config:publish caouecs/sirtrevorjs
+If you want to use routing, controllers, views directly in your project, in your `app/config/app.php`, add `"Caouecs\Sirtrevorjs\SirtrevorjsServiceProvider"` to your list of providers.
 
 ### thujohn/twitter
 
@@ -29,11 +33,17 @@ and add `"Thujohn\Twitter\TwitterServiceProvider"` to your list of providers in 
 
 ## Configuration file
 
+Next, you must migrate config :
+
+    php artisan config:publish caouecs/sirtrevorjs
+
 After installation, the config file is located at *app/config/packages/caouecs/sirtrevorjs/sir-trevor-js.php*.
 
 You can define :
 
 * the path for image upload
+* the route for upload image
+* the route for tweet
 * the path of Sir Trevor files
 * the list of block types
 * the language
@@ -41,6 +51,7 @@ You can define :
 * configuration for blocks
     * soundcloud
     * gettyimages
+* etc...
 
 ## SirTrevorJs class
 
@@ -56,7 +67,7 @@ For scripts, in your Blade files :
 
 ### Fix for image block
 
-Function to fix a problem with image block when you add a new image
+Function to fix a problem with image block when you add a new image :
 
     $text = SirTrevorJs::transformText($text);
 
@@ -72,7 +83,7 @@ In return, you have url of image or empty string.
 
 Get all elements in text, in specified blocktype with `find` method :
 
-    mixed SirTrevorJS::find(string $text, string $blocktype[, string $output = "json"])
+    mixed SirTrevorJS::find(string $text, string $blocktype [, string $output = "json"])
 
 In return, you can have :
 
