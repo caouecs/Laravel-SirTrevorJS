@@ -60,6 +60,12 @@ class SirTrevorJsConverter
                 }
 
                 switch ($block['type']) {
+                    // Blocks Presentation
+                    case "slideshare":
+                    case "issuu":
+                        $converter = new Converter\PresentationConverter($block['type'], $block['data']);
+                        $html .= $converter->render($this->codejs);
+                        break;
                     // Blocks Sound
                     case "soundcloud":
                     case "spotify":
@@ -126,36 +132,6 @@ class SirTrevorJsConverter
         }
 
         return $html;
-    }
-
-    /**
-     * Converts Slideshare to html
-     *
-     * @access public
-     * @param string $remote_id
-     * @return string
-     */
-    public function slideshareToHtml($remote_id)
-    {
-        return '<p class="st-slideshare"><iframe src="http://www.slideshare.net/slideshow/embed_code/'.$remote_id
-            .'?rel=0" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" '
-            .'style="border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;" '
-            .'allowfullscreen> </iframe></p>';
-    }
-
-    /**
-     * Converts Issuu to html
-     *
-     * @access public
-     * @param string $remote_id
-     * @return string
-     */
-    public function issuuToHtml($remote_id)
-    {
-        $this->codejs['issuu'] = '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>';
-
-        return '<p class="issuu"><div data-configid="'.$remote_id.'" style="width: 600px; height: 480px;" '
-            .'class="issuuembed"></div>';
     }
 
     /**
