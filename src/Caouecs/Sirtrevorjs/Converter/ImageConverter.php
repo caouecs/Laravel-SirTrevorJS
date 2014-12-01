@@ -30,7 +30,6 @@ class ImageConverter
      * Converts the image to html
      *
      * @access public
-     * @param array $data
      * @return string
      */
     public function imageToHtml()
@@ -49,7 +48,6 @@ class ImageConverter
      * Converts GettyImage to html
      *
      * @access public
-     * @param array $data
      * @return string
      */
     public function gettyimagesToHtml()
@@ -65,8 +63,7 @@ class ImageConverter
      * Converts Pinterest to html
      *
      * @access public
-     * @param string $provider
-     * @param string $remote_id
+     * @param array $codejs Array of js
      * @return string
      */
     public function pinterestToHtml(&$codejs)

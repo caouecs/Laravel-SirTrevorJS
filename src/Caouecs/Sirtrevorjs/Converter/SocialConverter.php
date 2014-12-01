@@ -41,6 +41,7 @@ class SocialConverter extends BaseConverter
      * Facebook
      *
      * @access public
+     * @param array $codejs Array of js
      * @return string
      */
     public function facebookToHtml(&$codejs)
