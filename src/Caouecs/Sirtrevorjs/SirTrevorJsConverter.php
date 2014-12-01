@@ -68,7 +68,7 @@ class SirTrevorJsConverter
                         break;
                     // Blocks Modelisation
                     case "sketchfab":
-                        $converter = new Converter\Modelisation($block['type'], $block['data']);
+                        $converter = new Converter\ModelisationConverter($block['type'], $block['data']);
                         $html .= $converter->render($this->codejs);
                         break;
                     // Blocks Sound
