@@ -30,7 +30,7 @@ class SoundConverter
      * @access public
      * @return string
      */
-    public function soundcloud()
+    public function soundcloudToHtml()
     {
         $theme = (isset($this->config['soundcloud']) && $this->config['soundcloud'] === "full") ? "full" : "small";
 
