@@ -8,7 +8,7 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Exception;
-use View;
+use Config;
 
 /**
  * Videos for Sir Trevor Js

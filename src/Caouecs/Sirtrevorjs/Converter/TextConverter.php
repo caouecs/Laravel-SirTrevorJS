@@ -7,6 +7,8 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Config;
+
 /**
  * Text for Sir Trevor Js by Markdown
  *
