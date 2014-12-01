@@ -66,6 +66,11 @@ class SirTrevorJsConverter
                         $converter = new Converter\PresentationConverter($block['type'], $block['data']);
                         $html .= $converter->render($this->codejs);
                         break;
+                    // Blocks Modelisation
+                    case "sketchfab":
+                        $converter = new Converter\Modelisation($block['type'], $block['data']);
+                        $html .= $converter->render($this->codejs);
+                        break;
                     // Blocks Sound
                     case "soundcloud":
                     case "spotify":
@@ -132,18 +137,5 @@ class SirTrevorJsConverter
         }
 
         return $html;
-    }
-
-    /**
-     * Converts Sketchlab to html
-     *
-     * @param string $remote_id
-     * @return string
-     */
-    public function sketchlabToHtml($remote_id)
-    {
-        return '<p class="st-sketchlab"><iframe allowFullScreen webkitallowfullscreen mozallowfullscreen '
-            .'src="https://sketchfab.com/models/'.$remote_id.'/embed" width="640\ height="480" frameborder="0" '
-            .'scrolling="no"></iframe></p>';
     }
 }
