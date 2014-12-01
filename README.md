@@ -48,6 +48,7 @@ You can define :
 * the list of block types
 * the language
 * the paths for Eventable.js and Underscore.js
+* the view
 * configuration for blocks
     * soundcloud
     * gettyimages

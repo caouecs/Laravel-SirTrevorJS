@@ -7,9 +7,6 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Config;
-use View;
-
 /**
  * Embedly for Sir Trevor Js
  *
@@ -17,22 +14,6 @@ use View;
  */
 class EmbedlyConverter
 {
-    /**
-     * Type of embedly
-     *
-     * @var string
-     * @access protected
-     */
-    protected $type = null;
-
-    /**
-     * Data of embedly
-     *
-     * @var array
-     * @access protected
-     */
-    protected $data = null;
-
     /**
      * List of types for embedly
      *
@@ -42,19 +23,6 @@ class EmbedlyConverter
     protected $types = array(
         "card"
     );
-
-    /**
-     * Construct
-     *
-     * @access public
-     * @param string $type Type of embedly
-     * @param array $data Data of embedly
-     */
-    public function __construct($type, $data)
-    {
-        $this->type = $type;
-        $this->data = $data;
-    }
 
     /**
      * Render of embedly
@@ -71,9 +39,9 @@ class EmbedlyConverter
         ) {
             $codejs['embedly'] = '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>';
 
-            return View::make("sirtrevorjs::embedly.".$this->type, array(
+            return $this->view("embedly.".$this->type, array(
                 "url" => $this->data['url'],
-                "options" => Config::get("sirtrevorjs::sir-trevor-js.embedly")
+                "options" => $this->config['embedly']
             ));
         }
 

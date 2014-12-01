@@ -98,6 +98,7 @@ class VideoConverter
         $this->provider = $data['source'];
         $this->remote_id = $data['remote_id'];
         $this->caption = isset($data['caption']) ? $data['caption'] : null;
+        $this->config = Config::get("sirtrevorjs::sir-trevor-js");
     }
 
     /**
@@ -107,7 +108,7 @@ class VideoConverter
      * @param array $codejs Array of Js
      * @return string
      */
-    public function render(&$codejs)
+    public function videoToHtml(&$codejs)
     {
         if (in_array($this->provider, $this->providers)) {
             // JS Code
@@ -116,7 +117,7 @@ class VideoConverter
             }
 
             // View
-            return View::make("sirtrevorjs::video.".$this->provider, array(
+            return $this->view("video.".$this->provider, array(
                 "remote" => $this->remote_id,
                 "caption" => $this->caption
             ));

@@ -7,16 +7,33 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use ParsedownExtra;
-use View;
-
 /**
  * Text for Sir Trevor Js by Markdown
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class TextConverter extends ParsedownExtra
+class TextConverter extends BaseConverter
 {
+    /**
+     * Markdown
+     *
+     * @access protected
+     * @var Markdown
+     */
+    protected $markdown;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct($markdown)
+    {
+        $this->markdown = $markdown;
+
+        $this->config = Config::get("sirtrevorjs::sir-trevor-js");
+    }
+
     /**
      * Convert text to markdown
      *
@@ -26,7 +43,9 @@ class TextConverter extends ParsedownExtra
      */
     public function defaultToHtml($text)
     {
-        return $this->text($text);
+        return $this->view("text.text", array(
+            "text" => $this->markdown->text($text)
+        ));
     }
 
     /**
@@ -38,7 +57,9 @@ class TextConverter extends ParsedownExtra
      */
     public function headingToHtml($text)
     {
-        return '<h2>' . $text . '</h2>';
+        return $this->view("text.heading", array(
+            "text" => $text
+        ));
     }
 
     /**
@@ -52,9 +73,9 @@ class TextConverter extends ParsedownExtra
     public function blockquoteToHtml($cite, $text)
     {
         // remove the indent thats added by Sir Trevor
-        return View::make("sirtrevorjs::quote", array(
+        return $this->view("text.blockquote", array(
             "cite" => $cite,
-            "text" => $this->text(ltrim($text, '>'))
+            "text" => $this->markdown->text(ltrim($text, '>'))
         ));
     }
 

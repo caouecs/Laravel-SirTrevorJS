@@ -58,5 +58,8 @@ return array(
     "spotify" => array(
         "width" => 300,
         "height" => 380
-    )
+    ),
+
+    // View
+    //"view" => "sirtrevorjs"
 );

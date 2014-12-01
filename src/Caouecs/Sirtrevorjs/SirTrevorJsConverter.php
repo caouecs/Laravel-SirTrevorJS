@@ -8,6 +8,7 @@
 namespace Caouecs\Sirtrevorjs;
 
 use Config;
+use ParsedownExtra;
 
 /**
  * Class Converter
@@ -82,6 +83,12 @@ class SirTrevorJsConverter
                         $converter = new Converter\EmbedlyConverter($block['data']);
                         $html .= $converter->render($this->codejs);
                         break;
+                    // Social Network
+                    case "tweet":
+                    case "facebook":
+                        $converter = new Converter\SocialConverter($block['type'], $block);
+                        $html .= $this->render($this->codejs);
+                        break;
                     // Default
                     default:
                         $converter = $block['type'] . 'ToHtml';
@@ -92,8 +99,10 @@ class SirTrevorJsConverter
                                 $block['data']
                             );
                         } else {
+                            $markdown = new ParsedownExtra();
+
                             // Text converter
-                            $textConverter = new Converter\TextConverter();
+                            $textConverter = new Converter\TextConverter($markdown);
 
                             if (is_callable(array($textConverter, $converter))) {
                                 $html .= call_user_func_array(
@@ -117,44 +126,6 @@ class SirTrevorJsConverter
         }
 
         return $html;
-    }
-    /**
-     * Converts tweet to html
-     *
-     * @access public
-     * @param array $data
-     * @return string
-     */
-    public function tweetToHtml($data)
-    {
-        $this->codejs['twitter'] = '<script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>';
-
-        return '<blockquote class="twitter-tweet tw-align-center">
-            <p>'.$data['text'].'</p>
-            &mdash; '.$data['user']['name'].' (@'.$data['user']['screen_name'].')
-            <a href="'.$data['status_url'].'" data-datetime="'.$data['created_at'].'">'.$data['created_at'].'</a>
-        </blockquote>';
-    }
-
-    /**
-     * Converts Facebook to html
-     *
-     * @access public
-     * @param string $author
-     * @param string $remote_id
-     * @return string
-     */
-    public function facebookToHtml($author, $remote_id)
-    {
-        $this->codejs['facebook'] = '<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if '
-            .'(d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/'
-            .'en_GB/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, \'script\', \'facebook-jssdk\'))'
-            .';</script>';
-
-        return '<p class="st-facebook"><div id="fb-root"></div> <div class="fb-post" data-href="https://www.facebook.'
-            .'com/'.$author.'/posts/'.$remote_id.'" data-width="466" style="overflow-x: hidden;overflow-y:hidden; '
-            .'max-width: 100%;"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/'.$author.'/posts/'
-            .$remote_id.'">Post</a> by <a href="https://www.facebook.com/'.$author.'">'.$author.'</a>.</div></div></p>';
     }
 
     /**

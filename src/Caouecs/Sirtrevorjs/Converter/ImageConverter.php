@@ -7,9 +7,6 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Config;
-use View;
-
 /**
  * Images for Sir Trevor Js
  *
@@ -17,22 +14,6 @@ use View;
  */
 class ImageConverter
 {
-    /**
-     * Type of image
-     *
-     * @var string
-     * @access protected
-     */
-    protected $type = null;
-
-    /**
-     * Data of image
-     *
-     * @var array
-     * @access protected
-     */
-    protected $data = null;
-
     /**
      * List of types
      *
@@ -44,38 +25,6 @@ class ImageConverter
         "gettyimages",
         "pinterest"
     );
-
-    /**
-     * Construct
-     *
-     * @access public
-     * @param string $type Type of image
-     * @param array $data Data of image
-     */
-    public function __construct($type, $data)
-    {
-        $this->type = $type;
-        $this->data = $data;
-    }
-
-    /**
-     * Render for image
-     *
-     * @access public
-     * @param array $codejs Array with JS for Sir Trevor Js
-     * @return string
-     */
-    public function render(&$codejs)
-    {
-        if (in_array($this->type, $this->types)) {
-            return call_user_func_array(
-                array($this, $this->type."ToHtml"),
-                array($codejs)
-            );
-        }
-
-        return null;
-    }
 
     /**
      * Converts the image to html
@@ -90,7 +39,7 @@ class ImageConverter
             return null;
         }
 
-        return View::make("sirtrevorjs::image.image", array(
+        return $this->view("image.image", array(
             "url" => $this->data['file']['url'],
             "text" => $this->data['text']
         ));
@@ -105,12 +54,10 @@ class ImageConverter
      */
     public function gettyimagesToHtml()
     {
-        $config = Config::get("sirtrevorjs::sir-trevor-js");
-
-        return View::make("sirtrevorjs::image.gettyimages", array(
+        return $this->view("image.gettyimages", array(
             "remote_id" => $this->data['remote_id'],
-            "width" => isset($config['gettyimages.width']) ? (int) $config['gettyimages.width'] : 594,
-            "height" => isset($config['gettyimages.height']) ? (int) $config['gettyimages.height'] : 465
+            "width" => isset($this->config['gettyimages.width']) ? (int) $this->config['gettyimages.width'] : 594,
+            "height" => isset($this->config['gettyimages.height']) ? (int) $this->config['gettyimages.height'] : 465
         ));
     }
 
@@ -131,7 +78,7 @@ class ImageConverter
             $codejs['pin'] = '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js">'
                 .'</script>';
 
-            return View::make("sirtrevorjs::image.pin", array("remote_id" => $this->data['remote_id']));
+            return $this->view("image.pin", array("remote_id" => $this->data['remote_id']));
         }
 
         return null;
