@@ -31,7 +31,7 @@ To get tweets, this project uses [twitter-l4](https://github.com/thujohn/twitter
 
 and add `"Thujohn\Twitter\TwitterServiceProvider"` to your list of providers in your `app/config/app.php`.
 
-## Configuration file
+## Configuration file
 
 Next, you must migrate config :
 
@@ -143,7 +143,7 @@ For the moment, the code can convert :
     * [version with caption](https://github.com/neyre/sir-trevor-wp/blob/master/custom-blocks/ImageCaption.js)
 * [issuu](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/issuu.js)
 * [pinterest](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/pinterest.js)
-* [sketchlab](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/sketchlab.js)
+* [sketchfab](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/sketchfab.js)
 * [slideshare](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/slideshare.js)
 * [soundcloud](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/soundcloud.js)
 * [spotify](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/spotify.js)
