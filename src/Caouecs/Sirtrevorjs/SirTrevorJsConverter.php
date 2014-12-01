@@ -60,6 +60,12 @@ class SirTrevorJsConverter
                 }
 
                 switch ($block['type']) {
+                    // Blocks Presentation
+                    case "slideshare":
+                    case "issuu":
+                        $converter = new Converter\PresentationConverter($block['type'], $block['data']);
+                        $html .= $converter->render($this->codejs);
+                        break;
                     // Blocks Sound
                     case "soundcloud":
                     case "spotify":
