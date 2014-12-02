@@ -21,7 +21,8 @@ class PresentationConverter extends BaseConverter
      * @var array
      */
     protected $types = array(
-        "slideshare", "issuu"
+        "slideshare",
+        "issuu"
     );
 
     /**

@@ -8,6 +8,7 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Config;
+use ParsedownExtra;
 
 /**
  * Text for Sir Trevor Js by Markdown
@@ -28,39 +29,50 @@ class TextConverter extends BaseConverter
      * Construct
      *
      * @access public
+     * @param string $type Type of block
+     * @param array $data Array of data
      */
-    public function __construct($markdown)
+    public function __construct($type, $data)
     {
-        $this->markdown = $markdown;
+        $this->markdown = new ParsedownExtra();
 
-        $this->config = Config::get("sirtrevorjs::sir-trevor-js");
+        parent::__construct($type, $data);
     }
 
     /**
      * Convert text to markdown
      *
      * @access public
-     * @param string $text
      * @return string
      */
-    public function defaultToHtml($text)
+    public function textToHtml()
     {
         return $this->view("text.text", array(
-            "text" => $this->markdown->text($text)
+            "text" => $this->markdown->text($this->data['text'])
         ));
+    }
+
+    /**
+     * Convert text to markdown
+     * 
+     * @access public
+     * @return string
+     */
+    public function markdownToHtml()
+    {
+        return $this->textToHtml();
     }
 
     /**
      * Convert heading
      *
      * @access public
-     * @param string $text
      * @return string
      */
-    public function headingToHtml($text)
+    public function headingToHtml()
     {
         return $this->view("text.heading", array(
-            "text" => $text
+            "text" => $this->data['text']
         ));
     }
 
@@ -68,16 +80,14 @@ class TextConverter extends BaseConverter
      * Converts block quotes to html
      *
      * @access public
-     * @param string $cite
-     * @param string $text
      * @return string
      */
-    public function blockquoteToHtml($cite, $text)
+    public function blockquoteToHtml()
     {
         // remove the indent thats added by Sir Trevor
         return $this->view("text.blockquote", array(
-            "cite" => $cite,
-            "text" => $this->markdown->text(ltrim($text, '>'))
+            "cite" => $this->data['cite'],
+            "text" => $this->markdown->text(ltrim($this->data['text'], '>'))
         ));
     }
 
@@ -85,12 +95,10 @@ class TextConverter extends BaseConverter
      * Converts quote to html
      *
      * @access public
-     * @param string $cite
-     * @param string $text
      * @return string
      */
-    public function quoteToHtml($cite, $text)
+    public function quoteToHtml()
     {
-        return $this->blockquoteToHtml($cite, $text);
+        return $this->blockquoteToHtml();
     }
 }

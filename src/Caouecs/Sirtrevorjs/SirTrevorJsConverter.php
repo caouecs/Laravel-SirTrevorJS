@@ -8,7 +8,6 @@
 namespace Caouecs\Sirtrevorjs;
 
 use Config;
-use ParsedownExtra;
 
 /**
  * Class Converter
@@ -59,72 +58,50 @@ class SirTrevorJsConverter
                     break;
                 }
 
+                $converter = null;
+
                 switch ($block['type']) {
                     // Blocks Presentation
                     case "slideshare":
                     case "issuu":
                         $converter = new Converter\PresentationConverter($block['type'], $block['data']);
-                        $html .= $converter->render($this->codejs);
                         break;
                     // Blocks Modelisation
                     case "sketchfab":
                         $converter = new Converter\ModelisationConverter($block['type'], $block['data']);
-                        $html .= $converter->render($this->codejs);
                         break;
                     // Blocks Sound
                     case "soundcloud":
                     case "spotify":
                         $converter = new Converter\SoundConverter($block['type'], $block['data']);
-                        $html .= $converter->render($this->codejs);
                         break;
                     // Block Video
                     case "video":
                         $converter = new Converter\VideoConverter($block['data']);
-                        $html .= $converter->render($this->codejs);
                         break;
                     // Blocks Images or Services for Images
                     case "image":
                     case "gettyimages":
                     case "pinterest":
                         $converter = new Converter\ImageConverter($block['type'], $block['data']);
-                        $html .= $converter->render($this->codejs);
                         break;
                     // Block Embedly
                     case "embedly":
-                        $converter = new Converter\EmbedlyConverter($block['data']);
-                        $html .= $converter->render($this->codejs);
+                        $converter = new Converter\EmbedlyConverter($block['type'], $block['data']);
                         break;
                     // Social Network
                     case "tweet":
                     case "facebook":
                         $converter = new Converter\SocialConverter($block['type'], $block);
-                        $html .= $this->render($this->codejs);
                         break;
-                    // Default
+                    // Text blocks
                     default:
-                        $converter = $block['type'] . 'ToHtml';
-                        if (is_callable(array($this, $converter))) {
-                            // call the function and add the data as parameters
-                            $html .= call_user_func_array(
-                                array($this, $converter),
-                                $block['data']
-                            );
-                        } else {
-                            $markdown = new ParsedownExtra();
-
-                            // Text converter
-                            $textConverter = new Converter\TextConverter($markdown);
-
-                            if (is_callable(array($textConverter, $converter))) {
-                                $html .= call_user_func_array(
-                                    array($textConverter, $converter),
-                                    $block['data']
-                                );
-                            } elseif (array_key_exists('text', $block['data'])) {
-                                // we have a text block. Let's just try the default converter
-                                $html .= $textConverter->defaultToHtml($block['data']['text']);
-                            }
-                        }
+                        // Text converter
+                        $converter = new Converter\TextConverter($block['type'], $block['data']);
+                }
+                
+                if (isset($converter)) {
+                    $html .= $this->render($this->codejs);
                 }
             }
 

@@ -21,7 +21,7 @@ class EmbedlyConverter
      * @var array
      */
     protected $types = array(
-        "card"
+        "embedly"
     );
 
     /**
@@ -31,7 +31,7 @@ class EmbedlyConverter
      * @param array $codejs Array of js
      * @return string
      */
-    public function render(&$codejs)
+    public function embedlyToHtml(&$codejs)
     {
         if (
             filter_var($this->data['url'], FILTER_VALIDATE_URL) &&
