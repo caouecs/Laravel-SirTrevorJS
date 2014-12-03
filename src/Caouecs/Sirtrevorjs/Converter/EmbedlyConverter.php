@@ -15,7 +15,7 @@ namespace Caouecs\Sirtrevorjs\Converter;
 class EmbedlyConverter extends BaseConverter
 {
     /**
-     * List of types for embedly
+     * List of types
      *
      * @access protected
      * @var array
@@ -33,15 +33,12 @@ class EmbedlyConverter extends BaseConverter
      */
     public function embedlyToHtml(&$codejs)
     {
-        if (
-            filter_var($this->data['url'], FILTER_VALIDATE_URL) &&
-            in_array($this->type, $this->types)
-        ) {
+        if (filter_var($this->data['url'], FILTER_VALIDATE_URL)) {
             $codejs['embedly'] = '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>';
 
             return $this->view("embedly.".$this->type, array(
                 "url" => $this->data['url'],
-                "options" => $this->config['embedly']
+                "options" => array_get($this->config, 'embedly')
             ));
         }
 

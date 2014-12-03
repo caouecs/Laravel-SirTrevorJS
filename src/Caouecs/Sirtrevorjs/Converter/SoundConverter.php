@@ -21,6 +21,7 @@ class SoundConverter extends BaseConverter
      * @var array
      */
     protected $types = array(
+        "soundcloud",
         "spotify"
     );
 

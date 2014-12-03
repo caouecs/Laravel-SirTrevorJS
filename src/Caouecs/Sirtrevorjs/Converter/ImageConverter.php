@@ -40,7 +40,7 @@ class ImageConverter extends BaseConverter
 
         return $this->view("image.image", array(
             "url" => $this->data['file']['url'],
-            "text" => $this->data['text']
+            "text" => array_get($this->data, 'text', null)
         ));
     }
 
@@ -54,8 +54,8 @@ class ImageConverter extends BaseConverter
     {
         return $this->view("image.gettyimages", array(
             "remote_id" => $this->data['remote_id'],
-            "width" => isset($this->config['gettyimages.width']) ? (int) $this->config['gettyimages.width'] : 594,
-            "height" => isset($this->config['gettyimages.height']) ? (int) $this->config['gettyimages.height'] : 465
+            "width" => array_get($this->config, 'gettyimages.width', 594),
+            "height" => array_get($this->config, 'gettyimages.height', 465)
         ));
     }
 
@@ -75,7 +75,9 @@ class ImageConverter extends BaseConverter
             $codejs['pin'] = '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js">'
                 .'</script>';
 
-            return $this->view("image.pin", array("remote_id" => $this->data['remote_id']));
+            return $this->view("image.pin", array(
+                "remote_id" => $this->data['remote_id'])
+            );
         }
 
         return null;

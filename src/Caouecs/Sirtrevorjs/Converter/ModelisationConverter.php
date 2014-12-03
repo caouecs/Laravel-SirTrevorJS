@@ -15,7 +15,7 @@ namespace Caouecs\Sirtrevorjs\Converter;
 class ModelisationConverter extends BaseConverter
 {
     /**
-     * List of types for sound
+     * List of types for modelisation
      *
      * @access protected
      * @var array
@@ -33,7 +33,7 @@ class ModelisationConverter extends BaseConverter
     public function sketchfabToHtml()
     {
         return $this->view("modelisation.sketchfab", array(
-            "remote" => $this->data['remote_id']
+            "remote_id" => $this->data['remote_id']
         ));
     }
 }

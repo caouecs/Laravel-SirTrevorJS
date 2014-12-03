@@ -25,6 +25,20 @@ class TextConverter extends BaseConverter
     protected $markdown;
 
     /**
+     * List of types for text
+     *
+     * @access protected
+     * @var array
+     */
+    protected $types = array(
+        "text",
+        "markdown",
+        "quote",
+        "blockquote",
+        "heading"
+    );
+
+    /**
      * Construct
      *
      * @access public

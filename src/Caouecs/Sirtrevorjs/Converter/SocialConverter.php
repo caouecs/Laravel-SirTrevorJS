@@ -21,7 +21,8 @@ class SocialConverter extends BaseConverter
      * @var array
      */
     protected $types = array(
-        "tweet", "facebook"
+        "tweet",
+        "facebook"
     );
 
     /**

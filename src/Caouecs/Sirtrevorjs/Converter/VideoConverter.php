@@ -52,6 +52,16 @@ class VideoConverter extends BaseConverter
     );
 
     /**
+     * List of types for video
+     *
+     * @access protected
+     * @var array
+     */
+    protected $types = array(
+        "video"
+    );
+
+    /**
      * Providers with code
      *
      * @access protected
@@ -95,6 +105,7 @@ class VideoConverter extends BaseConverter
             throw new Exception("Need an array with provider and remote_id", 1);
         }
 
+        $this->type = "video";
         $this->provider = $data['source'];
         $this->remote_id = $data['remote_id'];
         $this->caption = isset($data['caption']) ? $data['caption'] : null;
