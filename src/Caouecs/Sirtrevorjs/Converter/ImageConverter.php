@@ -7,12 +7,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+
 /**
  * Images for Sir Trevor Js
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class ImageConverter extends BaseConverter
+class ImageConverter extends BaseConverter implements ConverterInterface
 {
     /**
      * List of types
@@ -34,7 +36,7 @@ class ImageConverter extends BaseConverter
      */
     public function imageToHtml()
     {
-        if (!isset($this->data['file']['url'])) {
+        if (is_null(array_get($this->data, 'file.url'))) {
             return null;
         }
 
