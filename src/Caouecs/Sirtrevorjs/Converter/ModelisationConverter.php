@@ -12,7 +12,7 @@ namespace Caouecs\Sirtrevorjs\Converter;
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class ModelisationConverter
+class ModelisationConverter extends BaseConverter
 {
     /**
      * List of types for sound

@@ -12,7 +12,7 @@ namespace Caouecs\Sirtrevorjs\Converter;
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class EmbedlyConverter
+class EmbedlyConverter extends BaseConverter
 {
     /**
      * List of types for embedly

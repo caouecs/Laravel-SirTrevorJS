@@ -15,7 +15,7 @@ use Config;
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class VideoConverter
+class VideoConverter extends BaseConverter
 {
     /**
      * Provider name

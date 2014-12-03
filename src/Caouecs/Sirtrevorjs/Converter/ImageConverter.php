@@ -12,7 +12,7 @@ namespace Caouecs\Sirtrevorjs\Converter;
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class ImageConverter
+class ImageConverter extends BaseConverter
 {
     /**
      * List of types
