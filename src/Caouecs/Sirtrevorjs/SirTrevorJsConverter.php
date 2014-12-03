@@ -20,14 +20,6 @@ use Config;
 class SirTrevorJsConverter
 {
     /**
-     * Code JS needed by elements
-     *
-     * @access protected
-     * @var array
-     */
-    protected $codejs = null;
-
-    /**
      * Construct
      *
      * @access public
@@ -49,6 +41,7 @@ class SirTrevorJsConverter
         // convert the json to an associative array
         $input = json_decode($json, true);
         $html  = null;
+        $codejs = null;
 
         if (!empty($input) && is_array($input)) {
             // loop trough the data blocks
@@ -99,15 +92,15 @@ class SirTrevorJsConverter
                         // Text converter
                         $converter = new Converter\TextConverter($block['type'], $block['data']);
                 }
-                
+
                 if (isset($converter)) {
-                    $html .= $this->render($this->codejs);
+                    $html .= $converter->render($codejs);
                 }
             }
 
             // code js
-            if (!empty($this->codejs) && is_array($this->codejs)) {
-                foreach ($this->codejs as $arr) {
+            if (!empty($codejs) && is_array($codejs)) {
+                foreach ($codejs as $arr) {
                     $html .= $arr;
                 }
             }

@@ -39,8 +39,8 @@ class ImageConverter extends BaseConverter
         }
 
         return $this->view("image.image", array(
-            "url" => $this->data['file']['url'],
-            "text" => array_get($this->data, 'text', null)
+            "url" => array_get($this->data, 'file.url'),
+            "text" => array_get($this->data, 'text')
         ));
     }
 

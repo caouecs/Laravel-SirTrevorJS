@@ -34,7 +34,7 @@ class PresentationConverter extends BaseConverter
     public function slideshareToHtml()
     {
         return $this->view("presentation.slideshare", array(
-            "data" => $this->data
+            "remote_id" => $this->data['remote_id']
         ));
     }
 

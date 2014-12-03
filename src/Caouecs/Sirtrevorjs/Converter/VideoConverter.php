@@ -108,7 +108,7 @@ class VideoConverter extends BaseConverter
         $this->type = "video";
         $this->provider = $data['source'];
         $this->remote_id = $data['remote_id'];
-        $this->caption = isset($data['caption']) ? $data['caption'] : null;
+        $this->caption = array_get($data, 'caption');
         $this->config = Config::get("sirtrevorjs::sir-trevor-js");
     }
 
