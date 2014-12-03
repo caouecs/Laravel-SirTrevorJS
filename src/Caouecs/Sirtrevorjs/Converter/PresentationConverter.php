@@ -21,7 +21,8 @@ class PresentationConverter extends BaseConverter
      * @var array
      */
     protected $types = array(
-        "slideshare", "issuu"
+        "slideshare",
+        "issuu"
     );
 
     /**
@@ -33,7 +34,7 @@ class PresentationConverter extends BaseConverter
     public function slideshareToHtml()
     {
         return $this->view("presentation.slideshare", array(
-            "data" => $this->data
+            "remote_id" => $this->data['remote_id']
         ));
     }
 

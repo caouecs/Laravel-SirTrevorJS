@@ -12,7 +12,7 @@ namespace Caouecs\Sirtrevorjs\Converter;
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class SoundConverter
+class SoundConverter extends BaseConverter
 {
     /**
      * List of types for sound
@@ -21,6 +21,7 @@ class SoundConverter
      * @var array
      */
     protected $types = array(
+        "soundcloud",
         "spotify"
     );
 

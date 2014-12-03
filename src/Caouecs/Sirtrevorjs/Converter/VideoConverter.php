@@ -15,7 +15,7 @@ use Config;
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class VideoConverter
+class VideoConverter extends BaseConverter
 {
     /**
      * Provider name
@@ -49,6 +49,16 @@ class VideoConverter
      */
     protected $codejs = array(
         "vine" => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>'
+    );
+
+    /**
+     * List of types for video
+     *
+     * @access protected
+     * @var array
+     */
+    protected $types = array(
+        "video"
     );
 
     /**
@@ -95,9 +105,10 @@ class VideoConverter
             throw new Exception("Need an array with provider and remote_id", 1);
         }
 
+        $this->type = "video";
         $this->provider = $data['source'];
         $this->remote_id = $data['remote_id'];
-        $this->caption = isset($data['caption']) ? $data['caption'] : null;
+        $this->caption = array_get($data, 'caption');
         $this->config = Config::get("sirtrevorjs::sir-trevor-js");
     }
 

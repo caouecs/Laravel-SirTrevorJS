@@ -18,7 +18,7 @@ use View;
 class BaseConverter
 {
     /**
-     * Config
+     * Config of Sir Trevor Js
      *
      * @var array
      * @access protected
@@ -26,7 +26,7 @@ class BaseConverter
     protected $config = null;
 
     /**
-     * Type of embedly
+     * Type of block
      *
      * @var string
      * @access protected
@@ -34,7 +34,7 @@ class BaseConverter
     protected $type = null;
 
     /**
-     * Data of embedly
+     * Data of block
      *
      * @var array
      * @access protected
@@ -65,10 +65,9 @@ class BaseConverter
     public function render(&$codejs)
     {
         if (in_array($this->type, $this->types)) {
-            return call_user_func_array(
-                array($this, $this->type."ToHtml"),
-                array($codejs)
-            );
+            $method = $this->type."ToHtml";
+
+            return $this->$method($codejs);
         }
 
         return null;
