@@ -7,7 +7,6 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Config;
 use View;
 
 /**
@@ -45,14 +44,14 @@ class BaseConverter
      * Construct
      *
      * @access public
-     * @param string $type Type of element
+     * @param array $config Config of Sir Trevor Js
      * @param array $data Data of element
      */
-    public function __construct($type, $data)
+    public function __construct($config, $data)
     {
-        $this->type = $type;
-        $this->data = $data;
-        $this->config = Config::get("sirtrevorjs::sir-trevor-js");
+        $this->type = $block['type'];
+        $this->data = $block['data'];
+        $this->config = $config;
     }
 
     /**

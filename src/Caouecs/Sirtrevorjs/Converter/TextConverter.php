@@ -42,14 +42,14 @@ class TextConverter extends BaseConverter
      * Construct
      *
      * @access public
-     * @param string $type Type of block
+     * @param array $config Config of Sir Trevor Js
      * @param array $data Array of data
      */
-    public function __construct($type, $data)
+    public function __construct($config, $data)
     {
         $this->markdown = new ParsedownExtra();
 
-        parent::__construct($type, $data);
+        parent::__construct($config, $data);
     }
 
     /**
@@ -67,7 +67,7 @@ class TextConverter extends BaseConverter
 
     /**
      * Convert text to markdown
-     * 
+     *
      * @access public
      * @return string
      */

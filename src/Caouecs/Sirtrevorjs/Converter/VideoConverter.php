@@ -8,7 +8,6 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Exception;
-use Config;
 
 /**
  * Videos for Sir Trevor Js
@@ -97,19 +96,20 @@ class VideoConverter extends BaseConverter
      * Construct
      *
      * @access public
+     * @param array $config Config of Sir Trevor Js
      * @param array $data Data of video
      */
-    public function __construct($data)
+    public function __construct($config, $data)
     {
-        if (!is_array($data) || !isset($data['source']) || !isset($data['remote_id'])) {
+        if (!is_array($data) || !isset($data['data']['source']) || !isset($data['data']['remote_id'])) {
             throw new Exception("Need an array with provider and remote_id", 1);
         }
 
         $this->type = "video";
-        $this->provider = $data['source'];
-        $this->remote_id = $data['remote_id'];
-        $this->caption = array_get($data, 'caption');
-        $this->config = Config::get("sirtrevorjs::sir-trevor-js");
+        $this->provider = $data['data']['source'];
+        $this->remote_id = $data['data']['remote_id'];
+        $this->caption = array_get($data['data'], 'caption');
+        $this->config = $config;
     }
 
     /**
