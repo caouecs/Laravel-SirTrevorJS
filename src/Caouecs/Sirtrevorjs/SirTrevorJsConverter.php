@@ -20,6 +20,32 @@ use Config;
 class SirTrevorJsConverter
 {
     /**
+     * Valid blocks with converter
+     *
+     * @access protected
+     * @var array
+     */
+    protected $blocks = array(
+        "blockquote"    => "Text",
+        "embedly"       => "Embedly",
+        "facebook"      => "Social",
+        "gettyimages"   => "Image",
+        "heading"       => "Text",
+        "image"         => "Image",
+        "issuu"         => "Presentation",
+        "markdown"      => "Text",
+        "pinterest"     => "Image",
+        "quote"         => "Text",
+        "sketchfab"     => "Modelisation",
+        "slideshare"    => "Presentation",
+        "soundcloud"    => "Sound",
+        "spotify"       => "Sound",
+        "text"          => "Text",
+        "tweet"         => "Social",
+        "video"         => "Video"
+    );
+
+    /**
      * Construct
      *
      * @access public
@@ -47,55 +73,14 @@ class SirTrevorJsConverter
             // loop trough the data blocks
             foreach ($input['data'] as $block) {
                 // no data, problem
-                if (!isset($block['data'])) {
+                if (!isset($block['data']) || !array_key_exists($block['type'], $this->blocks)) {
                     break;
                 }
 
-                $converter = null;
+                $class = "Converter\\".$this->blocks[$block['type']]."Converter";
 
-                switch ($block['type']) {
-                    // Blocks Presentation
-                    case "slideshare":
-                    case "issuu":
-                        $converter = new Converter\PresentationConverter($block['type'], $block['data']);
-                        break;
-                    // Blocks Modelisation
-                    case "sketchfab":
-                        $converter = new Converter\ModelisationConverter($block['type'], $block['data']);
-                        break;
-                    // Blocks Sound
-                    case "soundcloud":
-                    case "spotify":
-                        $converter = new Converter\SoundConverter($block['type'], $block['data']);
-                        break;
-                    // Block Video
-                    case "video":
-                        $converter = new Converter\VideoConverter($block['data']);
-                        break;
-                    // Blocks Images or Services for Images
-                    case "image":
-                    case "gettyimages":
-                    case "pinterest":
-                        $converter = new Converter\ImageConverter($block['type'], $block['data']);
-                        break;
-                    // Block Embedly
-                    case "embedly":
-                        $converter = new Converter\EmbedlyConverter($block['type'], $block['data']);
-                        break;
-                    // Social Network
-                    case "tweet":
-                    case "facebook":
-                        $converter = new Converter\SocialConverter($block['type'], $block);
-                        break;
-                    // Text blocks
-                    default:
-                        // Text converter
-                        $converter = new Converter\TextConverter($block['type'], $block['data']);
-                }
-
-                if (isset($converter)) {
-                    $html .= $converter->render($codejs);
-                }
+                $converter = new $class($this->config, $block);
+                $html .= $converter->render($codejs);
             }
 
             // code js
