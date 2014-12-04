@@ -49,8 +49,8 @@ class BaseConverter
      */
     public function __construct($config, $data)
     {
-        $this->type = $block['type'];
-        $this->data = $block['data'];
+        $this->type = $data['type'];
+        $this->data = $data['data'];
         $this->config = $config;
     }
 
