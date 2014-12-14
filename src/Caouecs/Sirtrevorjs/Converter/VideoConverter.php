@@ -7,6 +7,7 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
 use Exception;
 use Config;
 
@@ -15,7 +16,7 @@ use Config;
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class VideoConverter extends BaseConverter
+class VideoConverter extends BaseConverter implements ConverterInterface
 {
     /**
      * Provider name
