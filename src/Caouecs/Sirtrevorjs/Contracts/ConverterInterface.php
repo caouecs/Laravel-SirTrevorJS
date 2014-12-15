@@ -1,4 +1,11 @@
-<?php namespace Caouecs\Sirtrevorjs\Contracts;
+<?php
+/**
+ * Laravel4-SirTrevorJs
+ *
+ * @link https://github.com/caouecs/Laravel4-SirTrevorJS
+ */
+
+namespace Caouecs\Sirtrevorjs\Contracts;
 
 /**
  * Interface ConverterInterface
@@ -7,10 +14,10 @@
  */
 interface ConverterInterface
 {
-	/**
-	 * @param $codejs
-	 *
-	 * @return mixed
-	 */
-	public function render(&$codejs);
+    /**
+     * @param $codejs
+     *
+     * @return mixed
+     */
+    public function render(&$codejs);
 }

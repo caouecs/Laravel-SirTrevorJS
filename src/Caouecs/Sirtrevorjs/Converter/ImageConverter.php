@@ -78,8 +78,8 @@ class ImageConverter extends BaseConverter implements ConverterInterface
                 .'</script>';
 
             return $this->view("image.pin", array(
-                "remote_id" => $this->data['remote_id'])
-            );
+                "remote_id" => $this->data['remote_id']
+            ));
         }
 
         return null;
