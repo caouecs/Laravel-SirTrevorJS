@@ -77,7 +77,7 @@ class SirTrevorJsConverter
                     break;
                 }
 
-                $class = "Converter\\".$this->blocks[$block['type']]."Converter";
+                $class = "Caouecs\\Sirtrevorjs\\Converter\\".$this->blocks[$block['type']]."Converter";
 
                 $converter = new $class($this->config, $block);
                 $html .= $converter->render($codejs);
