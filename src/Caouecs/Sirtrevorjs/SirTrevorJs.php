@@ -298,7 +298,7 @@ class SirTrevorJs
     {
         $array = json_decode($text, true);
 
-        if ($array === false || empty($array) || !isset($array['data'])) {
+        if (!isset($array['data'])) {
             return null;
         }
 
@@ -326,7 +326,7 @@ class SirTrevorJs
     {
         $array = json_decode($text, true);
 
-        if ($array === false || empty($array) || !isset($array['data'])) {
+        if (!isset($array['data']) || (int) $nbr === 0) {
             return null;
         }
 
@@ -337,7 +337,7 @@ class SirTrevorJs
             if ($arr['type'] == $blocktype) {
                 $return[] = $arr['data'];
 
-                if ($nbr > 0 && $_nbr == $nbr) {
+                if ($_nbr == $nbr) {
                     break;
                 }
 
@@ -345,11 +345,7 @@ class SirTrevorJs
             }
         }
 
-        if (empty($return)) {
-            return false;
-        }
-
-        if ($output === "array") {
+        if (empty($return) || $output === "array") {
             return $return;
         }
 

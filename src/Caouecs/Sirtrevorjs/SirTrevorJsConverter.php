@@ -69,7 +69,7 @@ class SirTrevorJsConverter
         $html  = null;
         $codejs = null;
 
-        if (!empty($input) && is_array($input)) {
+        if (is_array($input)) {
             // loop trough the data blocks
             foreach ($input['data'] as $block) {
                 // no data, problem
@@ -84,7 +84,7 @@ class SirTrevorJsConverter
             }
 
             // code js
-            if (!empty($codejs) && is_array($codejs)) {
+            if (is_array($codejs)) {
                 foreach ($codejs as $arr) {
                     $html .= $arr;
                 }
