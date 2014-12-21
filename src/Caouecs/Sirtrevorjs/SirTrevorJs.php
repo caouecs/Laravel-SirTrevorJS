@@ -9,6 +9,7 @@ namespace Caouecs\Sirtrevorjs;
 
 use Config;
 use HTML;
+use View;
 
 /**
  * Sir Trevor Js
@@ -167,32 +168,10 @@ class SirTrevorJs
         /**
          * File of Sir Trevor JS
          */
-        $return .= HTML::script($config['path']."sir-trevor.min.js");
+        $return .= HTML::script($config['path']."sir-trevor.min.js")
+            .HTML::script($config['path']."/locales/".$config['language'].".js");
 
-        if ($config['language'] != "en") {
-            $return .= HTML::script($config['path']."/locales/".$config['language'].".js");
-        }
-
-        $return .= "<script type=\"text/javascript\">$(function(){ ";
-
-        if ($config['language'] != "en") {
-            $return .= " SirTrevor.LANGUAGE = '".$config['language']."'; ";
-        }
-
-        $return .= " SirTrevor.setDefaults({uploadUrl: '".$config['uploadUrl']."'});
-              SirTrevor.setBlockOptions('Tweet', {
-                fetchUrl: function(tweetID) {
-                    return '".$config['tweetUrl']."?tweet_id=' + tweetID;
-                }
-              });
-              window.editor = new SirTrevor.Editor({
-                el: $('.".$config['class']."'),
-                blockTypes: [".$config['blocktypes']."]
-              });
-            });
-            </script>".PHP_EOL;
-
-        return $return;
+        return $return.View::make("sirtrevorjs::js", compact("config"));
     }
 
     /**
@@ -226,25 +205,14 @@ class SirTrevorJs
             $blocktypes = self::$blocktypes;
         }
 
-        $blocktypes = "'".implode("', '", $blocktypes)."'";
-
-        // Class
-        $class = self::defineParam("class", $params);
-        // Upload url for images
-        $uploadUrl = self::defineParam("uploadUrl", $params, $config);
-        // Url for tweets
-        $tweetUrl = self::defineParam("tweetUrl", $params, $config);
-        // Language
-        $language = self::defineParam("language", $params, $config);
-
         return array(
             "path"       => $config['path'],
             "script"     => $config['script'],
-            "blocktypes" => $blocktypes,
-            "class"      => $class,
-            "language"   => e($language),
-            "uploadUrl"  => $uploadUrl,
-            "tweetUrl"   => $tweetUrl
+            "blocktypes" => "'".implode("', '", $blocktypes)."'",
+            "class"      => self::defineParam("class", $params),
+            "language"   => self::defineParam("language", $params, $config),
+            "uploadUrl"  => self::defineParam("uploadUrl", $params, $config),
+            "tweetUrl"   => self::defineParam("tweetUrl", $params, $config)
         );
     }
 

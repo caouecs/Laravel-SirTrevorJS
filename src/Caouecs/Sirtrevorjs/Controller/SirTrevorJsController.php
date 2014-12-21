@@ -31,12 +31,15 @@ class SirTrevorJsController extends Controller
      */
     public function upload()
     {
-        if (isset($_FILES["attachment"])) {
+        if (Input::hasFile("attachment")) {
             // config
             $config = Config::get("sirtrevorjs::sir-trevor-js");
 
+            // file
+            $file = Input::file("attachment");
+
             // filename
-            $filename = $_FILES['attachment']['name']['file'];
+            $filename = $file->getClientOriginalName();
 
             // suffixe if file exists
             $suffixe = "01";
@@ -52,10 +55,7 @@ class SirTrevorJsController extends Controller
                 }
             }
 
-            if (move_uploaded_file(
-                $_FILES["attachment"]["tmp_name"]['file'],
-                public_path($config['directory_upload'])."/".$filename
-            )) {
+            if ($file->move(public_path($config['directory_upload']), $filename)) {
                 $return = array(
                     "file" => array(
                         "url" => "/".$config['directory_upload']."/".$filename
@@ -75,9 +75,7 @@ class SirTrevorJsController extends Controller
      */
     public function tweet()
     {
-        $input = Input::all();
-
-        $tweet_id = isset($input['tweet_id']) ? e($input['tweet_id']) : null;
+        $tweet_id = array_get(Input::all(), "tweet_id");
 
         if (empty($tweet_id)) {
             return null;

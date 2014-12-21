@@ -7,12 +7,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+
 /**
  * Modelisation for Sir Trevor Js
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class ModelisationConverter extends BaseConverter
+class ModelisationConverter extends BaseConverter implements ConverterInterface
 {
     /**
      * List of types for modelisation

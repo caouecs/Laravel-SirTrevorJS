@@ -7,12 +7,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+
 /**
  * Embedly for Sir Trevor Js
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class EmbedlyConverter extends BaseConverter
+class EmbedlyConverter extends BaseConverter implements ConverterInterface
 {
     /**
      * List of types

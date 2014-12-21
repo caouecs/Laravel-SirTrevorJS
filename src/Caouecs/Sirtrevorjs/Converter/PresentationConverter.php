@@ -7,12 +7,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+
 /**
  * Presentation for Sir Trevor Js
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class PresentationConverter extends BaseConverter
+class PresentationConverter extends BaseConverter implements ConverterInterface
 {
     /**
      * List of types for presentation

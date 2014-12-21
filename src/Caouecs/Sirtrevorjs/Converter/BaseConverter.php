@@ -49,8 +49,8 @@ class BaseConverter
      */
     public function __construct($config, $data)
     {
-        $this->type = $data['type'];
-        $this->data = $data['data'];
+        $this->type = array_get($data, 'type');
+        $this->data = array_get($data, 'data');
         $this->config = $config;
     }
 
@@ -81,11 +81,8 @@ class BaseConverter
      */
     public function view($viewName, $params = array())
     {
-        if (isset($this->config['view'])) {
-            // verif if need :: or not
-            if (View::exists($this->config['view'].".".$viewName)) {
-                return View::make($this->config['view'].".".$viewName, $params);
-            }
+        if (isset($this->config['view']) && View::exists($this->config['view'].".".$viewName)) {
+            return View::make($this->config['view'].".".$viewName, $params);
         }
 
         return View::make("sirtrevorjs::".$viewName, $params);

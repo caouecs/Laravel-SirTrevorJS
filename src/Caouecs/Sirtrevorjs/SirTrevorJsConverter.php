@@ -85,9 +85,7 @@ class SirTrevorJsConverter
 
             // code js
             if (is_array($codejs)) {
-                foreach ($codejs as $arr) {
-                    $html .= $arr;
-                }
+                $html .= implode($codejs);
             }
         }
 

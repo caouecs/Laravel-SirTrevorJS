@@ -7,12 +7,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+
 /**
  * Sound for Sir Trevor Js
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class SoundConverter extends BaseConverter
+class SoundConverter extends BaseConverter implements ConverterInterface
 {
     /**
      * List of types for sound

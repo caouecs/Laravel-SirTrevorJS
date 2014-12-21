@@ -8,13 +8,14 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use ParsedownExtra;
+use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
 
 /**
  * Text for Sir Trevor Js by Markdown
  *
  * @package Caouecs\Sirtrevorjs\Converter
  */
-class TextConverter extends BaseConverter
+class TextConverter extends BaseConverter implements ConverterInterface
 {
     /**
      * Markdown
