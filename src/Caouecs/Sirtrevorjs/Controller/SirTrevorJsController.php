@@ -38,6 +38,9 @@ class SirTrevorJsController extends Controller
             // file
             $file = Input::file("attachment");
 
+            // Problem on some configurations
+            $file = (!method_exists($file, "getClientOriginalName")) ? $file['file'] : $file;
+
             // filename
             $filename = $file->getClientOriginalName();
 
