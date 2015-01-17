@@ -171,7 +171,7 @@ class SirTrevorJs
         $return .= HTML::script($config['path']."sir-trevor.min.js")
             .HTML::script($config['path']."/locales/".$config['language'].".js");
 
-        return $return.View::make("sirtrevorjs::js", compact("config"));
+        return $return.View::make("sirtrevorjs::js", ["config" => $config]);
     }
 
     /**
