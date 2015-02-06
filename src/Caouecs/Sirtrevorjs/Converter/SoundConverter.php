@@ -1,8 +1,8 @@
 <?php
 /**
- * Laravel4-SirTrevorJs
+ * Laravel-SirTrevorJs
  *
- * @link https://github.com/caouecs/Laravel4-SirTrevorJS
+ * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
 
 namespace Caouecs\Sirtrevorjs\Converter;

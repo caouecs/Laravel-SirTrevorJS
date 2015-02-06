@@ -1,5 +1,4 @@
 <?php
-
 return array(
     // path for image uploads, from public_path (ex: img/uploads)
     "directory_upload" => "img/uploads",
