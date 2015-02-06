@@ -1,4 +1,4 @@
-Laravel4-SirTrevorJS
+Laravel-SirTrevorJS
 ====================
 
 Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 4/5](http://laravel.com) project.
@@ -10,7 +10,7 @@ This package is available through `Packagist` and `Composer`.
 * add to your composer.json `"caouecs/sirtrevorjs": "dev-master"` at your own risk
 * or add to your composer.json `"caouecs/sirtrevorjs": "~1.4"` for stable version
 * or run `composer require caouecs/sirtrevorjs`
-* or you can use [Package Installer](https://github.com/rtablada/package-installer), Laravel4-SirTrevorJS has a valid provides.json file. After installation of Package Installer, just run `php artisan package:install caouecs/sirtrevorjs` ; the lists of providers and aliases will be up-to-date.
+* or you can use [Package Installer](https://github.com/rtablada/package-installer), Laravel-SirTrevorJS has a valid provides.json file. After installation of Package Installer, just run `php artisan package:install caouecs/sirtrevorjs` ; the lists of providers and aliases will be up-to-date.
 
 ### Aliases
 
