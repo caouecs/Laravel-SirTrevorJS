@@ -3,7 +3,7 @@ Laravel-SirTrevorJS
 
 Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 4/5](http://laravel.com) project.
 
- > **For Laravel 5**, use the [branch 2.0](https://github.com/caouecs/Laravel-SirTrevorJS/tree/2.0) : `"caouecs/sirtrevorjs": "2.0.x-dev"`
+ > **For Laravel 5**, use the [branch 2.0](https://github.com/caouecs/Laravel-SirTrevorJS/tree/2.0) : `"caouecs/sirtrevorjs": "2.0.x-dev"` and `"thujohn/twitter": "2.0.x-dev"`
 
 ## Installation
 
