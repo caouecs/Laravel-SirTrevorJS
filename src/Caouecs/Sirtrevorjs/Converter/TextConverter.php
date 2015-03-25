@@ -54,20 +54,26 @@ class TextConverter extends BaseConverter implements ConverterInterface
     }
 
     /**
-     * Convert text to markdown
+     * Convert text from markdown or html
      *
      * @access public
      * @return string
      */
     public function textToHtml()
     {
+        if (isset($data['isHtml']) && $data['isHtml']) {
+            $text = $data['text'];
+        } else {
+            $text = $this->markdown->text($this->data['text']);
+        }
+
         return $this->view("text.text", array(
-            "text" => $this->markdown->text($this->data['text'])
+            "text" => $text
         ));
     }
 
     /**
-     * Convert text to markdown
+     * Convert text from markdown
      *
      * @access public
      * @return string
