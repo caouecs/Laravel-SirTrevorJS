@@ -61,8 +61,8 @@ class TextConverter extends BaseConverter implements ConverterInterface
      */
     public function textToHtml()
     {
-        if (isset($data['isHtml']) && $data['isHtml']) {
-            $text = $data['text'];
+        if (isset($this->data['isHtml']) && $this->data['isHtml']) {
+            $text = $this->data['text'];
         } else {
             $text = $this->markdown->text($this->data['text']);
         }
