@@ -48,14 +48,14 @@ return [
     // Embedly
     "embedly" => [
         "card" => [
-            "dark" => false,
+            "dark"      => false,
             "analytics" => false,
         ],
     ],
 
     // Spotify
     "spotify" => [
-        "width" => 300,
+        "width"  => 300,
         "height" => 380,
     ],
 

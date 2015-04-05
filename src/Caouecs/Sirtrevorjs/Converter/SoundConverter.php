@@ -46,7 +46,7 @@ class SoundConverter extends BaseConverter implements ConverterInterface
     public function spotifyToHtml()
     {
         return $this->view("sound.spotify", [
-            "remote" => $this->data['remote_id'],
+            "remote"  => $this->data['remote_id'],
             "options" => $this->config['spotify'],
         ]);
     }

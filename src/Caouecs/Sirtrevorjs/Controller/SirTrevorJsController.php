@@ -7,10 +7,10 @@
 
 namespace Caouecs\Sirtrevorjs\Controller;
 
-use Thujohn\Twitter\TwitterFacade as Tweet;
 use Config;
-use Input;
 use Controller;
+use Input;
+use Thujohn\Twitter\TwitterFacade as Tweet;
 
 /**
  * Controller Sir Trevor Js

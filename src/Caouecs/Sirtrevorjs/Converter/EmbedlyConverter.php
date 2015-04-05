@@ -36,7 +36,7 @@ class EmbedlyConverter extends BaseConverter implements ConverterInterface
             $codejs['embedly'] = '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>';
 
             return $this->view("embedly.".$this->type, [
-                "url" => $this->data['url'],
+                "url"     => $this->data['url'],
                 "options" => array_get($this->config, 'embedly'),
             ]);
         }

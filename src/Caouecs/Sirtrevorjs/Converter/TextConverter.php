@@ -7,8 +7,8 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use ParsedownExtra;
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use ParsedownExtra;
 
 /**
  * Text for Sir Trevor Js by Markdown.

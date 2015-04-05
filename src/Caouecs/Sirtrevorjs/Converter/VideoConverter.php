@@ -121,7 +121,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
 
             // View
             return $this->view("video.".$this->provider, [
-                "remote" => $this->remote_id,
+                "remote"  => $this->remote_id,
                 "caption" => $this->caption,
             ]);
         }

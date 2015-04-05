@@ -37,7 +37,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
         }
 
         return $this->view("image.image", [
-            "url" => array_get($this->data, 'file.url'),
+            "url"  => array_get($this->data, 'file.url'),
             "text" => array_get($this->data, 'text'),
         ]);
     }
@@ -51,8 +51,8 @@ class ImageConverter extends BaseConverter implements ConverterInterface
     {
         return $this->view("image.gettyimages", [
             "remote_id" => $this->data['remote_id'],
-            "width" => array_get($this->config, 'gettyimages.width', 594),
-            "height" => array_get($this->config, 'gettyimages.height', 465),
+            "width"     => array_get($this->config, 'gettyimages.width', 594),
+            "height"    => array_get($this->config, 'gettyimages.height', 465),
         ]);
     }
 
