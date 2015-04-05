@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel-SirTrevorJs
+ * Laravel-SirTrevorJs.
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
@@ -10,42 +10,36 @@ namespace Caouecs\Sirtrevorjs\Converter;
 use View;
 
 /**
- * Base of converters for Sir Trevor Js
- *
- * @package Caouecs\Sirtrevorjs\Converter
+ * Base of converters for Sir Trevor Js.
  */
 class BaseConverter
 {
     /**
-     * Config of Sir Trevor Js
+     * Config of Sir Trevor Js.
      *
      * @var array
-     * @access protected
      */
     protected $config = null;
 
     /**
-     * Type of block
+     * Type of block.
      *
      * @var string
-     * @access protected
      */
     protected $type = null;
 
     /**
-     * Data of block
+     * Data of block.
      *
      * @var array
-     * @access protected
      */
     protected $data = null;
 
     /**
-     * Construct
+     * Construct.
      *
-     * @access public
      * @param array $config Config of Sir Trevor Js
-     * @param array $data Data of element
+     * @param array $data   Data of element
      */
     public function __construct($config, $data)
     {
@@ -55,10 +49,10 @@ class BaseConverter
     }
 
     /**
-     * Render
+     * Render.
      *
-     * @access public
      * @param array $codejs Array with JS for Sir Trevor Js
+     *
      * @return string
      */
     public function render(&$codejs)
@@ -69,17 +63,16 @@ class BaseConverter
             return $this->$method($codejs);
         }
 
-        return null;
+        return;
     }
 
     /**
-     * Personalized views
+     * Personalized views.
      *
-     * @access public
      * @param string $viewName Name of the base view
-     * @param array $params Params
+     * @param array  $params   Params
      */
-    public function view($viewName, $params = array())
+    public function view($viewName, $params = [])
     {
         if (isset($this->config['view']) && View::exists($this->config['view'].".".$viewName)) {
             return View::make($this->config['view'].".".$viewName, $params);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel-SirTrevorJs
+ * Laravel-SirTrevorJs.
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
@@ -11,63 +11,55 @@ use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
 use Exception;
 
 /**
- * Videos for Sir Trevor Js
- *
- * @package Caouecs\Sirtrevorjs\Converter
+ * Videos for Sir Trevor Js.
  */
 class VideoConverter extends BaseConverter implements ConverterInterface
 {
     /**
-     * Provider name
+     * Provider name.
      *
-     * @access protected
      * @var string
      */
     protected $provider = null;
 
     /**
-     * Remote id
+     * Remote id.
      *
-     * @access protected
      * @var string
      */
     protected $remote_id = null;
 
     /**
-     * Caption
+     * Caption.
      *
-     * @access protected
      * @var string
      */
     protected $caption = null;
 
     /**
-     * Javascript
+     * Javascript.
      *
-     * @access protected
      * @var array
      */
-    protected $codejs = array(
-        "vine" => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>'
-    );
+    protected $codejs = [
+        "vine" => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>',
+    ];
 
     /**
-     * List of types for video
+     * List of types for video.
      *
-     * @access protected
      * @var array
      */
-    protected $types = array(
-        "video"
-    );
+    protected $types = [
+        "video",
+    ];
 
     /**
-     * Providers with code
+     * Providers with code.
      *
-     * @access protected
      * @var array
      */
-    protected $providers = array(
+    protected $providers = [
         "aol",
         "cplus",
         "dailymailuk",
@@ -90,15 +82,14 @@ class VideoConverter extends BaseConverter implements ConverterInterface
         "wat",
         "yahoo",
         "youtube",
-        "zoomin"
-    );
+        "zoomin",
+    ];
 
     /**
-     * Construct
+     * Construct.
      *
-     * @access public
      * @param array $config Config of Sir Trevor Js
-     * @param array $data Data of video
+     * @param array $data   Data of video
      */
     public function __construct($config, $data)
     {
@@ -114,10 +105,10 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     }
 
     /**
-     * Render of video tag
+     * Render of video tag.
      *
-     * @access public
      * @param array $codejs Array of Js
+     *
      * @return string
      */
     public function videoToHtml(&$codejs)
@@ -129,12 +120,12 @@ class VideoConverter extends BaseConverter implements ConverterInterface
             }
 
             // View
-            return $this->view("video.".$this->provider, array(
+            return $this->view("video.".$this->provider, [
                 "remote" => $this->remote_id,
-                "caption" => $this->caption
-            ));
+                "caption" => $this->caption,
+            ]);
         }
 
-        return null;
+        return;
     }
 }

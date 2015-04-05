@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel-SirTrevorJs
+ * Laravel-SirTrevorJs.
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
@@ -11,10 +11,7 @@ use Illuminate\Support\ServiceProvider;
 use View;
 
 /**
- * Sir Trevor Js service provider
- *
- * @package Caouecs\Sirtrevorjs
- * @see Illuminate\Support\ServiceProvider
+ * Sir Trevor Js service provider.
  */
 class SirtrevorjsServiceProvider extends ServiceProvider
 {
@@ -22,15 +19,11 @@ class SirtrevorjsServiceProvider extends ServiceProvider
      * Indicates if loading of the provider is deferred.
      *
      * @var bool
-     * @access protected
      */
     protected $defer = false;
 
     /**
      * Bootstrap the application events.
-     *
-     * @access public
-     * @return void
      */
     public function boot()
     {
@@ -43,23 +36,9 @@ class SirtrevorjsServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @access public
-     * @return void
      */
     public function register()
     {
         //
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @access public
-     * @return array
-     */
-    public function provides()
-    {
-        return array();
     }
 }

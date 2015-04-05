@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel-SirTrevorJs
+ * Laravel-SirTrevorJs.
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
@@ -15,18 +15,15 @@ use Controller;
 /**
  * Controller Sir Trevor Js
  * - upload image
- * - display tweet
- *
- * @package Caouecs\Sirtrevorjs
+ * - display tweet.
  */
 class SirTrevorJsController extends Controller
 {
     /**
-     * Upload image
+     * Upload image.
      *
      * you can define `directory_upload` in config file
      *
-     * @access public
      * @return string Data for Sir Trevor or Error
      */
     public function upload()
@@ -59,11 +56,11 @@ class SirTrevorJsController extends Controller
             }
 
             if ($file->move(public_path($config['directory_upload']), $filename)) {
-                $return = array(
-                    "file" => array(
-                        "url" => "/".$config['directory_upload']."/".$filename
-                    )
-                );
+                $return = [
+                    "file" => [
+                        "url" => "/".$config['directory_upload']."/".$filename,
+                    ],
+                ];
 
                 echo json_encode($return);
             }
@@ -71,9 +68,8 @@ class SirTrevorJsController extends Controller
     }
 
     /**
-     * Tweet
+     * Tweet.
      *
-     * @access public
      * @return string
      */
     public function tweet()
@@ -81,23 +77,23 @@ class SirTrevorJsController extends Controller
         $tweet_id = array_get(Input::all(), "tweet_id");
 
         if (empty($tweet_id)) {
-            return null;
+            return;
         }
 
         $tweet = Tweet::getTweet($tweet_id);
 
         if ($tweet !== false && !empty($tweet)) {
-            $return = array(
+            $return = [
                 "id_str"     => $tweet_id,
                 "text"       => $tweet->text,
                 "created_at" => $tweet->created_at,
-                "user"       => array(
+                "user"       => [
                     "name"                    => $tweet->user->name,
                     "screen_name"             => $tweet->user->screen_name,
                     "profile_image_url"       => $tweet->user->profile_image_url,
-                    "profile_image_url_https" => $tweet->user->profile_image_url_https
-                )
-            );
+                    "profile_image_url_https" => $tweet->user->profile_image_url_https,
+                ],
+            ];
 
             echo json_encode($return);
         }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel-SirTrevorJs
+ * Laravel-SirTrevorJs.
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
@@ -8,9 +8,7 @@
 namespace Caouecs\Sirtrevorjs\Contracts;
 
 /**
- * Interface ConverterInterface
- *
- * @package Caouecs\Sirtrevorjs\Contracts
+ * Interface ConverterInterface.
  */
 interface ConverterInterface
 {
