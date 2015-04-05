@@ -1,5 +1,5 @@
 <?php
-return array(
+return [
     // path for image uploads, from public_path (ex: img/uploads)
     "directory_upload" => "img/uploads",
 
@@ -12,8 +12,8 @@ return array(
     "tweetUrl" => null,
 
     // block types for Sir Trevor JS
-    // by default: array('Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading')
-    "blocktypes" => array(),
+    // by default: ['Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading']
+    "blocktypes" => [],
 
     // language
     // the file of translation must be in `locales` directory of your path
@@ -24,41 +24,41 @@ return array(
 
     // others stylesheet files path from public_path()
     //   not files of Sir Trevor JS
-    "stylesheet" => array(),
+    "stylesheet" => [],
 
     // others javascript files path from public_path()
     //   not files of Sir Trevor JS
     //
     // because Sir Trevor JS needs Underscore.js and Eventable.js
-    "script" => array(
+    "script" => [
         "/asset/underscore-min.1.4.4.js",
-        "/asset/eventable.js"
-    ),
+        "/asset/eventable.js",
+    ],
 
     // type of soundcloud
     // small or full
     "songcloud" => "small",
 
     // Getty Images
-    "gettyimages" => array(
+    "gettyimages" => [
         "width"  => 594,
-        "height" => 465
-    ),
+        "height" => 465,
+    ],
 
     // Embedly
-    "embedly" => array(
-        "card" => array(
-            "dark" => false,
-            "analytics" => false
-        )
-    ),
+    "embedly" => [
+        "card" => [
+            "dark"      => false,
+            "analytics" => false,
+        ],
+    ],
 
     // Spotify
-    "spotify" => array(
-        "width" => 300,
-        "height" => 380
-    ),
+    "spotify" => [
+        "width"  => 300,
+        "height" => 380,
+    ],
 
     // View
     //"view" => "sirtrevorjs"
-);
+];

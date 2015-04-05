@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel-SirTrevorJs
+ * Laravel-SirTrevorJs.
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
@@ -12,62 +12,63 @@ use HTML;
 use View;
 
 /**
- * Sir Trevor Js
- *
- * @package Caouecs\Sirtrevorjs
+ * Sir Trevor Js.
  */
 class SirTrevorJs
 {
     /**
-     * Textarea class
+     * Textarea class.
      *
-     * @access protected
      * @var string
      * @static
      */
     protected static $class = "sir-trevor";
 
     /**
-     * Block types
+     * Block types.
      *
-     * @access protected
      * @var string
      * @static
      */
-    protected static $blocktypes = array('Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading');
+    protected static $blocktypes = [
+        'Text',
+        'List',
+        'Quote',
+        'Image',
+        'Video',
+        'Tweet',
+        'Heading',
+    ];
 
     /**
-     * Language of Sir Trevor JS
+     * Language of Sir Trevor JS.
      *
-     * @access protected
      * @var string
      * @static
      */
     protected static $language = "en";
 
     /**
-     * Upload url for images
+     * Upload url for images.
      *
-     * @access protected
      * @var string
      * @static
      */
     protected static $uploadUrl = "/sirtrevorjs/upload";
 
     /**
-     * Url for tweets
+     * Url for tweets.
      *
-     * @access protected
      * @var string
      * @static
      */
     protected static $tweetUrl = "/sirtrevorjs/tweet";
 
     /**
-     * Transform text with image bug
+     * Transform text with image bug.
      *
-     * @access public
      * @param string $txt Text to fix
+     *
      * @return string
      * @static
      */
@@ -79,33 +80,32 @@ class SirTrevorJs
 
         if (is_array($txt) && isset($txt['data'])) {
             foreach ($txt['data'] as $data) {
-                /**
+                /*
                  * The bug is with new image, the data is in an array where each character is an element of this array
                  *
                  * This code transforms this array into a string (JSON format)
                  * and after it transforms it into an another array for Sir Trevor
                  */
                 if ($data['type'] === "image" && !isset($data['data']['file'])) {
-                    $return[] = array(
+                    $return[] = [
                         "type" => "image",
-                        "data" => json_decode(implode($data['data']), true)
-                    );
+                        "data" => json_decode(implode($data['data']), true),
+                    ];
                 } else {
                     $return[] = $data;
                 }
             }
 
-            return json_encode(array("data" => $return), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            return json_encode(["data" => $return], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
-        return null;
+        return;
     }
 
     /**
      * Stylesheet files
-     *   see config file
+     *   see config file.
      *
-     * @access public
      * @return string
      * @static
      */
@@ -114,13 +114,13 @@ class SirTrevorJs
         // params in config file
         $config = Config::get("sirtrevorjs::sir-trevor-js");
 
-        /**
+        /*
          * Files of Sir Trevor JS
          */
         $return = HTML::style($config['path']."sir-trevor-icons.css")
             .HTML::style($config['path']."sir-trevor.css");
 
-        /**
+        /*
          * Others files if you need it
          */
         if (isset($config['stylesheet']) && is_array($config['stylesheet'])) {
@@ -135,10 +135,10 @@ class SirTrevorJs
     }
 
     /**
-     * Javascript files
+     * Javascript files.
      *
-     * @access public
      * @param array $params
+     *
      * @return string
      * @static
      *
@@ -149,13 +149,13 @@ class SirTrevorJs
      * - uploadUrl
      * - tweetUrl
      */
-    public static function scripts(array $params = array())
+    public static function scripts(array $params = [])
     {
         // params
         $config = self::config($params);
         $return = null;
 
-        /**
+        /*
          * Others files
          */
         if (isset($config['script']) && is_array($config['script'])) {
@@ -165,7 +165,7 @@ class SirTrevorJs
                 }
             }
         }
-        /**
+        /*
          * File of Sir Trevor JS
          */
         $return .= HTML::script($config['path']."sir-trevor.min.js")
@@ -175,14 +175,14 @@ class SirTrevorJs
     }
 
     /**
-     * Configuration of Sir Trevor JS
+     * Configuration of Sir Trevor JS.
      *
      * 1 - $params
      * 2 - config file
      * 3 - default
      *
-     * @access public
      * @param array $params Personnalized params
+     *
      * @return array
      * @static
      */
@@ -191,7 +191,7 @@ class SirTrevorJs
         // params in config file
         $config = Config::get("sirtrevorjs::sir-trevor-js");
 
-        /**
+        /*
          * Block types
          */
         // params
@@ -205,27 +205,27 @@ class SirTrevorJs
             $blocktypes = self::$blocktypes;
         }
 
-        return array(
+        return [
             "path"       => $config['path'],
             "script"     => $config['script'],
             "blocktypes" => "'".implode("', '", $blocktypes)."'",
             "class"      => self::defineParam("class", $params),
             "language"   => self::defineParam("language", $params, $config),
             "uploadUrl"  => self::defineParam("uploadUrl", $params, $config),
-            "tweetUrl"   => self::defineParam("tweetUrl", $params, $config)
-        );
+            "tweetUrl"   => self::defineParam("tweetUrl", $params, $config),
+        ];
     }
 
     /**
-     * Define param
+     * Define param.
      *
-     * @access private
      * @param string $type
-     * @param array $params
-     * @param array $config
+     * @param array  $params
+     * @param array  $config
+     *
      * @return string
      */
-    private static function defineParam($type, $params, $config = array())
+    private static function defineParam($type, $params, $config = [])
     {
         // params
         if (isset($params[$type]) && !empty($params[$type])) {
@@ -240,10 +240,10 @@ class SirTrevorJs
     }
 
     /**
-     * Convert json from Sir Trevor JS to html
+     * Convert json from Sir Trevor JS to html.
      *
-     * @access public
      * @param string $text
+     *
      * @return string
      * @static
      */
@@ -255,10 +255,10 @@ class SirTrevorJs
     }
 
     /**
-     * Find first image in text from Sir Trevor JS
+     * Find first image in text from Sir Trevor JS.
      *
-     * @access public
      * @param string $text
+     *
      * @return string Url of image
      * @static
      */
@@ -267,7 +267,7 @@ class SirTrevorJs
         $array = json_decode($text, true);
 
         if (!isset($array['data'])) {
-            return null;
+            return;
         }
 
         foreach ($array['data'] as $arr) {
@@ -276,17 +276,17 @@ class SirTrevorJs
             }
         }
 
-        return null;
+        return;
     }
 
     /**
-     * Find occurences of a type of block in a text
+     * Find occurences of a type of block in a text.
      *
-     * @access public
      * @param string $text
      * @param string $blocktype
-     * @param string $output json or array
-     * @param int $nbr Number of occurences ( 0 = all )
+     * @param string $output    json or array
+     * @param int    $nbr       Number of occurences ( 0 = all )
+     *
      * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
      * @static
      */
@@ -295,7 +295,7 @@ class SirTrevorJs
         $array = json_decode($text, true);
 
         if (!isset($array['data']) || (int) $nbr === 0) {
-            return null;
+            return;
         }
 
         $return = null;
@@ -321,12 +321,12 @@ class SirTrevorJs
     }
 
     /**
-     * Find first occurence of a type of block in a text
+     * Find first occurence of a type of block in a text.
      *
-     * @access public
      * @param string $text
      * @param string $blocktype
-     * @param string $output json or array
+     * @param string $output    json or array
+     *
      * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
      * @static
      */

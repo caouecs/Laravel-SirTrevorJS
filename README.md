@@ -3,16 +3,13 @@ Laravel-SirTrevorJS
 
 Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 4/5](http://laravel.com) project.
 
- > **For Laravel 5**, use the [branch 2.0](https://github.com/caouecs/Laravel-SirTrevorJS/tree/2.0) : `"caouecs/sirtrevorjs": "2.0.x-dev"` and `"thujohn/twitter": "2.0.x-dev"`
-
 ## Installation
 
 This package is available through `Packagist` and `Composer`.
 
-* add to your composer.json `"caouecs/sirtrevorjs": "dev-master"` at your own risk
-* or add to your composer.json `"caouecs/sirtrevorjs": "~1.4"` for stable version
-* or run `composer require caouecs/sirtrevorjs`
-* or you can use [Package Installer](https://github.com/rtablada/package-installer), Laravel-SirTrevorJS has a valid provides.json file. After installation of Package Installer, just run `php artisan package:install caouecs/sirtrevorjs` ; the lists of providers and aliases will be up-to-date.
+ > **For Laravel 5**, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.0"`
+
+> **For Laravel 4**, use the [branch laravel4](https://github.com/caouecs/Laravel-SirTrevorJS/tree/laravel4) : `"caouecs/sirtrevorjs": "~1.4"`
 
 ### Aliases
 

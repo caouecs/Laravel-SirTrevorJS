@@ -1,6 +1,6 @@
 <?php
 /**
- * Laravel-SirTrevorJs
+ * Laravel-SirTrevorJs.
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
@@ -10,22 +10,19 @@ namespace Caouecs\Sirtrevorjs;
 use Config;
 
 /**
- * Class Converter
+ * Class Converter.
  *
  * A Sir Trevor to HTML conversion helper for PHP
  * inspired by work of Wouter Sioen <info@woutersioen.be>
- *
- * @package Caouecs\Sirtrevorjs
  */
 class SirTrevorJsConverter
 {
     /**
-     * Valid blocks with converter
+     * Valid blocks with converter.
      *
-     * @access protected
      * @var array
      */
-    protected $blocks = array(
+    protected $blocks = [
         "blockquote"    => "Text",
         "embedly"       => "Embedly",
         "facebook"      => "Social",
@@ -42,13 +39,11 @@ class SirTrevorJsConverter
         "spotify"       => "Sound",
         "text"          => "Text",
         "tweet"         => "Social",
-        "video"         => "Video"
-    );
+        "video"         => "Video",
+    ];
 
     /**
-     * Construct
-     *
-     * @access public
+     * Construct.
      */
     public function __construct()
     {
@@ -56,10 +51,10 @@ class SirTrevorJsConverter
     }
 
     /**
-     * Converts the outputted json from Sir Trevor to html
+     * Converts the outputted json from Sir Trevor to html.
      *
-     * @access public
      * @param string $json
+     *
      * @return string
      */
     public function toHtml($json)
