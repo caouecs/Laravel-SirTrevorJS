@@ -84,7 +84,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
     public function headingToHtml()
     {
         return $this->view("text.heading", [
-            "text" => $this->data['text'],
+            "text" => $this->markdown->text($this->data['text']),
         ]);
     }
 
