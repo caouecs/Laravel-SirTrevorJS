@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -20,8 +21,8 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        "slideshare",
-        "issuu",
+        'slideshare',
+        'issuu',
     ];
 
     /**
@@ -31,8 +32,8 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
      */
     public function slideshareToHtml()
     {
-        return $this->view("presentation.slideshare", [
-            "remote_id" => $this->data['remote_id'],
+        return $this->view('presentation.slideshare', [
+            'remote_id' => $this->data['remote_id'],
         ]);
     }
 
@@ -47,8 +48,8 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
     {
         $codejs['issuu'] = '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>';
 
-        return $this->view("presentation.issuu", [
-            "remote_id" => $this->data['remote_id'],
+        return $this->view('presentation.issuu', [
+            'remote_id' => $this->data['remote_id'],
         ]);
     }
 }

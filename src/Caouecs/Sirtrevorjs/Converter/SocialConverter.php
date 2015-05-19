@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -20,8 +21,8 @@ class SocialConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        "tweet",
-        "facebook",
+        'facebook',
+        'tweet',
     ];
 
     /**
@@ -31,8 +32,8 @@ class SocialConverter extends BaseConverter implements ConverterInterface
      */
     public function tweetToHtml()
     {
-        return $this->view("social.tweet", [
-            "data" => $this->data,
+        return $this->view('social.tweet', [
+            'data' => $this->data,
         ]);
     }
 
@@ -50,8 +51,8 @@ class SocialConverter extends BaseConverter implements ConverterInterface
             .'en_GB/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document,\'script\',\'facebook-jssdk\'));'
             .'</script>';
 
-        return $this->view("social.facebook", [
-            "data" => $this->data,
+        return $this->view('social.facebook', [
+            'data' => $this->data,
         ]);
     }
 }

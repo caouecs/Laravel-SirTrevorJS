@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -20,9 +21,9 @@ class ImageConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        "image",
-        "gettyimages",
-        "pinterest",
+        'image',
+        'gettyimages',
+        'pinterest',
     ];
 
     /**
@@ -36,9 +37,9 @@ class ImageConverter extends BaseConverter implements ConverterInterface
             return;
         }
 
-        return $this->view("image.image", [
-            "url"  => array_get($this->data, 'file.url'),
-            "text" => array_get($this->data, 'text'),
+        return $this->view('image.image', [
+            'url'  => array_get($this->data, 'file.url'),
+            'text' => array_get($this->data, 'text'),
         ]);
     }
 
@@ -49,10 +50,10 @@ class ImageConverter extends BaseConverter implements ConverterInterface
      */
     public function gettyimagesToHtml()
     {
-        return $this->view("image.gettyimages", [
-            "remote_id" => $this->data['remote_id'],
-            "width"     => array_get($this->config, 'gettyimages.width', 594),
-            "height"    => array_get($this->config, 'gettyimages.height', 465),
+        return $this->view('image.gettyimages', [
+            'remote_id' => $this->data['remote_id'],
+            'width'     => array_get($this->config, 'gettyimages.width', 594),
+            'height'    => array_get($this->config, 'gettyimages.height', 465),
         ]);
     }
 
@@ -68,12 +69,12 @@ class ImageConverter extends BaseConverter implements ConverterInterface
         /*
          * Pin
          */
-        if ($this->data['provider'] === "pin") {
+        if ($this->data['provider'] === 'pin') {
             $codejs['pin'] = '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js">'
                 .'</script>';
 
-            return $this->view("image.pin", [
-                "remote_id" => $this->data['remote_id'],
+            return $this->view('image.pin', [
+                'remote_id' => $this->data['remote_id'],
             ]);
         }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -20,7 +21,7 @@ class EmbedlyConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        "embedly",
+        'embedly',
     ];
 
     /**
@@ -35,9 +36,9 @@ class EmbedlyConverter extends BaseConverter implements ConverterInterface
         if (filter_var($this->data['url'], FILTER_VALIDATE_URL)) {
             $codejs['embedly'] = '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>';
 
-            return $this->view("embedly.".$this->type, [
-                "url"     => $this->data['url'],
-                "options" => array_get($this->config, 'embedly'),
+            return $this->view('embedly.'.$this->type, [
+                'url'     => $this->data['url'],
+                'options' => array_get($this->config, 'embedly'),
             ]);
         }
 

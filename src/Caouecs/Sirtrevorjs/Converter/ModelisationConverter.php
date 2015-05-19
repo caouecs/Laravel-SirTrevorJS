@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -20,7 +21,7 @@ class ModelisationConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        "sketchfab",
+        'sketchfab',
     ];
 
     /**
@@ -30,8 +31,8 @@ class ModelisationConverter extends BaseConverter implements ConverterInterface
      */
     public function sketchfabToHtml()
     {
-        return $this->view("modelisation.sketchfab", [
-            "remote_id" => $this->data['remote_id'],
+        return $this->view('modelisation.sketchfab', [
+            'remote_id' => $this->data['remote_id'],
         ]);
     }
 }

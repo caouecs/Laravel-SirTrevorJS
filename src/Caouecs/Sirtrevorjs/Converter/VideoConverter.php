@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -42,7 +43,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $codejs = [
-        "vine" => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>',
+        'vine' => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>',
     ];
 
     /**
@@ -51,7 +52,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        "video",
+        'video',
     ];
 
     /**
@@ -60,29 +61,29 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $providers = [
-        "aol",
-        "cplus",
-        "dailymailuk",
-        "dailymotion",
-        "francetv",
-        "globalnews",
-        "livestream",
-        "metacafe",
-        "metatube",
-        "nbcbayarea",
-        "nhl",
-        "ooyala",
-        "redtube",
-        "ustream",
-        "ustreamrecord",
-        "veoh",
-        "vevo",
-        "vimeo",
-        "vine",
-        "wat",
-        "yahoo",
-        "youtube",
-        "zoomin",
+        'aol',
+        'cplus',
+        'dailymailuk',
+        'dailymotion',
+        'francetv',
+        'globalnews',
+        'livestream',
+        'metacafe',
+        'metatube',
+        'nbcbayarea',
+        'nhl',
+        'ooyala',
+        'redtube',
+        'ustream',
+        'ustreamrecord',
+        'veoh',
+        'vevo',
+        'vimeo',
+        'vine',
+        'wat',
+        'yahoo',
+        'youtube',
+        'zoomin',
     ];
 
     /**
@@ -94,10 +95,10 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     public function __construct($config, $data)
     {
         if (!is_array($data) || !isset($data['data']['source']) || !isset($data['data']['remote_id'])) {
-            throw new Exception("Need an array with provider and remote_id", 1);
+            throw new Exception('Need an array with provider and remote_id', 1);
         }
 
-        $this->type = "video";
+        $this->type = 'video';
         $this->provider = $data['data']['source'];
         $this->remote_id = $data['data']['remote_id'];
         $this->caption = array_get($data['data'], 'caption');
@@ -120,9 +121,9 @@ class VideoConverter extends BaseConverter implements ConverterInterface
             }
 
             // View
-            return $this->view("video.".$this->provider, [
-                "remote"  => $this->remote_id,
-                "caption" => $this->caption,
+            return $this->view('video.'.$this->provider, [
+                'remote'  => $this->remote_id,
+                'caption' => $this->caption,
             ]);
         }
 

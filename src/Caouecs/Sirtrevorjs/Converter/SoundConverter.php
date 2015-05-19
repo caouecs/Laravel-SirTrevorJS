@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -20,8 +21,8 @@ class SoundConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        "soundcloud",
-        "spotify",
+        'soundcloud',
+        'spotify',
     ];
 
     /**
@@ -33,12 +34,12 @@ class SoundConverter extends BaseConverter implements ConverterInterface
     {
         $theme = array_get($this->config, 'soundcloud');
 
-        if ($theme !== "full") {
-            $theme = "small";
+        if ($theme !== 'full') {
+            $theme = 'small';
         }
 
-        return $this->view("sound.soundcloud.".$theme, [
-            "remote" => $this->data['remote_id'],
+        return $this->view('sound.soundcloud.'.$theme, [
+            'remote' => $this->data['remote_id'],
         ]);
     }
 
@@ -49,9 +50,9 @@ class SoundConverter extends BaseConverter implements ConverterInterface
      */
     public function spotifyToHtml()
     {
-        return $this->view("sound.spotify", [
-            "remote"  => $this->data['remote_id'],
-            "options" => $this->config['spotify'],
+        return $this->view('sound.spotify', [
+            'remote'  => $this->data['remote_id'],
+            'options' => $this->config['spotify'],
         ]);
     }
 }

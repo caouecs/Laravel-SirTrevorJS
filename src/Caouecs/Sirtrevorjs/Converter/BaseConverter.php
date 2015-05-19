@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -58,7 +59,7 @@ class BaseConverter
     public function render(&$codejs)
     {
         if (in_array($this->type, $this->types)) {
-            $method = $this->type."ToHtml";
+            $method = $this->type.'ToHtml';
 
             return $this->$method($codejs);
         }
@@ -74,10 +75,10 @@ class BaseConverter
      */
     public function view($viewName, $params = [])
     {
-        if (isset($this->config['view']) && View::exists($this->config['view'].".".$viewName)) {
-            return View::make($this->config['view'].".".$viewName, $params);
+        if (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
+            return View::make($this->config['view'].'.'.$viewName, $params);
         }
 
-        return View::make("sirtrevorjs::".$viewName, $params);
+        return View::make('sirtrevorjs::'.$viewName, $params);
     }
 }

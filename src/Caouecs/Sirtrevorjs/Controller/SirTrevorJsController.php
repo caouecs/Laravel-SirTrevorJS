@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -28,37 +29,37 @@ class SirTrevorJsController extends Controller
      */
     public function upload()
     {
-        if (Input::hasFile("attachment")) {
+        if (Input::hasFile('attachment')) {
             // config
-            $config = Config::get("sirtrevorjs::sir-trevor-js");
+            $config = Config::get('sirtrevorjs::sir-trevor-js');
 
             // file
-            $file = Input::file("attachment");
+            $file = Input::file('attachment');
 
             // Problem on some configurations
-            $file = (!method_exists($file, "getClientOriginalName")) ? $file['file'] : $file;
+            $file = (!method_exists($file, 'getClientOriginalName')) ? $file['file'] : $file;
 
             // filename
             $filename = $file->getClientOriginalName();
 
             // suffixe if file exists
-            $suffixe = "01";
+            $suffixe = '01';
 
             // verif if file exists
-            while (file_exists(public_path($config['directory_upload'])."/".$filename)) {
-                $filename = $suffixe."_".$filename;
+            while (file_exists(public_path($config['directory_upload']).'/'.$filename)) {
+                $filename = $suffixe.'_'.$filename;
 
                 $suffixe++;
 
                 if ($suffixe < 10) {
-                    $suffixe = "0".$suffixe;
+                    $suffixe = '0'.$suffixe;
                 }
             }
 
             if ($file->move(public_path($config['directory_upload']), $filename)) {
                 $return = [
-                    "file" => [
-                        "url" => "/".$config['directory_upload']."/".$filename,
+                    'file' => [
+                        'url' => '/'.$config['directory_upload'].'/'.$filename,
                     ],
                 ];
 
@@ -74,7 +75,7 @@ class SirTrevorJsController extends Controller
      */
     public function tweet()
     {
-        $tweet_id = array_get(Input::all(), "tweet_id");
+        $tweet_id = array_get(Input::all(), 'tweet_id');
 
         if (empty($tweet_id)) {
             return;
@@ -84,14 +85,14 @@ class SirTrevorJsController extends Controller
 
         if ($tweet !== false && !empty($tweet)) {
             $return = [
-                "id_str"     => $tweet_id,
-                "text"       => $tweet->text,
-                "created_at" => $tweet->created_at,
-                "user"       => [
-                    "name"                    => $tweet->user->name,
-                    "screen_name"             => $tweet->user->screen_name,
-                    "profile_image_url"       => $tweet->user->profile_image_url,
-                    "profile_image_url_https" => $tweet->user->profile_image_url_https,
+                'id_str'     => $tweet_id,
+                'text'       => $tweet->text,
+                'created_at' => $tweet->created_at,
+                'user'       => [
+                    'name'                    => $tweet->user->name,
+                    'screen_name'             => $tweet->user->screen_name,
+                    'profile_image_url'       => $tweet->user->profile_image_url,
+                    'profile_image_url_https' => $tweet->user->profile_image_url_https,
                 ],
             ];
 
