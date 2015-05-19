@@ -33,6 +33,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
         "quote",
         "blockquote",
         "heading",
+        "list",
     ];
 
     /**
@@ -110,5 +111,15 @@ class TextConverter extends BaseConverter implements ConverterInterface
     public function quoteToHtml()
     {
         return $this->blockquoteToHtml();
+    }
+
+	/**
+     * Converts list to html.
+     *
+     * @return string
+     */
+    public function listToHtml()
+    {
+        return $this->textToHtml();
     }
 }

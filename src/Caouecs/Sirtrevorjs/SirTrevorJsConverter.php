@@ -40,6 +40,7 @@ class SirTrevorJsConverter
         "text"          => "Text",
         "tweet"         => "Social",
         "video"         => "Video",
+        "list"          => "Text",
     ];
 
     /**
