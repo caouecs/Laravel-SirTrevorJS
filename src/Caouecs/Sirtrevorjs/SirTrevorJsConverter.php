@@ -30,6 +30,7 @@ class SirTrevorJsConverter
         "heading"       => "Text",
         "image"         => "Image",
         "issuu"         => "Presentation",
+        "list"          => "Text",
         "markdown"      => "Text",
         "pinterest"     => "Image",
         "quote"         => "Text",
@@ -40,7 +41,6 @@ class SirTrevorJsConverter
         "text"          => "Text",
         "tweet"         => "Social",
         "video"         => "Video",
-        "list"          => "Text",
     ];
 
     /**
