@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -23,23 +24,24 @@ class SirTrevorJsConverter
      * @var array
      */
     protected $blocks = [
-        "blockquote"    => "Text",
-        "embedly"       => "Embedly",
-        "facebook"      => "Social",
-        "gettyimages"   => "Image",
-        "heading"       => "Text",
-        "image"         => "Image",
-        "issuu"         => "Presentation",
-        "markdown"      => "Text",
-        "pinterest"     => "Image",
-        "quote"         => "Text",
-        "sketchfab"     => "Modelisation",
-        "slideshare"    => "Presentation",
-        "soundcloud"    => "Sound",
-        "spotify"       => "Sound",
-        "text"          => "Text",
-        "tweet"         => "Social",
-        "video"         => "Video",
+        'blockquote'    => 'Text',
+        'embedly'       => 'Embedly',
+        'facebook'      => 'Social',
+        'gettyimages'   => 'Image',
+        'heading'       => 'Text',
+        'image'         => 'Image',
+        'issuu'         => 'Presentation',
+        'list'          => 'Text',
+        'markdown'      => 'Text',
+        'pinterest'     => 'Image',
+        'quote'         => 'Text',
+        'sketchfab'     => 'Modelisation',
+        'slideshare'    => 'Presentation',
+        'soundcloud'    => 'Sound',
+        'spotify'       => 'Sound',
+        'text'          => 'Text',
+        'tweet'         => 'Social',
+        'video'         => 'Video',
     ];
 
     /**
@@ -47,7 +49,7 @@ class SirTrevorJsConverter
      */
     public function __construct()
     {
-        $this->config = Config::get("sirtrevorjs::sir-trevor-js");
+        $this->config = Config::get('sirtrevorjs::sir-trevor-js');
     }
 
     /**
@@ -72,7 +74,7 @@ class SirTrevorJsConverter
                     break;
                 }
 
-                $class = "Caouecs\\Sirtrevorjs\\Converter\\".$this->blocks[$block['type']]."Converter";
+                $class = 'Caouecs\\Sirtrevorjs\\Converter\\'.$this->blocks[$block['type']].'Converter';
 
                 $converter = new $class($this->config, $block);
                 $html .= $converter->render($codejs);

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -28,11 +29,12 @@ class TextConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        "text",
-        "markdown",
-        "quote",
-        "blockquote",
-        "heading",
+        'text',
+        'markdown',
+        'quote',
+        'blockquote',
+        'heading',
+        'list',
     ];
 
     /**
@@ -55,8 +57,8 @@ class TextConverter extends BaseConverter implements ConverterInterface
      */
     public function textToHtml()
     {
-        return $this->view("text.text", [
-            "text" => $this->markdown->text($this->data['text']),
+        return $this->view('text.text', [
+            'text' => $this->markdown->text($this->data['text']),
         ]);
     }
 
@@ -77,8 +79,8 @@ class TextConverter extends BaseConverter implements ConverterInterface
      */
     public function headingToHtml()
     {
-        return $this->view("text.heading", [
-            "text" => $this->markdown->text($this->data['text']),
+        return $this->view('text.heading', [
+            'text' => $this->markdown->text($this->data['text']),
         ]);
     }
 
@@ -90,9 +92,9 @@ class TextConverter extends BaseConverter implements ConverterInterface
     public function blockquoteToHtml()
     {
         // remove the indent thats added by Sir Trevor
-        return $this->view("text.blockquote", [
-            "cite" => $this->data['cite'],
-            "text" => $this->markdown->text(ltrim($this->data['text'], '>')),
+        return $this->view('text.blockquote', [
+            'cite' => $this->data['cite'],
+            'text' => $this->markdown->text(ltrim($this->data['text'], '>')),
         ]);
     }
 
@@ -104,5 +106,15 @@ class TextConverter extends BaseConverter implements ConverterInterface
     public function quoteToHtml()
     {
         return $this->blockquoteToHtml();
+    }
+
+    /**
+     * Converts list to html.
+     *
+     * @return string
+     */
+    public function listToHtml()
+    {
+        return $this->textToHtml();
     }
 }
