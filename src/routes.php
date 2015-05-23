@@ -1,4 +1,5 @@
 <?php
+
 // Route for upload images
 Route::any('/sirtrevorjs/upload', ['uses' => '\Caouecs\Sirtrevorjs\Controller\SirTrevorJsController@upload']);
 
