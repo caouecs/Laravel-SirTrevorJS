@@ -166,11 +166,18 @@ class SirTrevorJs
                 }
             }
         }
+
         /*
          * File of Sir Trevor JS
          */
-        $return .= HTML::script($config['path']."sir-trevor.min.js")
-            .HTML::script($config['path']."locales/".$config['language'].".js");
+        $return .= HTML::script($config['path']."sir-trevor.min.js");
+
+        /*
+         * Language
+         */
+        if ($config['language'] != 'en') {
+            $return .= HTML::script($config['path']."locales/".$config['language'].".js");
+        }
 
         return $return.View::make("sirtrevorjs::js", ["config" => $config]);
     }
