@@ -16,9 +16,9 @@ use View;
 class BaseConverter
 {
     /**
-     * Markdown instance
+     * Parser instance
      */
-    protected $markdown = null;
+    protected $parser = null;
 
     /**
      * Config of Sir Trevor Js.
@@ -44,13 +44,13 @@ class BaseConverter
     /**
      * Construct.
      *
-     * @param mixed $markdown Markdown instance
+     * @param mixed $parser Parser instance
      * @param array $config Config of Sir Trevor Js
      * @param array $data   Data of element
      */
-    public function __construct($markdown, $config, $data)
+    public function __construct($parser, $config, $data)
     {
-        $this->markdown = $markdown;
+        $this->parser = $parser;
         $this->type = array_get($data, 'type');
         $this->data = array_get($data, 'data');
         $this->config = $config;

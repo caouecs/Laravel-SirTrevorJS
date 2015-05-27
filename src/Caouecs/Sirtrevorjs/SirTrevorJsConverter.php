@@ -27,11 +27,11 @@ class SirTrevorJsConverter
     protected $config = [];
 
     /**
-     * Markdown
+     * Parser
      *
      * @var  ParseDown
      */
-    protected $markdown;
+    protected $parser;
 
     /**
      * Valid blocks with converter.
@@ -62,12 +62,12 @@ class SirTrevorJsConverter
     /**
      * Construct.
      *
-     * @todo  Inject Markdown
+     * @todo  Inject Parser
      */
     public function __construct()
     {
         $this->config = Config::get('sir-trevor-js');
-        $this->markdown = new ParsedownExtra();
+        $this->parser = new ParsedownExtra();
     }
 
     /**
@@ -94,7 +94,7 @@ class SirTrevorJsConverter
 
                 $class = 'Caouecs\\Sirtrevorjs\\Converter\\'.$this->blocks[$block['type']].'Converter';
 
-                $converter = new $class($this->markdown, $this->config, $block);
+                $converter = new $class($this->parser, $this->config, $block);
                 $html .= $converter->render($codejs);
             }
 
