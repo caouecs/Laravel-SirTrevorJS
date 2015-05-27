@@ -37,9 +37,15 @@ class ImageConverter extends BaseConverter implements ConverterInterface
             return;
         }
 
+        $text = array_get($this->data, 'text');
+
+        if ($text != null) {
+            $text = $this->markdown->text($text);
+        }
+
         return $this->view('image.image', [
             'url'  => array_get($this->data, 'file.url'),
-            'text' => array_get($this->data, 'text'),
+            'text' => $text,
         ]);
     }
 
