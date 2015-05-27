@@ -31,7 +31,7 @@ class SirTrevorJsController extends Controller
     {
         if (Input::hasFile('attachment')) {
             // config
-            $config = Config::get('sirtrevorjs::sir-trevor-js');
+            $config = Config::get('sir-trevor-js');
 
             // file
             $file = Input::file('attachment');
