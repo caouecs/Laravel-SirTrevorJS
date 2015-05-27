@@ -122,10 +122,15 @@ class VideoConverter extends BaseConverter implements ConverterInterface
                 $codejs[$this->provider] = $this->codejs[$this->provider];
             }
 
+            $caption = null;
+            if ($this->caption != null) {
+                $caption = $this->markdown->text($this->caption);
+            }
+
             // View
             return $this->view('video.'.$this->provider, [
                 'remote'  => $this->remote_id,
-                'caption' => $this->caption,
+                'caption' => $caption,
             ]);
         }
 
