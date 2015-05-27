@@ -16,7 +16,7 @@ use View;
 class BaseConverter
 {
     /**
-     * Parser instance
+     * Parser instance.
      */
     protected $parser = null;
 

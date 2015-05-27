@@ -20,16 +20,16 @@ use ParsedownExtra;
 class SirTrevorJsConverter
 {
     /**
-     * Configuration
+     * Configuration.
      *
-     * @var  array
+     * @var array
      */
     protected $config = [];
 
     /**
-     * Parser
+     * Parser.
      *
-     * @var  ParseDown
+     * @var ParseDown
      */
     protected $parser;
 
