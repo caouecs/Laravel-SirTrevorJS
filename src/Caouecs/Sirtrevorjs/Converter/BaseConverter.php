@@ -16,6 +16,11 @@ use View;
 class BaseConverter
 {
     /**
+     * Markdown instance
+     */
+    protected $markdown = null;
+
+    /**
      * Config of Sir Trevor Js.
      *
      * @var array
@@ -39,11 +44,13 @@ class BaseConverter
     /**
      * Construct.
      *
+     * @param mixed $markdown Markdown instance
      * @param array $config Config of Sir Trevor Js
      * @param array $data   Data of element
      */
-    public function __construct($config, $data)
+    public function __construct($markdown, $config, $data)
     {
+        $this->markdown = $markdown;
         $this->type = array_get($data, 'type');
         $this->data = array_get($data, 'data');
         $this->config = $config;

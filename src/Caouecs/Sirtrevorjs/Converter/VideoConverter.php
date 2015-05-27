@@ -89,10 +89,11 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     /**
      * Construct.
      *
+     * @param mixed $markdown Markdown instance
      * @param array $config Config of Sir Trevor Js
      * @param array $data   Data of video
      */
-    public function __construct($config, $data)
+    public function __construct($markdown, $config, $data)
     {
         if (!is_array($data) || !isset($data['data']['source']) || !isset($data['data']['remote_id'])) {
             throw new Exception('Need an array with provider and remote_id', 1);
@@ -103,6 +104,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
         $this->remote_id = $data['data']['remote_id'];
         $this->caption = array_get($data['data'], 'caption');
         $this->config = $config;
+        $this->markdown = $markdown;
     }
 
     /**

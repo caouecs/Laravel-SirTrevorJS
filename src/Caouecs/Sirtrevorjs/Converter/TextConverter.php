@@ -9,20 +9,12 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
-use ParsedownExtra;
 
 /**
  * Text for Sir Trevor Js by Markdown.
  */
 class TextConverter extends BaseConverter implements ConverterInterface
 {
-    /**
-     * Markdown.
-     *
-     * @var Markdown
-     */
-    protected $markdown;
-
     /**
      * List of types for text.
      *
@@ -36,19 +28,6 @@ class TextConverter extends BaseConverter implements ConverterInterface
         'heading',
         'list',
     ];
-
-    /**
-     * Construct.
-     *
-     * @param array $config Config of Sir Trevor Js
-     * @param array $data   Array of data
-     */
-    public function __construct($config, $data)
-    {
-        $this->markdown = new ParsedownExtra();
-
-        parent::__construct($config, $data);
-    }
 
     /**
      * Convert text to markdown.
