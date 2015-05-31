@@ -34,7 +34,7 @@ and add `"Thujohn\Twitter\TwitterServiceProvider"` to your list of providers in 
 
 Next, you must migrate config :
 
-    php artisan config:publish caouecs/sirtrevorjs
+    php artisan vendor:publish caouecs/sirtrevorjs
 
 After installation, the config file is located at *app/config/packages/caouecs/sirtrevorjs/sir-trevor-js.php*.
 
