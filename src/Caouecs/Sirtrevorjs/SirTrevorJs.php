@@ -113,7 +113,7 @@ class SirTrevorJs
     public static function stylesheets()
     {
         // params in config file
-        $config = Config::get('sirtrevorjs::sir-trevor-js');
+        $config = Config::get('sir-trevor-js');
 
         /*
          * Files of Sir Trevor JS
@@ -197,7 +197,7 @@ class SirTrevorJs
     public static function config($params = null)
     {
         // params in config file
-        $config = Config::get('sirtrevorjs::sir-trevor-js');
+        $config = Config::get('sir-trevor-js');
 
         /*
          * Block types

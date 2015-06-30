@@ -9,20 +9,12 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
-use ParsedownExtra;
 
 /**
- * Text for Sir Trevor Js by Markdown.
+ * Text for Sir Trevor Js.
  */
 class TextConverter extends BaseConverter implements ConverterInterface
 {
-    /**
-     * Markdown.
-     *
-     * @var Markdown
-     */
-    protected $markdown;
-
     /**
      * List of types for text.
      *
@@ -38,19 +30,6 @@ class TextConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
-     * Construct.
-     *
-     * @param array $config Config of Sir Trevor Js
-     * @param array $data   Array of data
-     */
-    public function __construct($config, $data)
-    {
-        $this->markdown = new ParsedownExtra();
-
-        parent::__construct($config, $data);
-    }
-
-    /**
      * Convert text to markdown.
      *
      * @return string
@@ -58,7 +37,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
     public function textToHtml()
     {
         return $this->view('text.text', [
-            'text' => $this->markdown->text($this->data['text']),
+            'text' => $this->parser->text($this->data['text']),
         ]);
     }
 
@@ -80,7 +59,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
     public function headingToHtml()
     {
         return $this->view('text.heading', [
-            'text' => $this->markdown->text($this->data['text']),
+            'text' => $this->parser->text($this->data['text']),
         ]);
     }
 
@@ -94,7 +73,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
         // remove the indent thats added by Sir Trevor
         return $this->view('text.blockquote', [
             'cite' => $this->data['cite'],
-            'text' => $this->markdown->text(ltrim($this->data['text'], '>')),
+            'text' => $this->parser->text(ltrim($this->data['text'], '>')),
         ]);
     }
 

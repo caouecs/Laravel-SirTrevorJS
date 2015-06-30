@@ -9,6 +9,7 @@
 namespace Caouecs\Sirtrevorjs;
 
 use Config;
+use ParsedownExtra;
 
 /**
  * Class Converter.
@@ -18,6 +19,20 @@ use Config;
  */
 class SirTrevorJsConverter
 {
+    /**
+     * Configuration.
+     *
+     * @var array
+     */
+    protected $config = [];
+
+    /**
+     * Parser.
+     *
+     * @var ParseDown
+     */
+    protected $parser;
+
     /**
      * Valid blocks with converter.
      *
@@ -46,10 +61,13 @@ class SirTrevorJsConverter
 
     /**
      * Construct.
+     *
+     * @todo  Inject Parser
      */
     public function __construct()
     {
-        $this->config = Config::get('sirtrevorjs::sir-trevor-js');
+        $this->config = Config::get('sir-trevor-js');
+        $this->parser = new ParsedownExtra();
     }
 
     /**
@@ -76,7 +94,7 @@ class SirTrevorJsConverter
 
                 $class = 'Caouecs\\Sirtrevorjs\\Converter\\'.$this->blocks[$block['type']].'Converter';
 
-                $converter = new $class($this->config, $block);
+                $converter = new $class($this->parser, $this->config, $block);
                 $html .= $converter->render($codejs);
             }
 

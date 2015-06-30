@@ -16,6 +16,11 @@ use View;
 class BaseConverter
 {
     /**
+     * Parser instance.
+     */
+    protected $parser = null;
+
+    /**
      * Config of Sir Trevor Js.
      *
      * @var array
@@ -39,11 +44,13 @@ class BaseConverter
     /**
      * Construct.
      *
+     * @param mixed $parser Parser instance
      * @param array $config Config of Sir Trevor Js
      * @param array $data   Data of element
      */
-    public function __construct($config, $data)
+    public function __construct($parser, $config, $data)
     {
+        $this->parser = $parser;
         $this->type = array_get($data, 'type');
         $this->data = array_get($data, 'data');
         $this->config = $config;

@@ -29,5 +29,5 @@ indent_size = 2
 [**.css]
 indent_size = 2
 
-[**.blade]
+[**.blade.php]
 indent_size = 2

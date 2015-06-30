@@ -159,6 +159,7 @@ For the moment, the code can convert :
     * livestream
     * metacafe
     * metatube
+    * mlb
     * nbc bay area
     * nhl
     * ooyala
