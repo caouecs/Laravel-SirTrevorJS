@@ -70,6 +70,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
         'livestream',
         'metacafe',
         'metatube',
+        'mlb',
         'nbcbayarea',
         'nhl',
         'ooyala',
