@@ -65,6 +65,9 @@ return [
 
     // Version of Sir Trevor JS
     //
-    // for i18n
+    // in version '0.3', we include language with SirTrevor.LANGUAGE
+    // but newer version, we use SirTrevor.config.language
+    //
+    // just first two numbers for version
     'version' => '0.4'
 ];
