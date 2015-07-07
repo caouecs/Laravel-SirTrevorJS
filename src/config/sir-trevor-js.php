@@ -62,4 +62,9 @@ return [
 
     // View
     //'view' => 'sirtrevorjs'
+
+    // Version of Sir Trevor JS
+    //
+    // for i18n
+    'version' => '0.4'
 ];
