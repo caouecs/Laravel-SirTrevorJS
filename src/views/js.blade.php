@@ -1,7 +1,9 @@
 <script type="text/javascript">
 $(function(){
 
-@if ($config['language'] != "en")
+@if ($config['language'] != "en" && $config['version'] == '0.3')
+  SirTrevor.LANGUAGE = '{!! $config['language'] !!}';
+@elseif ($config['language'] != "en")
   SirTrevor.config.language = '{!! $config['language'] !!}';
 @endif
 

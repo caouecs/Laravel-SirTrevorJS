@@ -221,6 +221,7 @@ class SirTrevorJs
             'language'   => self::defineParam('language', $params, $config),
             'uploadUrl'  => self::defineParam('uploadUrl', $params, $config),
             'tweetUrl'   => self::defineParam('tweetUrl', $params, $config),
+            'version'    => $config['version'],
         ];
     }
 
