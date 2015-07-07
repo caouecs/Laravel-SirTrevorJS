@@ -2,7 +2,7 @@
 $(function(){
 
 @if ($config['language'] != "en")
-  SirTrevor.LANGUAGE = '{!! $config['language'] !!}';
+  SirTrevor.config.language = '{!! $config['language'] !!}';
 @endif
 
   SirTrevor.setDefaults({uploadUrl: '{!! $config['uploadUrl'] !!}'});
