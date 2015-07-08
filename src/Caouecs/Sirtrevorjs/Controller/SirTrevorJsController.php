@@ -9,7 +9,7 @@
 namespace Caouecs\Sirtrevorjs\Controller;
 
 use Config;
-use App\Http\Controllers\Controller;
+use Controller;
 use Input;
 use Thujohn\Twitter\TwitterFacade as Tweet;
 
