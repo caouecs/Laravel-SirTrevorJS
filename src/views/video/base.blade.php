@@ -2,6 +2,6 @@
   @yield('video')
 
 @if (!empty($caption))
-  <figcaption>{{ $caption }}</figcaption>
+  <figcaption>{!! $caption !!}</figcaption>
 @endif
 </figure>

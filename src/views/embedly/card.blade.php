@@ -5,4 +5,4 @@
 @if ($options['card']['analytics'] == true)
   data-card-analytics="1"
 @endif
-href="{{ $url }}">&nbsp;</a>
+href="{!! $url !!}">&nbsp;</a>
