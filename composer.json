@@ -11,7 +11,7 @@
   ],
   "require": {
     "illuminate/support": "~5",
-    "erusev/parsedown-extra": "~0.2",
+    "erusev/parsedown-extra": "~0.7",
     "thujohn/twitter": "~2.0"
   },
   "require-dev": {
