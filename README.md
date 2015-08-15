@@ -7,7 +7,9 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 This package is available through `Packagist` and `Composer`.
 
- > **For Laravel 5**, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.0"`
+ > **For Laravel 5.1*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.1"`
+
+ > **For Laravel 5**, use the [branch v2](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2) : `"caouecs/sirtrevorjs": "~2.0"`
 
 > **For Laravel 4**, use the [branch laravel4](https://github.com/caouecs/Laravel-SirTrevorJS/tree/laravel4) : `"caouecs/sirtrevorjs": "~1.4"`
 
@@ -24,11 +26,7 @@ If you want to use routing, controllers, views directly in your project, in your
 
 ### thujohn/twitter
 
-To get tweets, this project uses [twitter-l4](https://github.com/thujohn/twitter-l4), so you must have a valid developer account of Twitter and add config file of twitter-l4 :
-
-    php artisan config:publish thujohn/twitter
-
-and add `"Thujohn\Twitter\TwitterServiceProvider"` to your list of providers in your `app/config/app.php`.
+To get tweets, this project uses [thujohn/twitter](https://github.com/thujohn/twitter). Please with the page of the project to know how to install and configure.
 
 ## Configuration file
 
@@ -91,9 +89,20 @@ In return, you can have :
 * json, if you choose "json" for $output
 * false, if the script doesn't find an occurence of blocktype
 
-## SirTrevorJsController
+## Controller
+
+### For Laravel 5 : SirTrevorJsController
 
 This class proposes two things :
+
+* upload image where you want
+* get tweets
+
+The routes are in the provider.
+
+### For Laravel 5.1 : TraitSirTrevorJsController
+
+This trait proposes two things :
 
 * upload image where you want
 * get tweets
@@ -104,19 +113,9 @@ This project proposes a system for upload image, nothing to configure, just the 
 
     "directory_upload" => "img/uploads"
 
-The uploader is in *SirTrevorJsController* class, and the project has a *route.php* file for it.
-
-    Route::any("/sirtrevorjs/upload", array("uses" => "SirTrevorJsController@upload"));
-
 ### Tweet
 
-This project proposes a system to get tweets. I use [twitter-l4](https://github.com/thujohn/twitter-l4) project.
-
-The installation of twitter-l4 is done by Composer, but you need to configure it ( see [Instructions](https://github.com/thujohn/twitter-l4/blob/master/README.md)).
-
-The tweet converter is in *SirTrevorJsController* class, and the project has a *route.php* file for it.
-
-    Route::any("/sirtrevorjs/tweet", array("uses" => "SirTrevorJsController@tweet"));
+This project proposes a system to get tweets. I use [thujohn/twitter](https://github.com/thujohn/twitter) project.
 
 ## SirTrevorJsConverter class (or STConverter class)
 

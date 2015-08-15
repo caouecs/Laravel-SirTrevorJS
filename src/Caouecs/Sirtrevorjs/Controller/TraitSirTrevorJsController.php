@@ -8,33 +8,33 @@
 
 namespace Caouecs\Sirtrevorjs\Controller;
 
-use Config;
-use Controller;
-use Input;
-use Thujohn\Twitter\TwitterFacade as Tweet;
+use Illuminate\Http\Request;
+use Thujohn\Twitter\Facades\Twitter;
 
 /**
- * Controller Sir Trevor Js
+ * Trait Controller Sir Trevor Js
  * - upload image
  * - display tweet.
  */
-class SirTrevorJsController extends Controller
+trait TraitSirTrevorJsController
 {
     /**
      * Upload image.
      *
-     * you can define `directory_upload` in config file
+     * @internal  you can define `directory_upload` in config file
+     *
+     * @param  Request $request
      *
      * @return string Data for Sir Trevor or Error
      */
-    public function upload()
+    public function upload(Request $request)
     {
-        if (Input::hasFile('attachment')) {
+        if ($request->hasFile('attachment')) {
             // config
-            $config = Config::get('sir-trevor-js');
+            $config = config('sir-trevor-js');
 
             // file
-            $file = Input::file('attachment');
+            $file = $request->file('attachment');
 
             // Problem on some configurations
             $file = (!method_exists($file, 'getClientOriginalName')) ? $file['file'] : $file;
@@ -71,17 +71,19 @@ class SirTrevorJsController extends Controller
     /**
      * Tweet.
      *
+     * @param  Request $request
+     *
      * @return string
      */
-    public function tweet()
+    public function tweet(Request $request)
     {
-        $tweet_id = array_get(Input::all(), 'tweet_id');
+        $tweet_id = array_get($request->all(), 'tweet_id');
 
         if (empty($tweet_id)) {
             return;
         }
 
-        $tweet = Tweet::getTweet($tweet_id);
+        $tweet = Twitter::getTweet($tweet_id);
 
         if ($tweet !== false && !empty($tweet)) {
             $return = [

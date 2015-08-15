@@ -1,5 +1,11 @@
 # Changelog
 
+* v2.1 ( Work In Development )
+    * trait for controller
+
+* v2.0
+    * version for Laravel 5
+
 * v1.4.0
     * class Converter
     * views for render
