@@ -1,1 +1,1 @@
-<h2>{!! $text !!}</h2>
+<h2>{!! strip_tags($text) !!}</h2>
