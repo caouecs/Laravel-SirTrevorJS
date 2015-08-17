@@ -21,9 +21,9 @@ trait TraitSirTrevorJsController
     /**
      * Upload image.
      *
-     * @internal  you can define `directory_upload` in config file
+     * @internal you can define `directory_upload` in config file
      *
-     * @param  Request $request
+     * @param Request $request
      *
      * @return string Data for Sir Trevor or Error
      */
@@ -71,7 +71,7 @@ trait TraitSirTrevorJsController
     /**
      * Tweet.
      *
-     * @param  Request $request
+     * @param Request $request
      *
      * @return string
      */

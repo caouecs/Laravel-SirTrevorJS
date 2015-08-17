@@ -69,5 +69,5 @@ return [
     // but newer version, we use SirTrevor.config.language
     //
     // just first two numbers for version
-    'version' => '0.4'
+    'version' => '0.4',
 ];
