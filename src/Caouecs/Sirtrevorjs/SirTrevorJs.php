@@ -303,7 +303,7 @@ class SirTrevorJs
     {
         $array = json_decode($text, true);
 
-        if (!isset($array['data']) || (int) $nbr === 0) {
+        if (!isset($array['data'])) {
             return;
         }
 
