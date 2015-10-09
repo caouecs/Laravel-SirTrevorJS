@@ -8,9 +8,7 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use Config;
 use HTML;
-use View;
 
 /**
  * Sir Trevor Js.
@@ -113,7 +111,7 @@ class SirTrevorJs
     public static function stylesheets()
     {
         // params in config file
-        $config = Config::get('sir-trevor-js');
+        $config = config('sir-trevor-js');
 
         /*
          * Files of Sir Trevor JS
@@ -179,7 +177,7 @@ class SirTrevorJs
             $return .= HTML::script($config['path'].'locales/'.$config['language'].'.js');
         }
 
-        return $return.View::make('sirtrevorjs::js', ['config' => $config]);
+        return $return.view('sirtrevorjs::js', ['config' => $config]);
     }
 
     /**
@@ -197,7 +195,7 @@ class SirTrevorJs
     public static function config($params = null)
     {
         // params in config file
-        $config = Config::get('sir-trevor-js');
+        $config = config('sir-trevor-js');
 
         /*
          * Block types

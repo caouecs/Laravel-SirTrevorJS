@@ -1,4 +1,4 @@
-@extends('sirtrevorjs::video.base')
+@extends('sirtrevorjs::html.video.base')
 
 @section('video')
   <object width="640" height="532" id="veohFlashPlayer" name="veohFlashPlayer">

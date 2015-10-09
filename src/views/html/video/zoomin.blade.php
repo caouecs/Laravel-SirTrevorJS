@@ -1,4 +1,4 @@
-@extends('sirtrevorjs::video.base')
+@extends('sirtrevorjs::html.video.base')
 
 @section('video')
   <iframe src="http://blackbird.zoomin.tv/players/.pla?pid=corporatefr&amp;id={!! $remote !!}&amp;w=655&amp;h=433"

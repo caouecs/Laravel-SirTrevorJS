@@ -8,7 +8,6 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use Config;
 use ParsedownExtra;
 
 /**
@@ -66,7 +65,7 @@ class SirTrevorJsConverter
      */
     public function __construct()
     {
-        $this->config = Config::get('sir-trevor-js');
+        $this->config = config('sir-trevor-js');
         $this->parser = new ParsedownExtra();
     }
 

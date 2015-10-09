@@ -1,4 +1,4 @@
-@extends('sirtrevorjs::video.base')
+@extends('sirtrevorjs::html.video.base')
 
 @section('video')
   <script type="text/javascript" charset="UTF-8" src="http://www.nbcbayarea.com/portableplayer/?cmsID={!! $remote !!}

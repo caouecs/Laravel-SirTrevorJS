@@ -1,4 +1,4 @@
-@extends('sirtrevorjs::video.base')
+@extends('sirtrevorjs::html.video.base')
 
 @section('video')
   <?php
