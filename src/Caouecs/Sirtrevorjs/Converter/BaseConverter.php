@@ -83,9 +83,9 @@ class BaseConverter
     public function view($viewName, $params = [])
     {
         if (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
-            return View::make($this->config['view'].'.'.$viewName, $params);
+            return view($this->config['view'].'.'.$viewName, $params);
         }
 
-        return View::make('sirtrevorjs::'.$viewName, $params);
+        return view('sirtrevorjs::html.'.$viewName, $params);
     }
 }
