@@ -33,6 +33,13 @@ class SirTrevorJsConverter
     protected $parser;
 
     /**
+     * View.
+     *
+     * @var string
+     */
+    protected $view;
+
+    /**
      * Valid blocks with converter.
      *
      * @var array
@@ -61,12 +68,15 @@ class SirTrevorJsConverter
     /**
      * Construct.
      *
+     * @param  string $view View
+     *
      * @todo  Inject Parser
      */
-    public function __construct()
+    public function __construct($view = null)
     {
         $this->config = config('sir-trevor-js');
         $this->parser = new ParsedownExtra();
+        $this->view = $view;
     }
 
     /**
@@ -94,6 +104,7 @@ class SirTrevorJsConverter
                 $class = 'Caouecs\\Sirtrevorjs\\Converter\\'.$this->blocks[$block['type']].'Converter';
 
                 $converter = new $class($this->parser, $this->config, $block);
+                $converter->setView($this->view);
                 $html .= $converter->render($codejs);
             }
 
@@ -104,5 +115,19 @@ class SirTrevorJsConverter
         }
 
         return $html;
+    }
+
+    /**
+     * Converts the outputted json from Sir Trevor to AmpHtml.
+     *
+     * @param  string $json
+     *
+     * @return string
+     */
+    public function toAmp($json)
+    {
+        $this->view = 'sirtrevorjs::amp';
+
+        return $this->toHtml($json);
     }
 }

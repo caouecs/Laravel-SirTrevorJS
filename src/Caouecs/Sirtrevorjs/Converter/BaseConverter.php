@@ -42,6 +42,13 @@ class BaseConverter
     protected $data = null;
 
     /**
+     * View.
+     *
+     * @var string
+     */
+    protected $view;
+
+    /**
      * Construct.
      *
      * @param mixed $parser Parser instance
@@ -75,6 +82,16 @@ class BaseConverter
     }
 
     /**
+     * Set view.
+     *
+     * @param string $view View
+     */
+    public function setView($view = null)
+    {
+        $this->view = $view;
+    }
+
+    /**
      * Personalized views.
      *
      * @param string $viewName Name of the base view
@@ -82,7 +99,9 @@ class BaseConverter
      */
     public function view($viewName, $params = [])
     {
-        if (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
+        if ($this->view != null && View::exists($this->view.'.'.$viewName)) {
+            return view($this->view.'.'.$viewName, $params);
+        } elseif (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
             return view($this->config['view'].'.'.$viewName, $params);
         }
 
