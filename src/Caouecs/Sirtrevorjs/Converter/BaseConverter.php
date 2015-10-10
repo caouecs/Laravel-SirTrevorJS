@@ -35,6 +35,13 @@ class BaseConverter
     protected $type = null;
 
     /**
+     * List of types.
+     *
+     * @var array
+     */
+    protected $types = [];
+
+    /**
      * Data of block.
      *
      * @var array
@@ -55,7 +62,7 @@ class BaseConverter
      * @param array $config Config of Sir Trevor Js
      * @param array $data   Data of element
      */
-    public function __construct($parser, $config, $data)
+    public function __construct($parser, array $config, array $data)
     {
         $this->parser = $parser;
         $this->type = array_get($data, 'type');

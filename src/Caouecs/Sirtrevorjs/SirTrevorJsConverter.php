@@ -28,7 +28,7 @@ class SirTrevorJsConverter
     /**
      * Parser.
      *
-     * @var ParseDown
+     * @var ParsedownExtra
      */
     protected $parser;
 
