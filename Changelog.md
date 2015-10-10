@@ -1,5 +1,8 @@
 # Changelog
 
+* v2.2
+    * Html views in *html* directory
+
 * v2.1.4
     * fix tweet render with @
 

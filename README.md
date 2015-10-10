@@ -7,11 +7,11 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 This package is available through `Packagist` and `Composer`.
 
- > **For Laravel 5.1** new version, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.2"`
+ > **For Laravel 5.1** version *view & amp*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.2"`
 
- > **For Laravel 5.1** old version, use the [branch v2.1](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.1) : `"caouecs/sirtrevorjs": "~2.1"`
+ > **For Laravel 5.1** version *base*, use the [branch v2.1](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.1) : `"caouecs/sirtrevorjs": "~2.1"`
 
- > **For Laravel 5**, use the [branch v2](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2) : `"caouecs/sirtrevorjs": "~2.0"`
+ > **For Laravel 5.0**, use the [branch v2](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2) : `"caouecs/sirtrevorjs": "~2.0"`
 
 > **For Laravel 4**, use the [branch laravel4](https://github.com/caouecs/Laravel-SirTrevorJS/tree/laravel4) : `"caouecs/sirtrevorjs": "~1.4"`
 
@@ -93,7 +93,7 @@ In return, you can have :
 
 ## Controller
 
-### For Laravel 5 : SirTrevorJsController
+### For Laravel 5.0 : SirTrevorJsController
 
 This class proposes two things :
 
@@ -121,15 +121,19 @@ This project proposes a system to get tweets. I use [thujohn/twitter](https://gi
 
 ## SirTrevorJsConverter class (or STConverter class)
 
+### Html
+
 Convert text from Sir Trevor Js to html :
 
     $convert = new STConverter();
-    $convert->toHtml($text)
+    $convert->toHtml($text);
 
 
 Or via SirTrevorJS class :
 
     {{ SirTrevorJs::render($text) }}
+
+### Modules
 
 For the moment, the code can convert :
 
