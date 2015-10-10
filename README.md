@@ -91,6 +91,7 @@ In return, you can have :
 * json, if you choose "json" for $output
 * false, if the script doesn't find an occurence of blocktype
 
+
 ## Controller
 
 ### For Laravel 5.0 : SirTrevorJsController
@@ -119,21 +120,35 @@ This project proposes a system for upload image, nothing to configure, just the 
 
 This project proposes a system to get tweets. I use [thujohn/twitter](https://github.com/thujohn/twitter) project.
 
-## SirTrevorJsConverter class (or STConverter class)
+## SirTrevorJsConverter class
 
 ### Html
 
 Convert text from Sir Trevor Js to html :
 
-    $convert = new STConverter();
-    $convert->toHtml($text);
+    $convert = new SirTrevorJsConverter();
+    $convert->toHtml($text)
 
 
 Or via SirTrevorJS class :
 
     {{ SirTrevorJs::render($text) }}
 
-### Modules
+### Amp (experimental)
+
+Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org) :
+
+    $convert = new SirTrevorJsConverter();
+    $convert->toAmp($text);
+
+### Define views
+
+By default, you can define views in config file. But if you want to use multi views in your project, you can define a new view in the constructor of STConverter.
+
+    $convert = new SirTrevorJsConverter('sirtrevor::amp');
+    $convert->convert($text);
+
+### Modules   
 
 For the moment, the code can convert :
 

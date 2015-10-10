@@ -80,18 +80,64 @@ class SirTrevorJsConverter
     }
 
     /**
-     * Converts the outputted json from Sir Trevor to html.
+     * Set view.
      *
-     * @param string $json
+     * @param string $view
+     */
+    public function setView($view)
+    {
+        $this->view = $view;
+    }
+
+    /**
+     * Converts the outputted json from Sir Trevor to Html.
+     *
+     * @param  string $json
      *
      * @return string
      */
     public function toHtml($json)
     {
+        if ($this->view == null) {
+            $this->view = 'sirtrevorjs::html';
+        }
+
+        return $this->convert($json);
+    }
+
+    /**
+     * Converts the outputted json from Sir Trevor to Amp.
+     *
+     * @param  string $json
+     *
+     * @return string
+     */
+    public function toAmp($json)
+    {
+        if ($this->view == null) {
+            $this->view = 'sirtrevorjs::amp';
+        }
+
+        return $this->convert($json);
+    }
+
+    /**
+     * Convert the outputted json from Sir Trevor.
+     *
+     * @param  string $json
+     *
+     * @return string
+     */
+    public function convert($json)
+    {
         // convert the json to an associative array
         $input = json_decode($json, true);
-        $html = null;
+        $text = null;
         $codejs = null;
+
+        if ($this->view == null) {
+            $this->view = 'sirtrevorjs::html';
+        }
 
         if (is_array($input)) {
             // loop trough the data blocks
@@ -105,29 +151,15 @@ class SirTrevorJsConverter
 
                 $converter = new $class($this->parser, $this->config, $block);
                 $converter->setView($this->view);
-                $html .= $converter->render($codejs);
+                $text .= $converter->render($codejs);
             }
 
             // code js
             if (is_array($codejs)) {
-                $html .= implode($codejs);
+                $text .= implode($codejs);
             }
         }
 
-        return $html;
-    }
-
-    /**
-     * Converts the outputted json from Sir Trevor to AmpHtml.
-     *
-     * @param  string $json
-     *
-     * @return string
-     */
-    public function toAmp($json)
-    {
-        $this->view = 'sirtrevorjs::amp';
-
-        return $this->toHtml($json);
+        return $text;
     }
 }

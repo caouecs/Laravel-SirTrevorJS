@@ -2,6 +2,8 @@
 
 * v2.2
     * Html views in *html* directory
+    * Amp views in *amp* directory
+    * possibility to define multi views in same application
 
 * v2.1.4
     * fix tweet render with @
