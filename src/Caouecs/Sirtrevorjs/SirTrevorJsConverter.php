@@ -68,7 +68,7 @@ class SirTrevorJsConverter
     /**
      * Construct.
      *
-     * @param  string $view View
+     * @param string $view View
      *
      * @todo  Inject Parser
      */
@@ -92,7 +92,7 @@ class SirTrevorJsConverter
     /**
      * Converts the outputted json from Sir Trevor to Html.
      *
-     * @param  string $json
+     * @param string $json
      *
      * @return string
      */
@@ -108,7 +108,7 @@ class SirTrevorJsConverter
     /**
      * Converts the outputted json from Sir Trevor to Amp.
      *
-     * @param  string $json
+     * @param string $json
      *
      * @return string
      */
@@ -124,7 +124,7 @@ class SirTrevorJsConverter
     /**
      * Convert the outputted json from Sir Trevor.
      *
-     * @param  string $json
+     * @param string $json
      *
      * @return string
      */
