@@ -1,6 +1,15 @@
 # Changelog
 
-* v2.1 ( Work In Development )
+* v2.1.4
+    * fix tweet render with @
+
+* v2.1.3
+    * fix find() and unlimited
+
+* v2.1.1
+    * fix for title
+
+* v2.1
     * trait for controller
 
 * v2.0
