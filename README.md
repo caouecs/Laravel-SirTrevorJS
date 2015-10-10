@@ -7,11 +7,11 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 This package is available through `Packagist` and `Composer`.
 
- > **For Laravel 5.1** version *view & amp*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.2"`
+ > **For Laravel 5.1** version *view & amp*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.2.0"`
 
- > **For Laravel 5.1** version *base*, use the [branch v2.1](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.1) : `"caouecs/sirtrevorjs": "~2.1"`
+ > **For Laravel 5.1** version *base*, use the [branch v2.1](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.1) : `"caouecs/sirtrevorjs": "~2.1.0"`
 
- > **For Laravel 5.0**, use the [branch v2](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2) : `"caouecs/sirtrevorjs": "~2.0"`
+ > **For Laravel 5.0**, use the [branch v2](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2) : `"caouecs/sirtrevorjs": "~2.0.0"`
 
 > **For Laravel 4**, use the [branch laravel4](https://github.com/caouecs/Laravel-SirTrevorJS/tree/laravel4) : `"caouecs/sirtrevorjs": "~1.4"`
 
