@@ -262,6 +262,21 @@ class SirTrevorJs
     }
 
     /**
+     * Convert json from Sir Trevor JS to amp.
+     *
+     * @param string $text
+     *
+     * @return string
+     * @static
+     */
+    public static function renderAmp($text)
+    {
+        $converter = new SirTrevorJsConverter();
+
+        return $converter->toAmp($text);
+    }
+
+    /**
      * Find first image in text from Sir Trevor JS.
      *
      * @param string $text
