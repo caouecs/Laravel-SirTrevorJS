@@ -28,7 +28,7 @@ If you want to use routing, controllers, views directly in your project, in your
 
 ### thujohn/twitter
 
-To get tweets, this project uses [thujohn/twitter](https://github.com/thujohn/twitter). Please with the page of the project to know how to install and configure.
+To get tweets, this project uses [thujohn/twitter](https://github.com/thujohn/twitter). Please visit the page of the project to know how to install and configure.
 
 ## Configuration file
 
