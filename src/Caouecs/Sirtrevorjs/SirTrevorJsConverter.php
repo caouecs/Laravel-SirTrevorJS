@@ -122,6 +122,22 @@ class SirTrevorJsConverter
     }
 
     /**
+     * Converts the outputted json from Sir Trevor to Facebook Articles.
+     *
+     * @param string $json
+     *
+     * @return string
+     */
+    public function toFb($json)
+    {
+        if ($this->view == null) {
+            $this->view = 'sirtrevorjs::fb';
+        }
+
+        return $this->convert($json);
+    }
+
+    /**
      * Convert the outputted json from Sir Trevor.
      *
      * @param string $json
