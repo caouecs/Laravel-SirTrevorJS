@@ -118,17 +118,18 @@ class SirTrevorJsConverter
             $this->view = 'sirtrevorjs::amp';
         }
 
-        return $this->convert($json);
+        return $this->convert($json, false);
     }
 
     /**
      * Convert the outputted json from Sir Trevor.
      *
      * @param string $json
+     * @param bool   $externalJs
      *
      * @return string
      */
-    public function convert($json)
+    public function convert($json, $externalJs = true)
     {
         // convert the json to an associative array
         $input = json_decode($json, true);
@@ -155,7 +156,7 @@ class SirTrevorJsConverter
             }
 
             // code js
-            if (is_array($codejs)) {
+            if ($externalJs && is_array($codejs)) {
                 $text .= implode($codejs);
             }
         }
