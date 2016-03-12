@@ -157,6 +157,7 @@ For the moment, the code can convert :
 * [facebook post](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/facebook.js)
 * [getty images](https://github.com/caouecs/SirTrevorJS-blocks/blob/master/blocks/gettyimage.js)
 * heading
+* [iframe](https://raw.githubusercontent.com/madebymany/sir-trevor-blocks/6b2ba248b49c13eb38f84c1267c5779a18cd4201/src/iframe.js)
 * image
     * basic version
     * [version with caption](https://github.com/neyre/sir-trevor-wp/blob/master/custom-blocks/ImageCaption.js)
