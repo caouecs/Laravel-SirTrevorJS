@@ -21,12 +21,12 @@ class TextConverter extends BaseConverter implements ConverterInterface
      * @var array
      */
     protected $types = [
-        'text',
-        'markdown',
-        'quote',
         'blockquote',
         'heading',
         'list',
+        'markdown',
+        'quote',
+        'text',
     ];
 
     /**
