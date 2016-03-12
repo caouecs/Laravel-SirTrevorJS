@@ -11,9 +11,9 @@ namespace Caouecs\Sirtrevorjs\Converter;
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
 
 /**
- * Embedly for Sir Trevor Js.
+ * Embed for Sir Trevor Js.
  */
-class EmbedlyConverter extends BaseConverter implements ConverterInterface
+class EmbedConverter extends BaseConverter implements ConverterInterface
 {
     /**
      * List of types.
@@ -22,7 +22,22 @@ class EmbedlyConverter extends BaseConverter implements ConverterInterface
      */
     protected $types = [
         'embedly',
+        'iframe',
     ];
+
+    /**
+     * Render of iframe.
+     *
+     * @return string
+     */
+    public function iframeToHtml()
+    {
+        return $this->view('embed.iframe', [
+            'src' => $this->data['src'],
+            'width' => $this->data['width'],
+            'height' => $this->data['height'],
+        ]);
+    }
 
     /**
      * Render of embedly.
