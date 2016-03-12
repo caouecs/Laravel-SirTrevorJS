@@ -46,10 +46,11 @@ class SirTrevorJsConverter
      */
     protected $blocks = [
         'blockquote'    => 'Text',
-        'embedly'       => 'Embedly',
+        'embedly'       => 'Embed',
         'facebook'      => 'Social',
         'gettyimages'   => 'Image',
         'heading'       => 'Text',
+        'iframe'        => 'Embed',
         'image'         => 'Image',
         'issuu'         => 'Presentation',
         'list'          => 'Text',
