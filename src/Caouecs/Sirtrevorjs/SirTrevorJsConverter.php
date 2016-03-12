@@ -67,6 +67,13 @@ class SirTrevorJsConverter
     ];
 
     /**
+     * Custom blocks.
+     *
+     * @var array
+     */
+    protected $customBlocks = [];
+
+    /**
      * Construct.
      *
      * @param string $view View
@@ -158,14 +165,17 @@ class SirTrevorJsConverter
         }
 
         if (is_array($input)) {
+            // blocks
+            $blocks = $this->getBlocks();
+
             // loop trough the data blocks
             foreach ($input['data'] as $block) {
                 // no data, problem
-                if (!isset($block['data']) || !array_key_exists($block['type'], $this->blocks)) {
+                if (!isset($block['data']) || !array_key_exists($block['type'], $blocks)) {
                     break;
                 }
 
-                $class = 'Caouecs\\Sirtrevorjs\\Converter\\'.$this->blocks[$block['type']].'Converter';
+                $class = $blocks[$block['type']];
 
                 $converter = new $class($this->parser, $this->config, $block);
                 $converter->setView($this->view);
@@ -179,5 +189,25 @@ class SirTrevorJsConverter
         }
 
         return $text;
+    }
+
+    /**
+     * Return base blocks and custom blocks with good classes.
+     *
+     * @return array
+     */
+    protected function getBlocks()
+    {
+        $blocks = null;
+
+        foreach ($this->blocks as $key => $value) {
+            $blocks[$key] = 'Caouecs\\Sirtrevorjs\\Converter\\'.$value.'Converter';
+        }
+
+        if (!empty($this->customBlocks)) {
+            $blocks = array_merge($blocks, $this->customBlocks);
+        }
+
+        return $blocks;
     }
 }
