@@ -138,10 +138,21 @@ Or via SirTrevorJS class :
 
 ### Amp (experimental)
 
-Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org) :
+Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org):
 
     $convert = new SirTrevorJsConverter();
     $convert->toAmp($text);
+
+All modules have an amp's version, if it exists an equivalence.
+    
+### Facebook Instant Articles (very experimental)
+
+Convert text from Sir Trevor Js to [Facebook Instant Articles](https://developers.facebook.com/docs/instant-articles/reference):
+
+    $convert = new SirTrevorJsConverter();
+    $convert->toFb($text);
+
+All modules have an FBArticles's version, if it exists an equivalence.
 
 ### Define views
 
