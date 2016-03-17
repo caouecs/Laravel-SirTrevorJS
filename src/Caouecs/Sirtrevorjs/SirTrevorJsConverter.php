@@ -106,7 +106,7 @@ class SirTrevorJsConverter
      */
     public function toHtml($json)
     {
-        if ($this->view == null) {
+        if (empty($this->view)) {
             $this->view = 'sirtrevorjs::html';
         }
 
@@ -122,7 +122,7 @@ class SirTrevorJsConverter
      */
     public function toAmp($json)
     {
-        if ($this->view == null) {
+        if (empty($this->view)) {
             $this->view = 'sirtrevorjs::amp';
         }
 
@@ -138,7 +138,7 @@ class SirTrevorJsConverter
      */
     public function toFb($json)
     {
-        if ($this->view == null) {
+        if (empty($this->view)) {
             $this->view = 'sirtrevorjs::fb';
         }
 
@@ -160,7 +160,7 @@ class SirTrevorJsConverter
         $text = null;
         $codejs = null;
 
-        if ($this->view == null) {
+        if (empty($this->view)) {
             $this->view = 'sirtrevorjs::html';
         }
 

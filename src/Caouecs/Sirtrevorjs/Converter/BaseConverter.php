@@ -106,7 +106,7 @@ class BaseConverter
      */
     public function view($viewName, $params = [])
     {
-        if ($this->view != null && View::exists($this->view.'.'.$viewName)) {
+        if (!empty($this->view) && View::exists($this->view.'.'.$viewName)) {
             return view($this->view.'.'.$viewName, $params);
         } elseif (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
             return view($this->config['view'].'.'.$viewName, $params);

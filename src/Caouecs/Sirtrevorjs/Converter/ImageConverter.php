@@ -39,7 +39,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
 
         $text = array_get($this->data, 'text');
 
-        if ($text != null) {
+        if (!empty($text)) {
             $text = $this->parser->text($text);
         }
 

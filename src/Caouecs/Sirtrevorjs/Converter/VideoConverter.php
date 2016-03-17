@@ -124,7 +124,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
             }
 
             $caption = null;
-            if ($this->caption != null) {
+            if (!empty($this->caption)) {
                 $caption = $this->parser->text($this->caption);
             }
 
