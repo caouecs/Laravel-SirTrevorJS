@@ -40,6 +40,20 @@ class SirTrevorJsConverter
     protected $view;
 
     /**
+     * Output format.
+     *
+     * @var string
+     */
+    protected $output = 'html';
+
+    /**
+     * Code js.
+     *
+     * @var string
+     */
+    protected $codeJs;
+
+    /**
      * Valid blocks with converter.
      *
      * @var array
@@ -110,6 +124,8 @@ class SirTrevorJsConverter
             $this->view = 'sirtrevorjs::html';
         }
 
+        $this->output = 'html';
+
         return $this->convert($json);
     }
 
@@ -125,6 +141,8 @@ class SirTrevorJsConverter
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::amp';
         }
+
+        $this->output = 'amp';
 
         return $this->convert($json, false);
     }
@@ -142,6 +160,8 @@ class SirTrevorJsConverter
             $this->view = 'sirtrevorjs::fb';
         }
 
+        $this->output = 'fbarticles';
+
         return $this->convert($json);
     }
 
@@ -158,7 +178,7 @@ class SirTrevorJsConverter
         // convert the json to an associative array
         $input = json_decode($json, true);
         $text = null;
-        $codejs = null;
+        $codejs = [];
 
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::html';
@@ -176,16 +196,22 @@ class SirTrevorJsConverter
                 }
 
                 $class = $blocks[$block['type']];
-
-                $converter = new $class($this->parser, $this->config, $block);
+                $converter = new $class($this->parser, $this->config, $block, $this->output);
                 $converter->setView($this->view);
-                $text .= $converter->render($codejs);
+                $text .= $converter->render();
+                $codejsClass = $converter->getCodeJs();
+
+                if (is_array($codejsClass)) {
+                    $codejs = array_merge($codejs, $codejsClass);
+                }
             }
 
             // code js
             if ($externalJs && is_array($codejs)) {
                 $text .= implode($codejs);
             }
+
+            $this->codeJs = implode($codejs);
         }
 
         return $text;
@@ -213,5 +239,15 @@ class SirTrevorJsConverter
         }
 
         return $blocks;
+    }
+
+    /**
+     * Returns code js.
+     *
+     * @return string
+     */
+    public function getCodeJs()
+    {
+        return $this->codeJs;
     }
 }

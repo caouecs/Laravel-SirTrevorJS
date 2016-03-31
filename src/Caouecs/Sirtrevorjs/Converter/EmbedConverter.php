@@ -26,6 +26,20 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
+     * External js.
+     *
+     * @var array
+     */
+    protected $jsExternal = [
+        'html' => [
+            'embedly' => '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>',
+        ],
+        'amp' => [
+            'iframe' => '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>',
+        ],
+    ];
+
+    /**
      * Render of iframe.
      *
      * @return string
@@ -42,15 +56,11 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
     /**
      * Render of embedly.
      *
-     * @param array $codejs Array of js
-     *
      * @return string
      */
-    public function embedlyToHtml(&$codejs)
+    public function embedlyToHtml()
     {
         if (filter_var($this->data['url'], FILTER_VALIDATE_URL)) {
-            $codejs['embedly'] = '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>';
-
             return $this->view('embedly.'.$this->type, [
                 'url'     => $this->data['url'],
                 'options' => array_get($this->config, 'embedly'),

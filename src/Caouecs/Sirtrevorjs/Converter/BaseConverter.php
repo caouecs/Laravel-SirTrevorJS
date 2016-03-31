@@ -56,33 +56,53 @@ class BaseConverter
     protected $view;
 
     /**
+     * Output format.
+     *
+     * @var string
+     */
+    protected $output = 'html';
+
+    /**
+     * Code js.
+     *
+     * @var string
+     */
+    protected $codejs;
+
+    /**
+     * External js.
+     *
+     * @var array
+     */
+    protected $jsExternal;
+
+    /**
      * Construct.
      *
      * @param mixed $parser Parser instance
      * @param array $config Config of Sir Trevor Js
      * @param array $data   Data of element
      */
-    public function __construct($parser, array $config, array $data)
+    public function __construct($parser, array $config, array $data, $output = 'html')
     {
         $this->parser = $parser;
         $this->type = array_get($data, 'type');
         $this->data = array_get($data, 'data');
         $this->config = $config;
+        $this->output = $output;
     }
 
     /**
      * Render.
      *
-     * @param array $codejs Array with JS for Sir Trevor Js
-     *
      * @return string
      */
-    public function render(&$codejs)
+    public function render()
     {
         if (in_array($this->type, $this->types)) {
             $method = $this->type.'ToHtml';
 
-            return $this->$method($codejs);
+            return $this->$method();
         }
 
         return;
@@ -103,9 +123,18 @@ class BaseConverter
      *
      * @param string $viewName Name of the base view
      * @param array  $params   Params
+     * @param string $type     Block type
      */
-    public function view($viewName, $params = [])
+    public function view($viewName, $params = [], $type = null)
     {
+        if (empty($type)) {
+            $type = $this->type;
+        }
+
+        if (!empty($this->jsExternal[$this->output][$type])) {
+            $this->codejs[$type] = $this->jsExternal[$this->output][$type];
+        }
+
         if (!empty($this->view) && View::exists($this->view.'.'.$viewName)) {
             return view($this->view.'.'.$viewName, $params);
         } elseif (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
@@ -113,5 +142,15 @@ class BaseConverter
         }
 
         return view('sirtrevorjs::html.'.$viewName, $params);
+    }
+
+    /**
+     * Returns code js.
+     *
+     * @return array
+     */
+    public function getCodeJs()
+    {
+        return $this->codejs;
     }
 }

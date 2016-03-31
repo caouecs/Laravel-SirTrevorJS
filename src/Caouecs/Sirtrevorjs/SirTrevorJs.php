@@ -262,36 +262,6 @@ class SirTrevorJs
     }
 
     /**
-     * Convert json from Sir Trevor JS to amp.
-     *
-     * @param string $text
-     *
-     * @return string
-     * @static
-     */
-    public static function renderAmp($text)
-    {
-        $converter = new SirTrevorJsConverter();
-
-        return $converter->toAmp($text);
-    }
-
-    /**
-     * Convert json from Sir Trevor JS to Facebook Articles.
-     *
-     * @param string $text
-     *
-     * @return string
-     * @static
-     */
-    public static function renderFb($text)
-    {
-        $converter = new SirTrevorJsConverter();
-
-        return $converter->toFb($text);
-    }
-
-    /**
      * Find first image in text from Sir Trevor JS.
      *
      * @param string $text
