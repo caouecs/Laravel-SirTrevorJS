@@ -16,6 +16,10 @@ return [
     // by default: ['Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading']
     'blocktypes' => [],
 
+    // add custom block for Sir Trevor JS,
+    //example ['image_extended' => '\App\SirTrevorConverters\ImageExtendedConverter',]
+    'customBlocks' => [],
+
     // language
     // the file of translation must be in `locales` directory of your path
     'language' => 'en',

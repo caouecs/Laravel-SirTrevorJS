@@ -47,6 +47,7 @@ You can define :
 * the route for tweet
 * the path of Sir Trevor files
 * the list of block types
+* custom blocks
 * the language
 * the paths for Eventable.js and Underscore.js
 * the view
@@ -160,6 +161,36 @@ By default, you can define views in config file. But if you want to use multi vi
 
     $convert = new SirTrevorJsConverter('sirtrevor::amp');
     $convert->convert($text);
+
+### Adding custom blocks
+
+You can choose to add custom blocks in config file or add them by extending SirTrevorJsConverter class.
+
+#### config
+
+```php
+..
+'customBlocks' => [
+    'image_extended' => '\App\SirTrevorConverters\ImageExtendedConverter',
+],
+..
+```
+
+#### SirTrevorConverter
+```php
+<?php namespace App\SirTrevorConverters;
+
+use \Caouecs\Sirtrevorjs\SirTrevorJsConverter as Converter;
+
+class SirTrevorJsConverter extends Converter {
+    public function __construct($view = null) {
+        $this->customBlocks = [
+            'image_extended' => \App\SirTrevorConverters\ImageExtendedConverter::class,
+        ];
+        parent::__construct($view);
+    }
+}
+```
 
 ### Modules
 

@@ -208,6 +208,10 @@ class SirTrevorJsConverter
             $blocks = array_merge($blocks, $this->customBlocks);
         }
 
+        if(isset($this->config['customBlocks'])){
+            $blocks = array_merge($blocks, $this->config['customBlocks']);
+        }
+
         return $blocks;
     }
 }
