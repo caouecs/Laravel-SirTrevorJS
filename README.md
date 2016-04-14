@@ -21,8 +21,10 @@ This package is available through `Packagist` and `Composer`.
 
 In your `app/config/app.php`, add in aliases :
 
-    'SirTrevorJs' => 'Caouecs\Sirtrevorjs\SirTrevorJs',
-    'STConverter' => 'Caouecs\Sirtrevorjs\SirTrevorJsConverter'
+```php
+'SirTrevorJs' => 'Caouecs\Sirtrevorjs\SirTrevorJs',
+'STConverter' => 'Caouecs\Sirtrevorjs\SirTrevorJsConverter'
+```
 
 ### Service Provider
 
@@ -62,23 +64,31 @@ You can define :
 
 For stylesheets :
 
+```php
     SirTrevorJs::stylesheets()
+```
 
 For scripts, in your Blade files :
 
+```php
     SirTrevorJs::scripts()
+```
 
 ### Fix for image block
 
 Function to fix a problem with image block when you add a new image :
 
+```php
     $text = SirTrevorJs::transformText($text);
+```
 
 ### Find first image
 
 Get first image in text with `findImage` method :
 
+```php
     string SirTrevorJS::findImage(string $text);
+```
 
 In return, you have url of image or empty string.
 
@@ -86,7 +96,9 @@ In return, you have url of image or empty string.
 
 Get all elements in text, in specified blocktype with `find` method :
 
+```php
     mixed SirTrevorJS::find(string $text, string $blocktype [, string $output = "json"])
+```
 
 In return, you can have :
 
@@ -117,7 +129,9 @@ This trait proposes two things :
 
 This project proposes a system for upload image, nothing to configure, just the `directory_upload` value in config file.
 
+```php
     "directory_upload" => "img/uploads"
+```
 
 ### Tweet
 
@@ -129,20 +143,25 @@ This project proposes a system to get tweets. I use [thujohn/twitter](https://gi
 
 Convert text from Sir Trevor Js to html :
 
+```php
     $convert = new SirTrevorJsConverter();
     $convert->toHtml($text)
-
+```
 
 Or via SirTrevorJS class :
 
+```php
     {{ SirTrevorJs::render($text) }}
+```
 
 ### Amp (experimental)
 
 Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org):
 
+```php
     $convert = new SirTrevorJsConverter();
     $convert->toAmp($text);
+```
 
 All modules have an amp's version, if it exists an equivalence.
     
@@ -150,8 +169,10 @@ All modules have an amp's version, if it exists an equivalence.
 
 Convert text from Sir Trevor Js to [Facebook Instant Articles](https://developers.facebook.com/docs/instant-articles/reference):
 
+```php
     $convert = new SirTrevorJsConverter();
     $convert->toFb($text);
+```
 
 All modules have an FBArticles's version, if it exists an equivalence.
 
@@ -169,24 +190,27 @@ You can choose to add custom blocks in config file or add them by extending SirT
 #### config
 
 ```php
-..
 'customBlocks' => [
     'image_extended' => '\App\SirTrevorConverters\ImageExtendedConverter',
 ],
-..
 ```
 
 #### SirTrevorConverter
+
 ```php
-<?php namespace App\SirTrevorConverters;
+<?php
+namespace App\SirTrevorConverters;
 
 use \Caouecs\Sirtrevorjs\SirTrevorJsConverter as Converter;
 
-class SirTrevorJsConverter extends Converter {
-    public function __construct($view = null) {
+class SirTrevorJsConverter extends Converter
+{
+    public function __construct($view = null)
+    {
         $this->customBlocks = [
             'image_extended' => \App\SirTrevorConverters\ImageExtendedConverter::class,
         ];
+
         parent::__construct($view);
     }
 }

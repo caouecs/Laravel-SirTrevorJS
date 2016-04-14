@@ -1,5 +1,14 @@
 # Changelog
 
+* v2.3.4
+    * custom blocks in config file
+
+* v2.3.3
+    * custom blocks
+
+* v2.3
+    * Facebook Articles with views 
+
 * v2.2
     * Html views in *html* directory
     * Amp views in *amp* directory
