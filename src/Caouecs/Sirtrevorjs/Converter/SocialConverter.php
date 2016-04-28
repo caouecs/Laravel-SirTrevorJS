@@ -26,6 +26,20 @@ class SocialConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
+     * JS External.
+     *
+     * @var array
+     */
+    protected $jsExternal = [
+        'html' => [
+            'facebook' => '<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document,\'script\',\'facebook-jssdk\'));</script>',
+        ],
+        'amp' => [
+            'tweet' => '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>',
+        ],
+    ];
+
+    /**
      * Tweet.
      *
      * @return string
@@ -40,17 +54,10 @@ class SocialConverter extends BaseConverter implements ConverterInterface
     /**
      * Facebook.
      *
-     * @param array $codejs Array of js
-     *
      * @return string
      */
-    public function facebookToHtml(&$codejs)
+    public function facebookToHtml()
     {
-        $codejs['facebook'] = '<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if '
-            .'(d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/'
-            .'en_GB/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document,\'script\',\'facebook-jssdk\'));'
-            .'</script>';
-
         return $this->view('social.facebook', [
             'data' => $this->data,
         ]);

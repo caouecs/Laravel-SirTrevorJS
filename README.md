@@ -1,13 +1,15 @@
 Laravel-SirTrevorJS
 ====================
 
-Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 4/5](http://laravel.com) project.
+Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5](http://laravel.com) project.
 
 ## Installation
 
 This package is available through `Packagist` and `Composer`.
 
- > **For Laravel 5.x** version *fb articles*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.3.0"`
+ > **For Laravel 5.x** version *js & amp*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master)
+
+ > **For Laravel 5.x** version *fb articles*, use the [branch v2.3](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.3) : `"caouecs/sirtrevorjs": "~2.3.0"`
 
  > **For Laravel 5.1** version *view & amp*, use the [branch v2.2](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.2) : `"caouecs/sirtrevorjs": "~2.2.0"`
 
@@ -15,7 +17,9 @@ This package is available through `Packagist` and `Composer`.
 
  > **For Laravel 5.0**, use the [branch v2](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2) : `"caouecs/sirtrevorjs": "~2.0.0"`
 
-> **For Laravel 4**, use the [branch laravel4](https://github.com/caouecs/Laravel-SirTrevorJS/tree/laravel4) : `"caouecs/sirtrevorjs": "~1.4"`
+ > **For Laravel 4**, use the [branch laravel4](https://github.com/caouecs/Laravel-SirTrevorJS/tree/laravel4) : `"caouecs/sirtrevorjs": "~1.4"`
+
+Please read *README.md* in the choosen branch.
 
 ### Aliases
 
@@ -106,19 +110,9 @@ In return, you can have :
 * json, if you choose "json" for $output
 * false, if the script doesn't find an occurence of blocktype
 
-
 ## Controller
 
-### For Laravel 5.0 : SirTrevorJsController
-
-This class proposes two things :
-
-* upload image where you want
-* get tweets
-
-The routes are in the provider.
-
-### For Laravel 5.1 : TraitSirTrevorJsController
+### TraitSirTrevorJsController
 
 This trait proposes two things :
 
@@ -154,7 +148,9 @@ Or via SirTrevorJS class :
     {{ SirTrevorJs::render($text) }}
 ```
 
-### Amp (experimental)
+These methods return a string with html and js codes.
+
+### Amp
 
 Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org):
 
@@ -164,7 +160,9 @@ Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org):
 ```
 
 All modules have an amp's version, if it exists an equivalence.
-    
+
+This method returns an array ( *text* and *js*).
+
 ### Facebook Instant Articles (very experimental)
 
 Convert text from Sir Trevor Js to [Facebook Instant Articles](https://developers.facebook.com/docs/instant-articles/reference):
@@ -175,6 +173,8 @@ Convert text from Sir Trevor Js to [Facebook Instant Articles](https://developer
 ```
 
 All modules have an FBArticles's version, if it exists an equivalence.
+
+This method returns a string with html and js codes.
 
 ### Define views
 

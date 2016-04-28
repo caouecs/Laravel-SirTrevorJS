@@ -38,12 +38,26 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     protected $caption = null;
 
     /**
-     * Javascript.
+     * Output.
+     *
+     * @var string
+     */
+    protected $output = 'html';
+
+    /**
+     * Js code external.
      *
      * @var array
      */
-    protected $codejs = [
-        'vine' => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>',
+    protected $jsExternal = [
+        'html' => [
+            'vine' => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>',
+        ],
+        'amp' => [
+            'dailymotion' => '<script async custom-element="amp-dailymotion" src="https://cdn.ampproject.org/v0/amp-dailymotion-0.1.js"></script>',
+            'vimeo' => '<script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/amp-vimeo-0.1.js"></script>',
+            'youtube' => '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>',
+        ],
     ];
 
     /**
@@ -94,7 +108,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      * @param array $config Config of Sir Trevor Js
      * @param array $data   Data of video
      */
-    public function __construct($parser, $config, $data)
+    public function __construct($parser, $config, $data, $output = 'html')
     {
         if (!is_array($data) || !isset($data['data']['source']) || !isset($data['data']['remote_id'])) {
             throw new Exception('Need an array with provider and remote_id', 1);
@@ -106,33 +120,31 @@ class VideoConverter extends BaseConverter implements ConverterInterface
         $this->caption = array_get($data['data'], 'caption');
         $this->config = $config;
         $this->parser = $parser;
+        $this->output = $output;
     }
 
     /**
      * Render of video tag.
      *
-     * @param array $codejs Array of Js
-     *
      * @return string
      */
-    public function videoToHtml(&$codejs)
+    public function videoToHtml()
     {
         if (in_array($this->provider, $this->providers)) {
-            // JS Code
-            if (isset($this->codejs[$this->provider])) {
-                $codejs[$this->provider] = $this->codejs[$this->provider];
-            }
-
             $caption = null;
             if (!empty($this->caption)) {
                 $caption = $this->parser->text($this->caption);
             }
 
             // View
-            return $this->view('video.'.$this->provider, [
-                'remote'  => $this->remote_id,
-                'caption' => $caption,
-            ]);
+            return $this->view(
+                'video.'.$this->provider,
+                [
+                    'remote'  => $this->remote_id,
+                    'caption' => $caption,
+                ],
+                $this->provider
+            );
         }
 
         return;

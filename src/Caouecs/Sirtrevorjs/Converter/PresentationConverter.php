@@ -26,6 +26,17 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
+     * External js.
+     *
+     * @var array
+     */
+    protected $jsExternal = [
+        'html' => [
+            'Issuu' => '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>',
+        ],
+    ];
+
+    /**
      * Slideshare.
      *
      * @return string
@@ -40,14 +51,10 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
     /**
      * Issuu.
      *
-     * @param array $codejs Array of js
-     *
      * @return string
      */
-    public function issuuToHtml(&$codejs)
+    public function issuuToHtml()
     {
-        $codejs['issuu'] = '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>';
-
         return $this->view('presentation.issuu', [
             'remote_id' => $this->data['remote_id'],
         ]);

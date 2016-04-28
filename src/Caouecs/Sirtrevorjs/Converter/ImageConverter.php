@@ -27,6 +27,17 @@ class ImageConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
+     * External js.
+     *
+     * @var array
+     */
+    protected $jsExternal = [
+        'html' => [
+            'pinterest' => '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>',
+        ],
+    ];
+
+    /**
      * Converts the image to html.
      *
      * @return string
@@ -66,19 +77,14 @@ class ImageConverter extends BaseConverter implements ConverterInterface
     /**
      * Converts Pinterest to html.
      *
-     * @param array $codejs Array of js
-     *
      * @return string
      */
-    public function pinterestToHtml(&$codejs)
+    public function pinterestToHtml()
     {
         /*
          * Pin
          */
         if ($this->data['provider'] === 'pin') {
-            $codejs['pin'] = '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js">'
-                .'</script>';
-
             return $this->view('image.pin', [
                 'remote_id' => $this->data['remote_id'],
             ]);

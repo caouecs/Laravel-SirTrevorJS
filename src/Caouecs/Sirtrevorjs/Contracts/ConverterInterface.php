@@ -16,9 +16,7 @@ interface ConverterInterface
     /**
      * Render.
      *
-     * @param $codejs
-     *
      * @return mixed
      */
-    public function render(&$codejs);
+    public function render();
 }
