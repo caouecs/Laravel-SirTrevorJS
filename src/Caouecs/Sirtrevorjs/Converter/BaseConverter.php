@@ -65,7 +65,7 @@ class BaseConverter
     /**
      * Code js.
      *
-     * @var string
+     * @var array
      */
     protected $codejs;
 

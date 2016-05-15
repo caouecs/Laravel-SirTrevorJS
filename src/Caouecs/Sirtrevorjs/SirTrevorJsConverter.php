@@ -177,7 +177,7 @@ class SirTrevorJsConverter
     {
         // convert the json to an associative array
         $input = json_decode($json, true);
-        $text = null;
+        $text = '';
         $codejs = [];
 
         if (empty($this->view)) {

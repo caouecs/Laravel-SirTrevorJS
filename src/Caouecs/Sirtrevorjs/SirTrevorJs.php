@@ -26,7 +26,7 @@ class SirTrevorJs
     /**
      * Block types.
      *
-     * @var string
+     * @var array
      * @static
      */
     protected static $blocktypes = [
@@ -294,7 +294,7 @@ class SirTrevorJs
      * @param string $output    json or array
      * @param int    $nbr       Number of occurences ( 0 = all )
      *
-     * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
+     * @return array|string|bool Returns list of blocks in an array or a json, if exists. Else, returns false
      * @static
      */
     public static function find($text, $blocktype, $output = 'json', $nbr = 0)
@@ -302,10 +302,10 @@ class SirTrevorJs
         $array = json_decode($text, true);
 
         if (!isset($array['data'])) {
-            return;
+            return false;
         }
 
-        $return = null;
+        $return = false;
         $_nbr = 1;
 
         foreach ($array['data'] as $arr) {
