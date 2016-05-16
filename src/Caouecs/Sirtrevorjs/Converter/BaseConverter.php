@@ -105,7 +105,7 @@ class BaseConverter
             return $this->$method();
         }
 
-        return;
+        return '';
     }
 
     /**

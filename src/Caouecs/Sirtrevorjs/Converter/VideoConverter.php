@@ -147,6 +147,6 @@ class VideoConverter extends BaseConverter implements ConverterInterface
             );
         }
 
-        return;
+        return '';
     }
 }

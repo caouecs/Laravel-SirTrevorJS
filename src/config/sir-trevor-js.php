@@ -48,6 +48,7 @@ return [
     'gettyimages' => [
         'width'  => 594,
         'height' => 465,
+        'placeholder' => '', # Placeholder image for iframe
     ],
 
     // Embedly

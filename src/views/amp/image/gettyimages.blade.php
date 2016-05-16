@@ -3,4 +3,5 @@
   layout="responsive"
   frameborder="0"
   src="https://embed.gettyimages.com/embed/{!! $remote_id !!}">
+  <amp-img layout="fill" src="{!! $placeholder !!} placeholder></amp-img>
 </amp-iframe>

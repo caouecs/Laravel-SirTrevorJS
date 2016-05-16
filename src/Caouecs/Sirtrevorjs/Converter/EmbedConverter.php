@@ -67,6 +67,6 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
             ]);
         }
 
-        return;
+        return '';
     }
 }

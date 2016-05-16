@@ -1,5 +1,12 @@
 # Changelog
 
+* v2.4.1
+    * fix gettyimages for amp
+    * new config variable for gettyimages placeholder
+
+* v2.4.0
+    * js and amp
+
 * v2.3.4
     * custom blocks in config file
 
@@ -7,7 +14,7 @@
     * custom blocks
 
 * v2.3
-    * Facebook Articles with views 
+    * Facebook Articles with views
 
 * v2.2
     * Html views in *html* directory

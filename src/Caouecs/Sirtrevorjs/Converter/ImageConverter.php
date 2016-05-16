@@ -35,6 +35,9 @@ class ImageConverter extends BaseConverter implements ConverterInterface
         'html' => [
             'pinterest' => '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>',
         ],
+        'amp' => [
+            'gettyimages' => '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>',
+        ],
     ];
 
     /**
@@ -45,7 +48,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
     public function imageToHtml()
     {
         if (is_null(array_get($this->data, 'file.url'))) {
-            return;
+            return '';
         }
 
         $text = array_get($this->data, 'text');
@@ -71,6 +74,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
             'remote_id' => $this->data['remote_id'],
             'width'     => array_get($this->config, 'gettyimages.width', 594),
             'height'    => array_get($this->config, 'gettyimages.height', 465),
+            'placeholder' => array_get($this->config, 'gettyimages.placeholder', '/'),
         ]);
     }
 
@@ -90,6 +94,6 @@ class ImageConverter extends BaseConverter implements ConverterInterface
             ]);
         }
 
-        return;
+        return '';
     }
 }

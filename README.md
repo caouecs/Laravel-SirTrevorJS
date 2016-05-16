@@ -7,7 +7,7 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 This package is available through `Packagist` and `Composer`.
 
- > **For Laravel >= 5.1** version *js & amp*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master)
+ > **For Laravel >= 5.1** version *js & amp*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.4.0"`
 
  > **For Laravel >= 5.1** version *fb articles*, use the [branch v2.3](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.3) : `"caouecs/sirtrevorjs": "~2.3.0"`
 
