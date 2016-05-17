@@ -27,18 +27,23 @@ class ImageConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
-     * External js.
+     * Return array js external.
      *
-     * @var array
+     * @return array
      */
-    protected $jsExternal = [
-        'html' => [
-            'pinterest' => '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>',
-        ],
-        'amp' => [
-            'gettyimages' => '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>',
-        ],
-    ];
+    public function getJsExternal()
+    {
+        return [
+            'html' => [
+                'pinterest' => '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js">'
+                    .'</script>',
+            ],
+            'amp' => [
+                'gettyimages' => '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/'
+                    .'amp-iframe-0.1.js"></script>',
+            ],
+        ];
+    }
 
     /**
      * Converts the image to html.

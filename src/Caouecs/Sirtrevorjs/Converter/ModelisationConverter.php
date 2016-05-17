@@ -25,6 +25,16 @@ class ModelisationConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
+     * Return array js external.
+     *
+     * @return array
+     */
+    public function getJsExternal()
+    {
+        return [];
+    }
+
+    /**
      * Sketchfab block.
      *
      * @return string

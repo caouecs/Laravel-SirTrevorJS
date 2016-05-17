@@ -30,6 +30,16 @@ class TextConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
+     * Return array js external.
+     *
+     * @return array
+     */
+    public function getJsExternal()
+    {
+        return [];
+    }
+
+    /**
      * Convert text to markdown.
      *
      * @return string

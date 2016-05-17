@@ -19,4 +19,11 @@ interface ConverterInterface
      * @return mixed
      */
     public function render();
+
+    /**
+     * Return array js external.
+     *
+     * @return array
+     */
+    public function getJsExternal();
 }

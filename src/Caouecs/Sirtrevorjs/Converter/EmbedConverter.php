@@ -26,18 +26,22 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
-     * External js.
+     * Return array of js external.
      *
-     * @var array
+     * @return array
      */
-    protected $jsExternal = [
-        'html' => [
-            'embedly' => '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>',
-        ],
-        'amp' => [
-            'iframe' => '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>',
-        ],
-    ];
+    public function getJsExternal()
+    {
+        return [
+            'html' => [
+                'embedly' => '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>',
+            ],
+            'amp' => [
+                'iframe' => '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/'
+                    .'amp-iframe-0.1.js"></script>',
+            ],
+        ];
+    }
 
     /**
      * Render of iframe.

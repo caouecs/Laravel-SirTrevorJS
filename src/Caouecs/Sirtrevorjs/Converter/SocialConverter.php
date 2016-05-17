@@ -26,18 +26,25 @@ class SocialConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
-     * JS External.
+     * Return array js external.
      *
-     * @var array
+     * @return array
      */
-    protected $jsExternal = [
-        'html' => [
-            'facebook' => '<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document,\'script\',\'facebook-jssdk\'));</script>',
-        ],
-        'amp' => [
-            'tweet' => '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>',
-        ],
-    ];
+    public function getJsExternal()
+    {
+        return [
+            'html' => [
+                'facebook' => '<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if ('
+                    .'d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.'
+                    .'facebook.net/en_GB/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document,'
+                    .'\'script\',\'facebook-jssdk\'));</script>',
+            ],
+            'amp' => [
+                'tweet' => '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/'
+                    .'amp-twitter-0.1.js"></script>',
+            ],
+        ];
+    }
 
     /**
      * Tweet.

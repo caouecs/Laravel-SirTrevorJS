@@ -1,5 +1,8 @@
 # Changelog
 
+* v2.4.2
+    * getJsExternal method
+
 * v2.4.1
     * fix gettyimages for amp
     * new config variable for gettyimages placeholder

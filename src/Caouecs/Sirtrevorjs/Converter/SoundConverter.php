@@ -26,6 +26,16 @@ class SoundConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
+     * Return array js external.
+     *
+     * @return array
+     */
+    public function getJsExternal()
+    {
+        return [];
+    }
+
+    /**
      * Soundcloud block.
      *
      * @return string

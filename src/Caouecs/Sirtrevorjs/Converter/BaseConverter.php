@@ -70,13 +70,6 @@ class BaseConverter
     protected $codejs;
 
     /**
-     * External js.
-     *
-     * @var array
-     */
-    protected $jsExternal;
-
-    /**
      * Construct.
      *
      * @param mixed $parser Parser instance
@@ -131,8 +124,9 @@ class BaseConverter
             $type = $this->type;
         }
 
-        if (!empty($this->jsExternal[$this->output][$type])) {
-            $this->codejs[$type] = $this->jsExternal[$this->output][$type];
+        $jsExternal = $this->getJsExternal();
+        if (!empty($jsExternal[$this->output][$type])) {
+            $this->codejs[$type] = $jsExternal[$this->output][$type];
         }
 
         if (!empty($this->view) && View::exists($this->view.'.'.$viewName)) {

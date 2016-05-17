@@ -45,20 +45,27 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     protected $output = 'html';
 
     /**
-     * Js code external.
+     * Return array js external.
      *
-     * @var array
+     * @return array
      */
-    protected $jsExternal = [
-        'html' => [
-            'vine' => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8"></script>',
-        ],
-        'amp' => [
-            'dailymotion' => '<script async custom-element="amp-dailymotion" src="https://cdn.ampproject.org/v0/amp-dailymotion-0.1.js"></script>',
-            'vimeo' => '<script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/amp-vimeo-0.1.js"></script>',
-            'youtube' => '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>',
-        ],
-    ];
+    public function getJsExternal()
+    {
+        return [
+            'html' => [
+                'vine' => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8">'
+                    .'</script>',
+            ],
+            'amp' => [
+                'dailymotion' => '<script async custom-element="amp-dailymotion" src="https://cdn.ampproject.org/'
+                    .'v0/amp-dailymotion-0.1.js"></script>',
+                'vimeo' => '<script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/'
+                    .'amp-vimeo-0.1.js"></script>',
+                'youtube' => '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/'
+                    .'amp-youtube-0.1.js"></script>',
+            ],
+        ];
+    }
 
     /**
      * List of types for video.

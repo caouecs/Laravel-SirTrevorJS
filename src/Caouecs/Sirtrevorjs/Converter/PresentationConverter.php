@@ -26,15 +26,18 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
     ];
 
     /**
-     * External js.
+     * Return array js external.
      *
-     * @var array
+     * @return array
      */
-    protected $jsExternal = [
-        'html' => [
-            'Issuu' => '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>',
-        ],
-    ];
+    public function getJsExternal()
+    {
+        return [
+            'html' => [
+                'Issuu' => '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>',
+            ],
+        ];
+    }
 
     /**
      * Slideshare.
