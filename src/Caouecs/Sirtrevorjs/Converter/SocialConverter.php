@@ -38,6 +38,7 @@ class SocialConverter extends BaseConverter implements ConverterInterface
                     .'d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.'
                     .'facebook.net/en_GB/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document,'
                     .'\'script\',\'facebook-jssdk\'));</script>',
+                'tweet' => '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>',
             ],
             'amp' => [
                 'tweet' => '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/'
