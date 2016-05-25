@@ -12,7 +12,8 @@
   "require": {
     "illuminate/support": "~5",
     "erusev/parsedown-extra": "~0.7",
-    "thujohn/twitter": "~2.0"
+    "thujohn/twitter": "~2.0",
+    "laravelcollective/html": "~5"
   },
   "require-dev": {
     "phpunit/phpunit": "4.1.*"
