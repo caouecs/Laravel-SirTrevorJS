@@ -5,7 +5,6 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
-
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;

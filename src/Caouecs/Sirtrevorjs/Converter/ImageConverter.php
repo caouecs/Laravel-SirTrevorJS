@@ -5,7 +5,6 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
-
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
@@ -76,9 +75,9 @@ class ImageConverter extends BaseConverter implements ConverterInterface
     public function gettyimagesToHtml()
     {
         return $this->view('image.gettyimages', [
-            'remote_id' => $this->data['remote_id'],
-            'width'     => array_get($this->config, 'gettyimages.width', 594),
-            'height'    => array_get($this->config, 'gettyimages.height', 465),
+            'remote_id'   => $this->data['remote_id'],
+            'width'       => array_get($this->config, 'gettyimages.width', 594),
+            'height'      => array_get($this->config, 'gettyimages.height', 465),
             'placeholder' => array_get($this->config, 'gettyimages.placeholder', '/'),
         ]);
     }
