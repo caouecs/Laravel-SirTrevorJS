@@ -5,7 +5,6 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
-
 namespace Caouecs\Sirtrevorjs;
 
 use HTML;
@@ -97,8 +96,6 @@ class SirTrevorJs
 
             return json_encode(['data' => $return], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
-
-        return;
     }
 
     /**
@@ -282,8 +279,6 @@ class SirTrevorJs
                 return $arr['data']['file']['url'];
             }
         }
-
-        return;
     }
 
     /**

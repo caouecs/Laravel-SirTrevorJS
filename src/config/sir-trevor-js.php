@@ -46,9 +46,9 @@ return [
 
     // Getty Images
     'gettyimages' => [
-        'width'  => 594,
-        'height' => 465,
-        'placeholder' => '', # Placeholder image for iframe
+        'width'       => 594,
+        'height'      => 465,
+        'placeholder' => '', // Placeholder image for iframe
     ],
 
     // Embedly

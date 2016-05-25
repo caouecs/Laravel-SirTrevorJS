@@ -5,7 +5,6 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
-
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
@@ -51,8 +50,8 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
     public function iframeToHtml()
     {
         return $this->view('embed.iframe', [
-            'src' => $this->data['src'],
-            'width' => $this->data['width'],
+            'src'    => $this->data['src'],
+            'width'  => $this->data['width'],
             'height' => $this->data['height'],
         ]);
     }
