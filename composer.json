@@ -19,11 +19,13 @@
     "phpunit/phpunit": "4.1.*"
   },
   "autoload": {
-    "classmap": [
-      "test"
-    ],
     "psr-0": {
       "Caouecs\\Sirtrevorjs\\": "src/"
     }
+  },
+  "autoload-dev": {
+    "classmap": [
+      "test"
+    ],
   }
 }
