@@ -146,10 +146,10 @@ class BaseConverter
     {
         return $this->codejs;
     }
-    
+
     /**
-     * Returns external js code
-     * 
+     * Returns external js code.
+     *
      * @return array
      */
     public function getJsExternal()
