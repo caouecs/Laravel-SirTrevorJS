@@ -1,4 +1,4 @@
-<figure class="op-social">
+<figure class="op-interactive">
   <iframe>
     <div class="fb-post" data-href="https://www.facebook.com/{!! $data['author'] !!}/posts/{!! $data['remote_id'] !!}"
       data-width="466" style="overflow-x: hidden;overflow-y:hidden;max-width: 100%;">

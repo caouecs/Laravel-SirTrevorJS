@@ -1,4 +1,4 @@
-<figure class="op-social">
+<figure class="op-interactive">
   <iframe>
     <p>{!! $data['text'] !!}</p>
     &mdash; {!! $data['user']['name'] !!} (&#64;{!! $data['user']['screen_name'] !!})
