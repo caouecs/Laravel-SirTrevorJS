@@ -5,9 +5,10 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
+
 namespace Caouecs\Sirtrevorjs;
 
-use ParsedownExtra;
+use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
 
 /**
  * Class Converter.
@@ -58,25 +59,25 @@ class SirTrevorJsConverter
      * @var array
      */
     protected $blocks = [
-        'blockquote'    => 'Text',
-        'embedly'       => 'Embed',
-        'facebook'      => 'Social',
-        'gettyimages'   => 'Image',
-        'heading'       => 'Text',
-        'iframe'        => 'Embed',
-        'image'         => 'Image',
-        'issuu'         => 'Presentation',
-        'list'          => 'Text',
-        'markdown'      => 'Text',
-        'pinterest'     => 'Image',
-        'quote'         => 'Text',
-        'sketchfab'     => 'Modelisation',
-        'slideshare'    => 'Presentation',
-        'soundcloud'    => 'Sound',
-        'spotify'       => 'Sound',
-        'text'          => 'Text',
-        'tweet'         => 'Social',
-        'video'         => 'Video',
+        'blockquote' => 'Text',
+        'embedly' => 'Embed',
+        'facebook' => 'Social',
+        'gettyimages' => 'Image',
+        'heading' => 'Text',
+        'iframe' => 'Embed',
+        'image' => 'Image',
+        'issuu' => 'Presentation',
+        'list' => 'Text',
+        'markdown' => 'Text',
+        'pinterest' => 'Image',
+        'quote' => 'Text',
+        'sketchfab' => 'Modelisation',
+        'slideshare' => 'Presentation',
+        'soundcloud' => 'Sound',
+        'spotify' => 'Sound',
+        'text' => 'Text',
+        'tweet' => 'Social',
+        'video' => 'Video',
     ];
 
     /**
@@ -89,24 +90,16 @@ class SirTrevorJsConverter
     /**
      * Construct.
      *
-     * @param string $view View
+     * @param ParserInterface $parser
+     * @param array           $config
+     * @param string          $view   View
      *
      * @todo  Inject Parser
      */
-    public function __construct($view = null)
+    public function __construct(ParserInterface $parser, array $config, $view = null)
     {
-        $this->config = config('sir-trevor-js');
-        $this->parser = new ParsedownExtra();
-        $this->view = $view;
-    }
-
-    /**
-     * Set view.
-     *
-     * @param string $view
-     */
-    public function setView($view)
-    {
+        $this->config = $config;
+        $this->parser = $parser;
         $this->view = $view;
     }
 

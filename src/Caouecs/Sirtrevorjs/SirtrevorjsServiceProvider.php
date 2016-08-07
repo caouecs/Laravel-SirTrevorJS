@@ -5,6 +5,7 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
+
 namespace Caouecs\Sirtrevorjs;
 
 use Illuminate\Support\ServiceProvider;
@@ -38,7 +39,13 @@ class SirtrevorjsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('caouecs.sirtrevorjs.converter', function () {
+            return new SirTrevorJsConverter(
+                new ParsedownExtraParser(),
+                config('sir-trevor-js'),
+                'html'
+            );
+        });
     }
 
     /**

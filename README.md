@@ -7,7 +7,9 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 This package is available through `Packagist` and `Composer`.
 
- > **For Laravel >= 5.1** version *js & amp*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.4.0"`
+ > **For Laravel >= 5.2** version *parser*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.5.0"`
+
+ > **For Laravel >= 5.1** version *js & amp*, use the [branch v2.4](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.4) : `"caouecs/sirtrevorjs": "~2.4.0"`
 
  > **For Laravel >= 5.1** version *fb articles*, use the [branch v2.3](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.3) : `"caouecs/sirtrevorjs": "~2.3.0"`
 
@@ -21,18 +23,9 @@ This package is available through `Packagist` and `Composer`.
 
 Please read *README.md* in the choosen branch.
 
-### Aliases
-
-In your `app/config/app.php`, add in aliases :
-
-```php
-'SirTrevorJs' => 'Caouecs\Sirtrevorjs\SirTrevorJs',
-'STConverter' => 'Caouecs\Sirtrevorjs\SirTrevorJsConverter'
-```
-
 ### Service Provider
 
-If you want to use routing, controllers, views directly in your project, in your `app/config/app.php`, add `"Caouecs\Sirtrevorjs\SirtrevorjsServiceProvider"` to your list of providers.
+If you want to use routing, controllers, views, binding directly in your project, in your `app/config/app.php`, add `"Caouecs\Sirtrevorjs\SirtrevorjsServiceProvider"` to your list of providers.
 
 ### thujohn/twitter
 
@@ -133,19 +126,21 @@ This project proposes a system to get tweets. I use [thujohn/twitter](https://gi
 
 ## SirTrevorJsConverter class
 
+This class need a parser, a configuration and a view by default.
+
+You can use the binding of this class :
+
+```php
+    App::make('caouecs.sirtrevorjs.converter')
+```
+
 ### Html
 
 Convert text from Sir Trevor Js to html :
 
 ```php
-    $convert = new SirTrevorJsConverter();
+    $convert = App::make('caouecs.sirtrevorjs.converter');
     $convert->toHtml($text)
-```
-
-Or via SirTrevorJS class :
-
-```php
-    {{ SirTrevorJs::render($text) }}
 ```
 
 These methods return a string with html and js codes.
@@ -155,7 +150,7 @@ These methods return a string with html and js codes.
 Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org):
 
 ```php
-    $convert = new SirTrevorJsConverter();
+    $convert = App::make('caouecs.sirtrevorjs.converter');
     $convert->toAmp($text);
 ```
 
@@ -163,25 +158,18 @@ All modules have an amp's version, if it exists an equivalence.
 
 This method returns an array ( *text* and *js*).
 
-### Facebook Instant Articles (very experimental)
+### Facebook Instant Articles
 
 Convert text from Sir Trevor Js to [Facebook Instant Articles](https://developers.facebook.com/docs/instant-articles/reference):
 
 ```php
-    $convert = new SirTrevorJsConverter();
+    $convert = App::make('caouecs.sirtrevorjs.converter')
     $convert->toFb($text);
 ```
 
 All modules have an FBArticles's version, if it exists an equivalence.
 
 This method returns a string with html and js codes.
-
-### Define views
-
-By default, you can define views in config file. But if you want to use multi views in your project, you can define a new view in the constructor of STConverter.
-
-    $convert = new SirTrevorJsConverter('sirtrevor::amp');
-    $convert->convert($text);
 
 ### Adding custom blocks
 
@@ -201,20 +189,31 @@ You can choose to add custom blocks in config file or add them by extending SirT
 <?php
 namespace App\SirTrevorConverters;
 
-use \Caouecs\Sirtrevorjs\SirTrevorJsConverter as Converter;
+use \Caouecs\Sirtrevorjs\SirTrevorJsConverter;
 
-class SirTrevorJsConverter extends Converter
+class SirTrevorJsConverterEditor extends SirTrevorJsConverter
 {
-    public function __construct($view = null)
-    {
-        $this->customBlocks = [
-            'image_extended' => \App\SirTrevorConverters\ImageExtendedConverter::class,
-        ];
-
-        parent::__construct($view);
-    }
+    /**
+     * Custom blocks.
+     *
+     * @var array
+     */
+    protected $customBlocks = [
+        'gallery' => '{Your namespace}\\Editor\\Converter\\GalleryConverterEditor',
+        'readmore' => '{Your namespace}\\Editor\\Converter\\ReadMoreConverterEditor',
+    ];
 }
 ```
+
+And you need to call this class in your service provider, in register :
+
+    $this->app->bind('editor.converter', function ($app) {
+        return new App\SirTrevorConverters\SirTrevorJsConverterEditor(
+            new ParsedownExtraParser(),
+            config('sir-trevor-js'),
+            'html'
+        );
+    });
 
 ### Modules
 
