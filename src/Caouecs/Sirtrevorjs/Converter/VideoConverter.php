@@ -5,6 +5,7 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
+
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
@@ -139,14 +140,14 @@ class VideoConverter extends BaseConverter implements ConverterInterface
         if (in_array($this->provider, $this->providers)) {
             $caption = null;
             if (!empty($this->caption)) {
-                $caption = $this->parser->text($this->caption);
+                $caption = $this->parser->toHtml($this->caption);
             }
 
             // View
             return $this->view(
                 'video.'.$this->provider,
                 [
-                    'remote'  => $this->remote_id,
+                    'remote' => $this->remote_id,
                     'caption' => $caption,
                 ],
                 $this->provider

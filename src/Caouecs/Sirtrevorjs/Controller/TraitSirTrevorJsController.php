@@ -5,6 +5,7 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
+
 namespace Caouecs\Sirtrevorjs\Controller;
 
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ trait TraitSirTrevorJsController
             while (file_exists(public_path($config['directory_upload']).'/'.$filename)) {
                 $filename = $suffixe.'_'.$filename;
 
-                $suffixe++;
+                ++$suffixe;
 
                 if ($suffixe < 10) {
                     $suffixe = '0'.$suffixe;
@@ -86,13 +87,13 @@ trait TraitSirTrevorJsController
 
         if ($tweet !== false && !empty($tweet)) {
             $return = [
-                'id_str'     => $tweet_id,
-                'text'       => $tweet->text,
+                'id_str' => $tweet_id,
+                'text' => $tweet->text,
                 'created_at' => $tweet->created_at,
-                'user'       => [
-                    'name'                    => $tweet->user->name,
-                    'screen_name'             => $tweet->user->screen_name,
-                    'profile_image_url'       => $tweet->user->profile_image_url,
+                'user' => [
+                    'name' => $tweet->user->name,
+                    'screen_name' => $tweet->user->screen_name,
+                    'profile_image_url' => $tweet->user->profile_image_url,
                     'profile_image_url_https' => $tweet->user->profile_image_url_https,
                 ],
             ];

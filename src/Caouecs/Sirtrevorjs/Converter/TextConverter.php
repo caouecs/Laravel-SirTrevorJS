@@ -5,6 +5,7 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
+
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
@@ -46,7 +47,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
     public function textToHtml()
     {
         return $this->view('text.text', [
-            'text' => $this->parser->text($this->data['text']),
+            'text' => $this->parser->toHtml($this->data['text']),
         ]);
     }
 
@@ -68,7 +69,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
     public function headingToHtml()
     {
         return $this->view('text.heading', [
-            'text' => $this->parser->text($this->data['text']),
+            'text' => $this->parser->toHtml($this->data['text']),
         ]);
     }
 
@@ -82,7 +83,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
         // remove the indent thats added by Sir Trevor
         return $this->view('text.blockquote', [
             'cite' => $this->data['cite'],
-            'text' => $this->parser->text(ltrim($this->data['text'], '>')),
+            'text' => $this->parser->toHtml(ltrim($this->data['text'], '>')),
         ]);
     }
 

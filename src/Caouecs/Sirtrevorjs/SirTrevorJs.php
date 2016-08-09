@@ -5,8 +5,10 @@
  *
  * @link https://github.com/caouecs/Laravel-SirTrevorJs
  */
+
 namespace Caouecs\Sirtrevorjs;
 
+use App;
 use HTML;
 
 /**
@@ -209,14 +211,14 @@ class SirTrevorJs
         }
 
         return [
-            'path'       => $config['path'],
-            'script'     => $config['script'],
+            'path' => $config['path'],
+            'script' => $config['script'],
             'blocktypes' => '\''.implode('\', \'', $blocktypes).'\'',
-            'class'      => self::defineParam('class', $params),
-            'language'   => self::defineParam('language', $params, $config),
-            'uploadUrl'  => self::defineParam('uploadUrl', $params, $config),
-            'tweetUrl'   => self::defineParam('tweetUrl', $params, $config),
-            'version'    => $config['version'],
+            'class' => self::defineParam('class', $params),
+            'language' => self::defineParam('language', $params, $config),
+            'uploadUrl' => self::defineParam('uploadUrl', $params, $config),
+            'tweetUrl' => self::defineParam('tweetUrl', $params, $config),
+            'version' => $config['version'],
         ];
     }
 
@@ -253,7 +255,7 @@ class SirTrevorJs
      */
     public static function render($text)
     {
-        $converter = new SirTrevorJsConverter();
+        $converter = App::make('caouecs.sirtrevorjs.converter');
 
         return $converter->toHtml($text);
     }
@@ -311,7 +313,7 @@ class SirTrevorJs
                     break;
                 }
 
-                $_nbr++;
+                ++$_nbr;
             }
         }
 
