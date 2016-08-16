@@ -9,6 +9,7 @@
 namespace Caouecs\Sirtrevorjs;
 
 use Illuminate\Support\ServiceProvider;
+use ParsedownExtraParser;
 
 /**
  * Sir Trevor Js service provider.
