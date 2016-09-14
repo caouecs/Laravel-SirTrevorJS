@@ -62,9 +62,18 @@ class ImageConverter extends BaseConverter implements ConverterInterface
             $text = $this->parser->toHtml($text);
         }
 
+        $url = array_get($this->data, 'file.url');
+        $size = getimagesize($url);
+
+        if (!$size) {
+            return '';
+        }
+
         return $this->view('image.image', [
-            'url' => array_get($this->data, 'file.url'),
+            'url' => $url,
             'text' => $text,
+            'width' => $size[0],
+            'height' => $size[1],
         ]);
     }
 
