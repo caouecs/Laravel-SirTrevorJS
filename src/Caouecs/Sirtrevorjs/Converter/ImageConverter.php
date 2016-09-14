@@ -65,7 +65,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
         $url = array_get($this->data, 'file.url');
         $size = getimagesize($url);
 
-        if (!$size) {
+        if (empty($size)) {
             return '';
         }
 
