@@ -104,6 +104,16 @@ class SirTrevorJsConverter
     }
 
     /**
+     * Set view.
+     *
+     * @param string $view
+     */
+    public function setView($view)
+    {
+        $this->view = $view;
+    }
+
+    /**
      * Converts the outputted json from Sir Trevor to Html.
      *
      * @param string $json
