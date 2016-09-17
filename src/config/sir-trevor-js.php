@@ -51,6 +51,12 @@ return [
         'placeholder' => '', // Placeholder image for iframe
     ],
 
+    // Images
+    'image' => [
+        'width' => 520,
+        'height' => 200,
+    ],
+
     // Embedly
     'embedly' => [
         'card' => [

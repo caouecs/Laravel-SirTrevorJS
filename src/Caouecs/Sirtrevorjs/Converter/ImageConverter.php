@@ -9,6 +9,7 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Exception;
 
 /**
  * Images for Sir Trevor Js.
@@ -63,10 +64,14 @@ class ImageConverter extends BaseConverter implements ConverterInterface
         }
 
         $url = array_get($this->data, 'file.url');
-        $size = getimagesize($url);
 
-        if (empty($size)) {
-            return '';
+        try {
+            $size = getimagesize($url);
+        } catch (Exception $e) {
+            $size = [
+                array_get($this->config, 'image.width', 520),
+                array_get($this->config, 'image.height', 200),
+            ];
         }
 
         return $this->view('image.image', [
