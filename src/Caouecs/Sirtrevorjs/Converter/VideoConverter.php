@@ -61,6 +61,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
                     .'v0/amp-dailymotion-0.1.js"></script>',
                 'vimeo' => '<script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/'
                     .'amp-vimeo-0.1.js"></script>',
+                'vine' => '<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/amp-vine-0.1.js"></script>',
                 'youtube' => '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/'
                     .'amp-youtube-0.1.js"></script>',
             ],
