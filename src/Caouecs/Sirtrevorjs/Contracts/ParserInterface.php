@@ -10,7 +10,7 @@ interface ParserInterface
     /**
      * Render markdown to html.
      *
-     * @param  string $text
+     * @param string $text
      *
      * @return string
      */
