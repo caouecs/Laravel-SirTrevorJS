@@ -41,7 +41,8 @@ class SocialConverter extends BaseConverter implements ConverterInterface
                 'tweet' => '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>',
             ],
             'amp' => [
-                'facebook' => '<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>',
+                'facebook' => '<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/'
+                    .'amp-facebook-0.1.js"></script>',
                 'tweet' => '<script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/'
                     .'amp-twitter-0.1.js"></script>',
             ],
