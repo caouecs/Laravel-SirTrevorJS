@@ -77,7 +77,7 @@ trait TraitSirTrevorJsController
      */
     public function tweet(Request $request)
     {
-        $tweet_id = array_get($request->all(), 'tweet_id');
+        $tweet_id = $request->input('tweet_id');
 
         if (empty($tweet_id)) {
             return;
@@ -88,7 +88,7 @@ trait TraitSirTrevorJsController
         if ($tweet !== false && !empty($tweet)) {
             $return = [
                 'id_str' => $tweet_id,
-                'text' => $tweet->text,
+                'text' => (!$tweet->truncated) ? $tweet->text : '',
                 'created_at' => $tweet->created_at,
                 'user' => [
                     'name' => $tweet->user->name,
