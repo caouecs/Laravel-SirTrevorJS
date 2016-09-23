@@ -28,7 +28,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      *
      * @var string
      */
-    protected $remote_id = null;
+    protected $remoteId = null;
 
     /**
      * Caption.
@@ -116,6 +116,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      * @param mixed $parser Parser instance
      * @param array $config Config of Sir Trevor Js
      * @param array $data   Data of video
+     * @param string $output Type of output (amp, fb, html)
      */
     public function __construct($parser, $config, $data, $output = 'html')
     {
@@ -125,7 +126,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
 
         $this->type = 'video';
         $this->provider = $data['data']['source'];
-        $this->remote_id = $data['data']['remote_id'];
+        $this->remoteId = $data['data']['remote_id'];
         $this->caption = array_get($data['data'], 'caption');
         $this->config = $config;
         $this->parser = $parser;
@@ -149,7 +150,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
             return $this->view(
                 'video.'.$this->provider,
                 [
-                    'remote' => $this->remote_id,
+                    'remote' => $this->remoteId,
                     'caption' => $caption,
                 ],
                 $this->provider
