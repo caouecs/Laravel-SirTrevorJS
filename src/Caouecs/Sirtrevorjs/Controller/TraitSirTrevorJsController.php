@@ -88,7 +88,7 @@ trait TraitSirTrevorJsController
         if ($tweet !== false && !empty($tweet)) {
             $return = [
                 'id_str' => $tweet_id,
-                'text' => (!$tweet->truncated) ? $tweet->text : '',
+                'text' => '',
                 'created_at' => $tweet->created_at,
                 'user' => [
                     'name' => $tweet->user->name,
