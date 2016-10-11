@@ -162,7 +162,7 @@ class SirTrevorJsConverter
             $this->view = 'sirtrevorjs::fb';
         }
 
-        $this->output = 'fbarticles';
+        $this->output = 'fb';
 
         return $this->convert($json);
     }
