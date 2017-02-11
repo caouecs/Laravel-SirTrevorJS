@@ -302,7 +302,7 @@ class SirTrevorJs
             return false;
         }
 
-        $return = false;
+        $return = [];
         $_nbr = 1;
 
         foreach ($array['data'] as $arr) {
