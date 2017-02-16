@@ -34,7 +34,7 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
     {
         return [
             'html' => [
-                'Issuu' => '<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>',
+                'Issuu' => '<script type="text/javascript" src="https://e.issuu.com/embed.js" async="true"></script>',
             ],
         ];
     }

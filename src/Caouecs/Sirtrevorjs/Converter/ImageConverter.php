@@ -36,7 +36,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
     {
         return [
             'html' => [
-                'pinterest' => '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js">'
+                'pinterest' => '<script type="text/javascript" async src="https://assets.pinterest.com/js/pinit.js">'
                     .'</script>',
             ],
             'amp' => [
