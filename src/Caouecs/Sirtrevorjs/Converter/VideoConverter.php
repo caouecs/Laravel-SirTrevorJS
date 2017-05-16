@@ -53,7 +53,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     {
         return [
             'html' => [
-                'vine' => '<script async src="http://platform.vine.co/static/scripts/embed.js" charset="utf-8">'
+                'vine' => '<script async src="https://platform.vine.co/static/scripts/embed.js" charset="utf-8">'
                     .'</script>',
             ],
             'amp' => [

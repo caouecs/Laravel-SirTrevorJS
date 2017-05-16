@@ -34,7 +34,7 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
     {
         return [
             'html' => [
-                'embedly' => '<script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>',
+                'embedly' => '<script async src="https://cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>',
             ],
             'amp' => [
                 'iframe' => '<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/'
