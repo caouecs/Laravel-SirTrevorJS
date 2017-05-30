@@ -8,6 +8,7 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
 use View;
 
 /**
@@ -17,22 +18,24 @@ class BaseConverter
 {
     /**
      * Parser instance.
+     *
+     * @param ParserInterface
      */
-    protected $parser = null;
+    protected $parser;
 
     /**
      * Config of Sir Trevor Js.
      *
      * @var array
      */
-    protected $config = null;
+    protected $config = [];
 
     /**
      * Type of block.
      *
      * @var string
      */
-    protected $type = null;
+    protected $type = '';
 
     /**
      * List of types.
@@ -46,14 +49,14 @@ class BaseConverter
      *
      * @var array
      */
-    protected $data = null;
+    protected $data = [];
 
     /**
      * View.
      *
      * @var string
      */
-    protected $view;
+    protected $view = '';
 
     /**
      * Output format.
@@ -67,22 +70,23 @@ class BaseConverter
      *
      * @var array
      */
-    protected $codejs;
+    protected $codejs = [];
 
     /**
      * Construct.
      *
-     * @param mixed $parser Parser instance
-     * @param array $config Config of Sir Trevor Js
-     * @param array $data   Data of element
+     * @param ParserInterface $parser Parser instance
+     * @param array           $config Config of Sir Trevor Js
+     * @param array           $data   Data of element
+     * @param string          $output Type of output (amp, fb, html)
      */
-    public function __construct($parser, array $config, array $data, $output = 'html')
+    public function __construct(ParserInterface $parser, array $config, array $data, string $output = 'html')
     {
+        $this->config = $config;
+        $this->data = array_get($data, 'data');
+        $this->output = $output;
         $this->parser = $parser;
         $this->type = array_get($data, 'type');
-        $this->data = array_get($data, 'data');
-        $this->config = $config;
-        $this->output = $output;
     }
 
     /**
@@ -106,7 +110,7 @@ class BaseConverter
      *
      * @param string $view View
      */
-    public function setView($view = null)
+    public function setView(string $view = '')
     {
         $this->view = $view;
     }
@@ -118,7 +122,7 @@ class BaseConverter
      * @param array  $params   Params
      * @param string $type     Block type
      */
-    public function view($viewName, $params = [], $type = null)
+    public function view(string $viewName, array $params = [], string $type = '')
     {
         if (empty($type)) {
             $type = $this->type;

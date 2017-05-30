@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Laravel-SirTrevorJs.
+ *
+ * @link https://github.com/caouecs/Laravel-SirTrevorJs
+ */
+
 namespace Caouecs\Sirtrevorjs\Contracts;
 
 /**
@@ -14,5 +20,5 @@ interface ParserInterface
      *
      * @return string
      */
-    public function toHtml($text);
+    public function toHtml(string $text);
 }

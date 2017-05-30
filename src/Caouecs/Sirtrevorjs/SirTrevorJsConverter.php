@@ -28,7 +28,7 @@ class SirTrevorJsConverter
     /**
      * Parser.
      *
-     * @var ParsedownExtra
+     * @var ParserInterface
      */
     protected $parser;
 
@@ -96,7 +96,7 @@ class SirTrevorJsConverter
      *
      * @todo  Inject Parser
      */
-    public function __construct(ParserInterface $parser, array $config, $view = null)
+    public function __construct(ParserInterface $parser, array $config, string $view = '')
     {
         $this->config = $config;
         $this->parser = $parser;
@@ -108,7 +108,7 @@ class SirTrevorJsConverter
      *
      * @param string $view
      */
-    public function setView($view)
+    public function setView(string $view)
     {
         $this->view = $view;
     }
@@ -120,7 +120,7 @@ class SirTrevorJsConverter
      *
      * @return string
      */
-    public function toHtml($json)
+    public function toHtml(string $json)
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::html';
@@ -138,7 +138,7 @@ class SirTrevorJsConverter
      *
      * @return string
      */
-    public function toAmp($json)
+    public function toAmp(string $json)
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::amp';
@@ -156,7 +156,7 @@ class SirTrevorJsConverter
      *
      * @return string
      */
-    public function toFb($json)
+    public function toFb(string $json)
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::fb';
@@ -175,7 +175,7 @@ class SirTrevorJsConverter
      *
      * @return string
      */
-    public function convert($json, $externalJs = true)
+    public function convert(string $json, bool $externalJs = true)
     {
         // convert the json to an associative array
         $input = json_decode($json, true);
@@ -226,7 +226,7 @@ class SirTrevorJsConverter
      */
     protected function getBlocks()
     {
-        $blocks = null;
+        $blocks = [];
 
         foreach ($this->blocks as $key => $value) {
             $blocks[$key] = 'Caouecs\\Sirtrevorjs\\Converter\\'.$value.'Converter';

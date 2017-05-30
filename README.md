@@ -1,13 +1,15 @@
 Laravel-SirTrevorJS
 ====================
 
-Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 4/5](http://laravel.com) project.
+Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5](http://laravel.com) project.
 
 ## Installation
 
 This package is available through `Packagist` and `Composer`.
 
- > **For Laravel >= 5.2** version *parser*, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~2.5.0"`
+ > **For PHP 7** version, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~3.0.0"`
+
+ > **For Laravel >= 5.2** version *parser*, use the [branch v2.5](https://github.com/caouecs/Laravel-SirTrevorJS/tree/2.5) : `"caouecs/sirtrevorjs": "~2.5.0"`
 
  > **For Laravel >= 5.1** version *js & amp*, use the [branch v2.4](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v2.4) : `"caouecs/sirtrevorjs": "~2.4.0"`
 
@@ -76,7 +78,7 @@ For scripts, in your Blade files :
 Function to fix a problem with image block when you add a new image :
 
 ```php
-    $text = SirTrevorJs::transformText($text);
+    string SirTrevorJs::transformText(string $text);
 ```
 
 ### Find first image
@@ -139,8 +141,7 @@ You can use the binding of this class :
 Convert text from Sir Trevor Js to html :
 
 ```php
-    $convert = App::make('caouecs.sirtrevorjs.converter');
-    $convert->toHtml($text)
+    string App::make('caouecs.sirtrevorjs.converter')->toHtml($text)
 ```
 
 These methods return a string with html and js codes.
@@ -150,8 +151,7 @@ These methods return a string with html and js codes.
 Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org):
 
 ```php
-    $convert = App::make('caouecs.sirtrevorjs.converter');
-    $convert->toAmp($text);
+    string App::make('caouecs.sirtrevorjs.converter')->toAmp($text);
 ```
 
 All modules have an amp's version, if it exists an equivalence.
@@ -163,8 +163,7 @@ This method returns an array ( *text* and *js*).
 Convert text from Sir Trevor Js to [Facebook Instant Articles](https://developers.facebook.com/docs/instant-articles/reference):
 
 ```php
-    $convert = App::make('caouecs.sirtrevorjs.converter')
-    $convert->toFb($text);
+    string App::make('caouecs.sirtrevorjs.converter')->toFb($text);
 ```
 
 All modules have an FBArticles's version, if it exists an equivalence.

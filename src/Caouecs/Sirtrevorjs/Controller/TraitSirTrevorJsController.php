@@ -80,7 +80,7 @@ trait TraitSirTrevorJsController
         $tweet_id = $request->input('tweet_id');
 
         if (empty($tweet_id)) {
-            return;
+            return '';
         }
 
         $tweet = Twitter::getTweet($tweet_id);

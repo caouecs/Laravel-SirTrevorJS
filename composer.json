@@ -10,6 +10,7 @@
     }
   ],
   "require": {
+    "php": ">=7.0.0",
     "illuminate/support": "~5",
     "erusev/parsedown-extra": "~0.7",
     "thujohn/twitter": "~2.0",
