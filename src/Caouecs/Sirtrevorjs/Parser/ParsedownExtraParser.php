@@ -1,10 +1,19 @@
 <?php
 
+/**
+ * Laravel-SirTrevorJs.
+ *
+ * @link https://github.com/caouecs/Laravel-SirTrevorJs
+ */
+
 namespace Caouecs\Sirtrevorjs\Parser;
 
 use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
 use ParsedownExtra;
 
+/*
+ * Parser by ParsedownExtra.
+ */
 class ParsedownExtraParser extends ParsedownExtra implements ParserInterface
 {
     /**
@@ -14,7 +23,7 @@ class ParsedownExtraParser extends ParsedownExtra implements ParserInterface
      *
      * @return string
      */
-    public function toHtml($text)
+    public function toHtml(string $text)
     {
         return $this->text($text);
     }

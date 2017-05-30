@@ -67,19 +67,19 @@ class SirTrevorJs
     /**
      * Transform text with image bug.
      *
-     * @param string $txt Text to fix
+     * @param string $text Text to fix
      *
      * @return string
      * @static
      */
-    public static function transformText($txt)
+    public static function transformText(string $text)
     {
-        $txt = json_decode($txt, true);
+        $text = json_decode($text, true);
 
-        $return = null;
+        $return = [];
 
-        if (is_array($txt) && isset($txt['data'])) {
-            foreach ($txt['data'] as $data) {
+        if (is_array($text) && isset($text['data'])) {
+            foreach ($text['data'] as $data) {
                 /*
                  * The bug is with new image, the data is in an array where each character is an element of this array
                  *
@@ -98,6 +98,8 @@ class SirTrevorJs
 
             return json_encode(['data' => $return], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
+
+        return '';
     }
 
     /**
@@ -151,7 +153,7 @@ class SirTrevorJs
     {
         // params
         $config = self::config($params);
-        $return = null;
+        $return = '';
 
         /*
          * Others files
@@ -191,7 +193,7 @@ class SirTrevorJs
      * @return array
      * @static
      */
-    public static function config($params = null)
+    public static function config(array $params = [])
     {
         // params in config file
         $config = config('sir-trevor-js');
@@ -211,13 +213,13 @@ class SirTrevorJs
         }
 
         return [
-            'path' => $config['path'],
-            'script' => $config['script'],
             'blocktypes' => '\''.implode('\', \'', $blocktypes).'\'',
             'class' => self::defineParam('class', $params),
             'language' => self::defineParam('language', $params, $config),
-            'uploadUrl' => self::defineParam('uploadUrl', $params, $config),
+            'path' => $config['path'],
+            'script' => $config['script'],
             'tweetUrl' => self::defineParam('tweetUrl', $params, $config),
+            'uploadUrl' => self::defineParam('uploadUrl', $params, $config),
             'version' => $config['version'],
         ];
     }
@@ -231,7 +233,7 @@ class SirTrevorJs
      *
      * @return string
      */
-    private static function defineParam($type, $params, $config = [])
+    private static function defineParam(string $type, array $params, array $config = [])
     {
         // params
         if (isset($params[$type]) && !empty($params[$type])) {
@@ -253,11 +255,9 @@ class SirTrevorJs
      * @return string
      * @static
      */
-    public static function render($text)
+    public static function render(string $text)
     {
-        $converter = App::make('caouecs.sirtrevorjs.converter');
-
-        return $converter->toHtml($text);
+        return App::make('caouecs.sirtrevorjs.converter')->toHtml($text);
     }
 
     /**
@@ -268,19 +268,19 @@ class SirTrevorJs
      * @return string Url of image
      * @static
      */
-    public static function findImage($text)
+    public static function findImage(string $text)
     {
         $array = json_decode($text, true);
 
-        if (!isset($array['data'])) {
-            return;
-        }
-
-        foreach ($array['data'] as $arr) {
-            if ($arr['type'] === 'image' && isset($arr['data']['file']['url'])) {
-                return $arr['data']['file']['url'];
+        if (!empty($array['data'])) {
+            foreach ($array['data'] as $arr) {
+                if ($arr['type'] === 'image' && isset($arr['data']['file']['url'])) {
+                    return $arr['data']['file']['url'];
+                }
             }
         }
+
+        return '';
     }
 
     /**
@@ -294,7 +294,7 @@ class SirTrevorJs
      * @return array|string|bool Returns list of blocks in an array or a json, if exists. Else, returns false
      * @static
      */
-    public static function find($text, $blocktype, $output = 'json', $nbr = 0)
+    public static function find(string $text, string $blocktype, string $output = 'json', int $nbr = 0)
     {
         $array = json_decode($text, true);
 
@@ -331,10 +331,10 @@ class SirTrevorJs
      * @param string $blocktype
      * @param string $output    json or array
      *
-     * @return array | boolean Returns list of blocks in an array if exists. Else, returns false
+     * @return array|bool Returns list of blocks in an array if exists. Else, returns false
      * @static
      */
-    public static function first($text, $blocktype, $output = 'json')
+    public static function first(string $text, string $blocktype, string $output = 'json')
     {
         return self::find($text, $blocktype, $output, 1);
     }

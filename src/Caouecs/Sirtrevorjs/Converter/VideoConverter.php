@@ -9,6 +9,7 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
 use Exception;
 
 /**
@@ -21,21 +22,21 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      *
      * @var string
      */
-    protected $provider = null;
+    protected $provider = '';
 
     /**
      * Remote id.
      *
      * @var string
      */
-    protected $remoteId = null;
+    protected $remoteId = '';
 
     /**
      * Caption.
      *
      * @var string
      */
-    protected $caption = null;
+    protected $caption = '';
 
     /**
      * Output.
@@ -113,24 +114,24 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     /**
      * Construct.
      *
-     * @param mixed $parser Parser instance
-     * @param array $config Config of Sir Trevor Js
-     * @param array $data   Data of video
-     * @param string $output Type of output (amp, fb, html)
+     * @param ParserInterface $parser Parser instance
+     * @param array           $config Config of Sir Trevor Js
+     * @param array           $data   Data of video
+     * @param string          $output Type of output (amp, fb, html)
      */
-    public function __construct($parser, $config, $data, $output = 'html')
+    public function __construct(ParserInterface $parser, array $config, array $data, string $output = 'html')
     {
         if (!is_array($data) || !isset($data['data']['source']) || !isset($data['data']['remote_id'])) {
             throw new Exception('Need an array with provider and remote_id', 1);
         }
 
-        $this->type = 'video';
-        $this->provider = $data['data']['source'];
-        $this->remoteId = $data['data']['remote_id'];
         $this->caption = array_get($data['data'], 'caption');
         $this->config = $config;
-        $this->parser = $parser;
         $this->output = $output;
+        $this->parser = $parser;
+        $this->provider = $data['data']['source'];
+        $this->remoteId = $data['data']['remote_id'];
+        $this->type = 'video';
     }
 
     /**
