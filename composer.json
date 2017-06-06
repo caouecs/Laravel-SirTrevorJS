@@ -28,5 +28,12 @@
     "classmap": [
       "test"
     ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Caouecs\\Sirtrevorjs\\SirtrevorjsServiceProvider"
+      ]
+    }
   }
 }
