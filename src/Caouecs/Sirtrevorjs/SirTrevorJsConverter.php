@@ -93,8 +93,6 @@ class SirTrevorJsConverter
      * @param ParserInterface $parser
      * @param array           $config
      * @param string          $view   View
-     *
-     * @todo  Inject Parser
      */
     public function __construct(ParserInterface $parser, array $config, string $view = '')
     {

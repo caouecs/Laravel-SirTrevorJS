@@ -142,7 +142,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     public function videoToHtml()
     {
         if (in_array($this->provider, $this->providers)) {
-            $caption = null;
+            $caption = '';
             if (!empty($this->caption)) {
                 $caption = $this->parser->toHtml($this->caption);
             }
