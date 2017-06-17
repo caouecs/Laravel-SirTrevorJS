@@ -75,26 +75,24 @@ trait TraitSirTrevorJsController
     {
         $tweet_id = $request->input('tweet_id');
 
-        if (empty($tweet_id)) {
-            return '';
-        }
+        if (!empty($tweet_id)) {
+            $tweet = Twitter::getTweet($tweet_id);
 
-        $tweet = Twitter::getTweet($tweet_id);
+            if ($tweet !== false && !empty($tweet)) {
+                $return = [
+                    'id_str' => $tweet_id,
+                    'text' => '',
+                    'created_at' => $tweet->created_at,
+                    'user' => [
+                        'name' => $tweet->user->name,
+                        'screen_name' => $tweet->user->screen_name,
+                        'profile_image_url' => $tweet->user->profile_image_url,
+                        'profile_image_url_https' => $tweet->user->profile_image_url_https,
+                    ],
+                ];
 
-        if ($tweet !== false && !empty($tweet)) {
-            $return = [
-                'id_str' => $tweet_id,
-                'text' => '',
-                'created_at' => $tweet->created_at,
-                'user' => [
-                    'name' => $tweet->user->name,
-                    'screen_name' => $tweet->user->screen_name,
-                    'profile_image_url' => $tweet->user->profile_image_url,
-                    'profile_image_url_https' => $tweet->user->profile_image_url_https,
-                ],
-            ];
-
-            echo json_encode($return);
+                echo json_encode($return);
+            }
         }
     }
 }
