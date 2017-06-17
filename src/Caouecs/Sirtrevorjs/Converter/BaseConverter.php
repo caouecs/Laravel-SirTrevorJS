@@ -19,7 +19,7 @@ class BaseConverter
     /**
      * Parser instance.
      *
-     * @param ParserInterface
+     * @var ParserInterface
      */
     protected $parser;
 

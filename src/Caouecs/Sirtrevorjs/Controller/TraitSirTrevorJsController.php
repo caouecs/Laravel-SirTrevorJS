@@ -24,8 +24,6 @@ trait TraitSirTrevorJsController
      * @internal you can define `directory_upload` in config file
      *
      * @param Request $request
-     *
-     * @return string Data for Sir Trevor or Error
      */
     public function upload(Request $request)
     {
@@ -72,8 +70,6 @@ trait TraitSirTrevorJsController
      * Tweet.
      *
      * @param Request $request
-     *
-     * @return string
      */
     public function tweet(Request $request)
     {
