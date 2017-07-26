@@ -67,7 +67,7 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
         if (filter_var($this->data['url'], FILTER_VALIDATE_URL)) {
             return $this->view('embedly.'.$this->type, [
                 'url' => $this->data['url'],
-                'options' => array_get($this->config, 'embedly'),
+                'options' => $this->config['embedly'] ?? '',
             ]);
         }
 

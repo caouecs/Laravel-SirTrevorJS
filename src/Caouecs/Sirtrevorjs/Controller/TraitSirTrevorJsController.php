@@ -24,8 +24,6 @@ trait TraitSirTrevorJsController
      * @internal you can define `directory_upload` in config file
      *
      * @param Request $request
-     *
-     * @return string Data for Sir Trevor or Error
      */
     public function upload(Request $request)
     {
@@ -72,33 +70,29 @@ trait TraitSirTrevorJsController
      * Tweet.
      *
      * @param Request $request
-     *
-     * @return string
      */
     public function tweet(Request $request)
     {
         $tweet_id = $request->input('tweet_id');
 
-        if (empty($tweet_id)) {
-            return '';
-        }
+        if (!empty($tweet_id)) {
+            $tweet = Twitter::getTweet($tweet_id);
 
-        $tweet = Twitter::getTweet($tweet_id);
+            if ($tweet !== false && !empty($tweet)) {
+                $return = [
+                    'id_str' => $tweet_id,
+                    'text' => '',
+                    'created_at' => $tweet->created_at,
+                    'user' => [
+                        'name' => $tweet->user->name,
+                        'screen_name' => $tweet->user->screen_name,
+                        'profile_image_url' => $tweet->user->profile_image_url,
+                        'profile_image_url_https' => $tweet->user->profile_image_url_https,
+                    ],
+                ];
 
-        if ($tweet !== false && !empty($tweet)) {
-            $return = [
-                'id_str' => $tweet_id,
-                'text' => '',
-                'created_at' => $tweet->created_at,
-                'user' => [
-                    'name' => $tweet->user->name,
-                    'screen_name' => $tweet->user->screen_name,
-                    'profile_image_url' => $tweet->user->profile_image_url,
-                    'profile_image_url_https' => $tweet->user->profile_image_url_https,
-                ],
-            ];
-
-            echo json_encode($return);
+                echo json_encode($return);
+            }
         }
     }
 }

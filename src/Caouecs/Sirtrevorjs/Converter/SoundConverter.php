@@ -42,7 +42,7 @@ class SoundConverter extends BaseConverter implements ConverterInterface
      */
     public function soundcloudToHtml()
     {
-        $theme = array_get($this->config, 'soundcloud');
+        $theme = $this->config['soundcloud'] ?? '';
 
         if ($theme !== 'full') {
             $theme = 'small';

@@ -19,7 +19,7 @@ class BaseConverter
     /**
      * Parser instance.
      *
-     * @param ParserInterface
+     * @var ParserInterface
      */
     protected $parser;
 
@@ -83,10 +83,10 @@ class BaseConverter
     public function __construct(ParserInterface $parser, array $config, array $data, string $output = 'html')
     {
         $this->config = $config;
-        $this->data = array_get($data, 'data');
+        $this->data = $data['data'] ?? '';
         $this->output = $output;
         $this->parser = $parser;
-        $this->type = array_get($data, 'type');
+        $this->type = $data['type'] ?? '';
     }
 
     /**
