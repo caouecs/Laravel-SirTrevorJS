@@ -53,24 +53,24 @@ class ImageConverter extends BaseConverter implements ConverterInterface
      */
     public function imageToHtml()
     {
-        if (is_null(array_get($this->data, 'file.url'))) {
+        if (empty($this->data['file.url'])) {
             return '';
         }
 
-        $text = array_get($this->data, 'text');
+        $text = $this->data['text'] ?? '';
 
         if (!empty($text)) {
             $text = $this->parser->toHtml($text);
         }
 
-        $url = array_get($this->data, 'file.url');
+        $url = $this->data['file.url'] ?? '';
 
         try {
             $size = getimagesize($url);
         } catch (Exception $e) {
             $size = [
-                array_get($this->config, 'image.width', 520),
-                array_get($this->config, 'image.height', 200),
+                $this->config['image.width'] ?? 520,
+                $this->config['image.height'] ?? 200,
             ];
         }
 
@@ -91,9 +91,9 @@ class ImageConverter extends BaseConverter implements ConverterInterface
     {
         return $this->view('image.gettyimages', [
             'remote_id' => $this->data['remote_id'],
-            'width' => array_get($this->config, 'gettyimages.width', 594),
-            'height' => array_get($this->config, 'gettyimages.height', 465),
-            'placeholder' => array_get($this->config, 'gettyimages.placeholder', '/'),
+            'width' => $this->config['gettyimages.width'] ?? 594,
+            'height' => $this->config['gettyimages.height'] ?? 465,
+            'placeholder' => $this->config['gettyimages.placeholder'] ?? '/',
         ]);
     }
 

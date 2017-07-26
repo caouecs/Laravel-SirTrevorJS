@@ -125,7 +125,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
             throw new Exception('Need an array with provider and remote_id', 1);
         }
 
-        $this->caption = array_get($data['data'], 'caption');
+        $this->caption = $data['data']['caption'] ?? '';
         $this->config = $config;
         $this->output = $output;
         $this->parser = $parser;
