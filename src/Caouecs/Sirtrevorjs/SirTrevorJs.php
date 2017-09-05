@@ -204,10 +204,10 @@ class SirTrevorJs
         // params
         if (isset($params['blocktypes']) && !empty($params['blocktypes']) && is_array($params['blocktypes'])) {
             $blocktypes = $params['blocktypes'];
-        // config
+            // config
         } elseif (isset($config['blocktypes']) && !empty($config['blocktypes']) && is_array($config['blocktypes'])) {
             $blocktypes = $config['blocktypes'];
-        // default
+            // default
         } else {
             $blocktypes = self::$blocktypes;
         }
@@ -238,7 +238,7 @@ class SirTrevorJs
         // params
         if (isset($params[$type]) && !empty($params[$type])) {
             return $params[$type];
-        // config
+            // config
         } elseif (isset($config[$type]) && !empty($config[$type])) {
             return $config[$type];
         }
