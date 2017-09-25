@@ -1,7 +1,8 @@
-<blockquote>
-  @if (!empty($cite))
-    <cite>{!! $cite !!}</cite>
-  @endif
-
-  {!! $text !!}
-</blockquote>
+<figure>
+  <blockquote>
+    {!! $text !!}
+  </blockquote>
+@if ($cite != '')
+  <figcaption>{!! $cite !!}</figcaption>
+@endif
+</figure>

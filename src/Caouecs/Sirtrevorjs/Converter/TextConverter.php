@@ -82,7 +82,7 @@ class TextConverter extends BaseConverter implements ConverterInterface
     {
         // remove the indent thats added by Sir Trevor
         return $this->view('text.blockquote', [
-            'cite' => $this->data['cite'],
+            'cite' => $this->data['cite'] ?? '',
             'text' => $this->parser->toHtml(ltrim($this->data['text'], '>')),
         ]);
     }
