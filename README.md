@@ -1,6 +1,8 @@
 Laravel-SirTrevorJS
 ====================
 
+[![Sponsor](https://app.codesponsor.io/embed/yw3CVfZGM99CTLRbT4nhUstw/caouecs/Laravel-SirTrevorJS.svg)](https://app.codesponsor.io/link/yw3CVfZGM99CTLRbT4nhUstw/caouecs/Laravel-SirTrevorJS)
+
 Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5](http://laravel.com) project.
 
 ## Installation
