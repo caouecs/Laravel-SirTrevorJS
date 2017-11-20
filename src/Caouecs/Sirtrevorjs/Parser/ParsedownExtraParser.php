@@ -3,7 +3,7 @@
 /**
  * Laravel-SirTrevorJs.
  *
- * @link https://github.com/caouecs/Laravel-SirTrevorJs
+ * @see https://github.com/caouecs/Laravel-SirTrevorJs
  */
 
 namespace Caouecs\Sirtrevorjs\Parser;
