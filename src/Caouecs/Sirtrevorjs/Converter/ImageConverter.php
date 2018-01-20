@@ -107,7 +107,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
         /*
          * Pin
          */
-        if ($this->data['provider'] === 'pin') {
+        if ('pin' === $this->data['provider']) {
             return $this->view('image.pin', [
                 'remote_id' => $this->data['remote_id'],
             ]);

@@ -78,7 +78,7 @@ trait TraitSirTrevorJsController
         if (!empty($tweet_id)) {
             $tweet = Twitter::getTweet($tweet_id);
 
-            if ($tweet !== false && !empty($tweet)) {
+            if (false !== $tweet && !empty($tweet)) {
                 $return = [
                     'id_str' => $tweet_id,
                     'text' => '',

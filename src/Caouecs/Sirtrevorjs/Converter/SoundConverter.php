@@ -44,7 +44,7 @@ class SoundConverter extends BaseConverter implements ConverterInterface
     {
         $theme = $this->config['soundcloud'] ?? '';
 
-        if ($theme !== 'full') {
+        if ('full' !== $theme) {
             $theme = 'small';
         }
 

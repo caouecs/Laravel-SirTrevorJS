@@ -86,7 +86,7 @@ class SirTrevorJs
                  * This code transforms this array into a string (JSON format)
                  * and after it transforms it into an another array for Sir Trevor
                  */
-                if ($data['type'] === 'image' && !isset($data['data']['file'])) {
+                if ('image' === $data['type'] && !isset($data['data']['file'])) {
                     $return[] = [
                         'type' => 'image',
                         'data' => json_decode(implode($data['data']), true),
@@ -174,7 +174,7 @@ class SirTrevorJs
         /*
          * Language
          */
-        if ($config['language'] != 'en') {
+        if ('en' != $config['language']) {
             $return .= HTML::script($config['path'].'locales/'.$config['language'].'.js');
         }
 
@@ -204,10 +204,10 @@ class SirTrevorJs
         // params
         if (isset($params['blocktypes']) && !empty($params['blocktypes']) && is_array($params['blocktypes'])) {
             $blocktypes = $params['blocktypes'];
-            // config
+        // config
         } elseif (isset($config['blocktypes']) && !empty($config['blocktypes']) && is_array($config['blocktypes'])) {
             $blocktypes = $config['blocktypes'];
-            // default
+        // default
         } else {
             $blocktypes = self::$blocktypes;
         }
@@ -238,7 +238,7 @@ class SirTrevorJs
         // params
         if (isset($params[$type]) && !empty($params[$type])) {
             return $params[$type];
-            // config
+        // config
         } elseif (isset($config[$type]) && !empty($config[$type])) {
             return $config[$type];
         }
@@ -274,7 +274,7 @@ class SirTrevorJs
 
         if (!empty($array['data'])) {
             foreach ($array['data'] as $arr) {
-                if ($arr['type'] === 'image' && isset($arr['data']['file']['url'])) {
+                if ('image' === $arr['type'] && isset($arr['data']['file']['url'])) {
                     return $arr['data']['file']['url'];
                 }
             }
@@ -317,7 +317,7 @@ class SirTrevorJs
             }
         }
 
-        if (empty($return) || $output === 'array') {
+        if (empty($return) || 'array' === $output) {
             return $return;
         }
 
