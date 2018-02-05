@@ -53,7 +53,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
      */
     public function imageToHtml()
     {
-        if (empty($this->data['file.url'])) {
+        if (empty($this->data['file']['url'])) {
             return '';
         }
 
@@ -63,7 +63,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
             $text = $this->parser->toHtml($text);
         }
 
-        $url = $this->data['file.url'] ?? '';
+        $url = $this->data['file']['url'] ?? '';
 
         try {
             $size = getimagesize($url);
