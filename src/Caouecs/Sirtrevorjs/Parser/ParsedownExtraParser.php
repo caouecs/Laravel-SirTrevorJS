@@ -11,7 +11,7 @@ namespace Caouecs\Sirtrevorjs\Parser;
 use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
 use ParsedownExtra;
 
-/*
+/**
  * Parser by ParsedownExtra.
  */
 class ParsedownExtraParser extends ParsedownExtra implements ParserInterface
