@@ -8,8 +8,8 @@
 
 namespace Caouecs\Sirtrevorjs;
 
+use Caouecs\Sirtrevorjs\Parser\ParsedownExtraParser;
 use Illuminate\Support\ServiceProvider;
-use ParsedownExtraParser;
 
 /**
  * Sir Trevor Js service provider.
