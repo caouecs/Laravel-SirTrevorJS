@@ -69,7 +69,7 @@ class SirTrevorJs
      *
      * @param string $text Text to fix
      *
-     * @return string
+     * @return string|bool
      * @static
      */
     public static function transformText(string $text)
@@ -331,7 +331,7 @@ class SirTrevorJs
      * @param string $blocktype
      * @param string $output    json or array
      *
-     * @return array|bool Returns list of blocks in an array if exists. Else, returns false
+     * @return array|bool|string Returns list of blocks in an array if exists. Else, returns false
      * @static
      */
     public static function first(string $text, string $blocktype, string $output = 'json')

@@ -105,6 +105,8 @@ class SirTrevorJsConverter
      * Set view.
      *
      * @param string $view
+     *
+     * @return void
      */
     public function setView(string $view)
     {

@@ -109,6 +109,8 @@ class BaseConverter
      * Set view.
      *
      * @param string $view View
+     *
+     * @return void
      */
     public function setView(string $view = '')
     {
@@ -121,6 +123,8 @@ class BaseConverter
      * @param string $viewName Name of the base view
      * @param array  $params   Params
      * @param string $type     Block type
+     *
+     * @return string
      */
     public function view(string $viewName, array $params = [], string $type = '')
     {

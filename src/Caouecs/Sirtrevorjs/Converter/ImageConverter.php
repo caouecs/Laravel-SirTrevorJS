@@ -10,6 +10,7 @@ namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
 use Exception;
+use Log;
 
 /**
  * Images for Sir Trevor Js.
@@ -68,6 +69,10 @@ class ImageConverter extends BaseConverter implements ConverterInterface
         try {
             $size = getimagesize($url);
         } catch (Exception $e) {
+            Log::error('ImageConverter::imageToHtml:: '.$e->getMessage());
+        }
+
+        if (empty($size) || !is_array($size)) {
             $size = [
                 $this->config['image.width'] ?? 520,
                 $this->config['image.height'] ?? 200,
