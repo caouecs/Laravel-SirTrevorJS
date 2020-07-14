@@ -1,0 +1,32 @@
+build_settings:
+    ignore:
+        - "vendor"
+        - "tests"
+        - ".AppleDouble"
+
+test:
+    php_code_sniffer:
+        standard: "PSR2"
+        directory: "src/Caouecs"
+
+    php_cpd:
+        directory: "src/Caouecs"
+
+    php_docblock_checker:
+        allowed_warnings: 10
+        skip_classes: true
+        directory: "src/Caouecs"
+
+    php_loc:
+        directory: "src/Caouecs"
+
+    php_mess_detector:
+        rules:
+            - "codesize"
+            - "unusedcode"
+            - "design"
+        allow_failures: true
+        directory: "src/Caouecs"
+
+    php_parallel_lint:
+        directory: "src/Caouecs"
