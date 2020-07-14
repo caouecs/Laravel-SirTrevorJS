@@ -20,10 +20,8 @@ class ParsedownExtraParser extends ParsedownExtra implements ParserInterface
      * Convert to Html.
      *
      * @param string $text
-     *
-     * @return string
      */
-    public function toHtml(string $text)
+    public function toHtml(string $text): string
     {
         return $this->text($text);
     }

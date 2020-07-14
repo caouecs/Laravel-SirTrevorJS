@@ -105,10 +105,8 @@ class SirTrevorJsConverter
      * Set view.
      *
      * @param string $view
-     *
-     * @return void
      */
-    public function setView(string $view)
+    public function setView(string $view): void
     {
         $this->view = $view;
     }
@@ -117,10 +115,8 @@ class SirTrevorJsConverter
      * Converts the outputted json from Sir Trevor to Html.
      *
      * @param string $json
-     *
-     * @return string
      */
-    public function toHtml(string $json)
+    public function toHtml(string $json): string
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::html';
@@ -135,10 +131,8 @@ class SirTrevorJsConverter
      * Converts the outputted json from Sir Trevor to Amp.
      *
      * @param string $json
-     *
-     * @return string
      */
-    public function toAmp(string $json)
+    public function toAmp(string $json): string
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::amp';
@@ -153,10 +147,8 @@ class SirTrevorJsConverter
      * Converts the outputted json from Sir Trevor to Facebook Articles.
      *
      * @param string $json
-     *
-     * @return string
      */
-    public function toFb(string $json)
+    public function toFb(string $json): string
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::fb';
@@ -172,10 +164,8 @@ class SirTrevorJsConverter
      *
      * @param string $json
      * @param bool   $externalJs
-     *
-     * @return string
      */
-    public function convert(string $json, bool $externalJs = true)
+    public function convert(string $json, bool $externalJs = true): string
     {
         // convert the json to an associative array
         $input = json_decode($json, true);
@@ -193,7 +183,7 @@ class SirTrevorJsConverter
             // loop trough the data blocks
             foreach ($input['data'] as $block) {
                 // no data, problem
-                if (!isset($block['data']) || !array_key_exists($block['type'], $blocks)) {
+                if (! isset($block['data']) || ! array_key_exists($block['type'], $blocks)) {
                     break;
                 }
 
@@ -221,10 +211,8 @@ class SirTrevorJsConverter
 
     /**
      * Return base blocks and custom blocks with good classes.
-     *
-     * @return array
      */
-    protected function getBlocks()
+    protected function getBlocks(): array
     {
         $blocks = [];
 
@@ -232,11 +220,11 @@ class SirTrevorJsConverter
             $blocks[$key] = 'Caouecs\\Sirtrevorjs\\Converter\\'.$value.'Converter';
         }
 
-        if (!empty($this->customBlocks)) {
+        if (! empty($this->customBlocks)) {
             $blocks = array_merge($blocks, $this->customBlocks);
         }
 
-        if (isset($this->config['customBlocks']) && !empty($this->config['customBlocks'])) {
+        if (isset($this->config['customBlocks']) && ! empty($this->config['customBlocks'])) {
             $blocks = array_merge($blocks, $this->config['customBlocks']);
         }
 
@@ -245,10 +233,8 @@ class SirTrevorJsConverter
 
     /**
      * Returns code js.
-     *
-     * @return string
      */
-    public function getCodeJs()
+    public function getCodeJs(): string
     {
         return $this->codeJs;
     }

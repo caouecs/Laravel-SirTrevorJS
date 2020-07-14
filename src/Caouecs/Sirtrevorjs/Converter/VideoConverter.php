@@ -47,10 +47,8 @@ class VideoConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [
             'html' => [
@@ -121,7 +119,7 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      */
     public function __construct(ParserInterface $parser, array $config, array $data, string $output = 'html')
     {
-        if (!is_array($data) || !isset($data['data']['source']) || !isset($data['data']['remote_id'])) {
+        if (! is_array($data) || ! isset($data['data']['source']) || ! isset($data['data']['remote_id'])) {
             throw new Exception('Need an array with provider and remote_id', 1);
         }
 
@@ -136,14 +134,12 @@ class VideoConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Render of video tag.
-     *
-     * @return string
      */
-    public function videoToHtml()
+    public function videoToHtml(): string
     {
         if (in_array($this->provider, $this->providers)) {
             $caption = '';
-            if (!empty($this->caption)) {
+            if (! empty($this->caption)) {
                 $caption = $this->parser->toHtml($this->caption);
             }
 

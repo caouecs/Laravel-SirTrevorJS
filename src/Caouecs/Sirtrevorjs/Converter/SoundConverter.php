@@ -27,20 +27,16 @@ class SoundConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [];
     }
 
     /**
      * Soundcloud block.
-     *
-     * @return string
      */
-    public function soundcloudToHtml()
+    public function soundcloudToHtml(): string
     {
         $theme = $this->config['soundcloud'] ?? '';
 
@@ -55,10 +51,8 @@ class SoundConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Spotify block.
-     *
-     * @return string
      */
-    public function spotifyToHtml()
+    public function spotifyToHtml(): string
     {
         return $this->view('sound.spotify', [
             'remote' => $this->data['remote_id'],

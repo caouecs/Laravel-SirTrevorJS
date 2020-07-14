@@ -22,8 +22,6 @@ interface ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal();
+    public function getJsExternal(): array;
 }

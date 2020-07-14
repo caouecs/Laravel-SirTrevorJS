@@ -27,10 +27,8 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array of js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [
             'html' => [
@@ -46,10 +44,8 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Render of iframe.
-     *
-     * @return string
      */
-    public function iframeToHtml()
+    public function iframeToHtml(): string
     {
         return $this->view('embed.iframe', [
             'src' => $this->data['src'],
@@ -60,10 +56,8 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Render of embedly.
-     *
-     * @return string
      */
-    public function embedlyToHtml()
+    public function embedlyToHtml(): string
     {
         if (filter_var($this->data['url'], FILTER_VALIDATE_URL)) {
             return $this->view('embedly.'.$this->type, [

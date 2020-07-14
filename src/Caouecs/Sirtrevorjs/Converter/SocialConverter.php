@@ -27,10 +27,8 @@ class SocialConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [
             'html' => [
@@ -51,10 +49,8 @@ class SocialConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Tweet.
-     *
-     * @return string
      */
-    public function tweetToHtml()
+    public function tweetToHtml(): string
     {
         return $this->view('social.tweet', [
             'data' => $this->data,
@@ -63,10 +59,8 @@ class SocialConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Facebook.
-     *
-     * @return string
      */
-    public function facebookToHtml()
+    public function facebookToHtml(): string
     {
         return $this->view('social.facebook', [
             'data' => $this->data,

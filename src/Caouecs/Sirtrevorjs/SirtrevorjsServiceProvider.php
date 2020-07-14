@@ -25,10 +25,8 @@ class SirtrevorjsServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../../views', 'sirtrevorjs');
 
@@ -39,10 +37,8 @@ class SirtrevorjsServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->bind('caouecs.sirtrevorjs.converter', function () {
             return new SirTrevorJsConverter(
@@ -55,10 +51,8 @@ class SirtrevorjsServiceProvider extends ServiceProvider
 
     /**
      * Get the services provided by the provider.
-     *
-     * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return [];
     }

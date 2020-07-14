@@ -107,7 +107,7 @@ In return, you can have :
 
 ## Controller
 
-### TraitSirTrevorJsController
+### SirTrevorJsable
 
 This trait proposes two things :
 

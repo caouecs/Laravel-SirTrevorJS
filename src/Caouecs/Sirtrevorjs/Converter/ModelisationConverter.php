@@ -26,20 +26,16 @@ class ModelisationConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [];
     }
 
     /**
      * Sketchfab block.
-     *
-     * @return string
      */
-    public function sketchfabToHtml()
+    public function sketchfabToHtml(): string
     {
         return $this->view('modelisation.sketchfab', [
             'remote_id' => $this->data['remote_id'],

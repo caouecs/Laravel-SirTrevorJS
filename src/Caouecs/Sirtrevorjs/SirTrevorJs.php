@@ -86,7 +86,7 @@ class SirTrevorJs
                  * This code transforms this array into a string (JSON format)
                  * and after it transforms it into an another array for Sir Trevor
                  */
-                if ('image' === $data['type'] && !isset($data['data']['file'])) {
+                if ('image' === $data['type'] && ! isset($data['data']['file'])) {
                     $return[] = [
                         'type' => 'image',
                         'data' => json_decode(implode($data['data']), true),
@@ -106,10 +106,9 @@ class SirTrevorJs
      * Stylesheet files
      *   see config file.
      *
-     * @return string
      * @static
      */
-    public static function stylesheets()
+    public static function stylesheets(): string
     {
         // params in config file
         $config = config('sir-trevor-js');
@@ -139,7 +138,6 @@ class SirTrevorJs
      *
      * @param array $params
      *
-     * @return string
      * @static
      *
      * Params :
@@ -149,7 +147,7 @@ class SirTrevorJs
      * - uploadUrl
      * - tweetUrl
      */
-    public static function scripts(array $params = [])
+    public static function scripts(array $params = []): string
     {
         // params
         $config = self::config($params);
@@ -190,10 +188,9 @@ class SirTrevorJs
      *
      * @param array $params Personnalized params
      *
-     * @return array
      * @static
      */
-    public static function config(array $params = [])
+    public static function config(array $params = []): array
     {
         // params in config file
         $config = config('sir-trevor-js');
@@ -202,10 +199,10 @@ class SirTrevorJs
          * Block types
          */
         // params
-        if (isset($params['blocktypes']) && !empty($params['blocktypes']) && is_array($params['blocktypes'])) {
+        if (isset($params['blocktypes']) && ! empty($params['blocktypes']) && is_array($params['blocktypes'])) {
             $blocktypes = $params['blocktypes'];
         // config
-        } elseif (isset($config['blocktypes']) && !empty($config['blocktypes']) && is_array($config['blocktypes'])) {
+        } elseif (isset($config['blocktypes']) && ! empty($config['blocktypes']) && is_array($config['blocktypes'])) {
             $blocktypes = $config['blocktypes'];
         // default
         } else {
@@ -230,16 +227,16 @@ class SirTrevorJs
      * @param string $type
      * @param array  $params
      * @param array  $config
-     *
-     * @return string
      */
-    private static function defineParam(string $type, array $params, array $config = [])
+    private static function defineParam(string $type, array $params, array $config = []): string
     {
         // params
-        if (isset($params[$type]) && !empty($params[$type])) {
+        if (isset($params[$type]) && ! empty($params[$type])) {
             return $params[$type];
+        }
+
         // config
-        } elseif (isset($config[$type]) && !empty($config[$type])) {
+        if (isset($config[$type]) && ! empty($config[$type])) {
             return $config[$type];
         }
 
@@ -252,10 +249,9 @@ class SirTrevorJs
      *
      * @param string $text
      *
-     * @return string
      * @static
      */
-    public static function render(string $text)
+    public static function render(string $text): string
     {
         return App::make('caouecs.sirtrevorjs.converter')->toHtml($text);
     }
@@ -265,14 +261,13 @@ class SirTrevorJs
      *
      * @param string $text
      *
-     * @return string Url of image
      * @static
      */
-    public static function findImage(string $text)
+    public static function findImage(string $text): string
     {
         $array = json_decode($text, true);
 
-        if (!empty($array['data'])) {
+        if (! empty($array['data'])) {
             foreach ($array['data'] as $arr) {
                 if ('image' === $arr['type'] && isset($arr['data']['file']['url'])) {
                     return $arr['data']['file']['url'];
@@ -298,7 +293,7 @@ class SirTrevorJs
     {
         $array = json_decode($text, true);
 
-        if (!isset($array['data'])) {
+        if (! isset($array['data'])) {
             return false;
         }
 

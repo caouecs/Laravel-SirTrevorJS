@@ -6,7 +6,7 @@
  * @see https://github.com/caouecs/Laravel-SirTrevorJs
  */
 
-namespace Caouecs\Sirtrevorjs\Controller;
+namespace Caouecs\Sirtrevorjs\Behavior;
 
 use Illuminate\Http\Request;
 use Thujohn\Twitter\Facades\Twitter;
@@ -16,7 +16,7 @@ use Thujohn\Twitter\Facades\Twitter;
  * - upload image
  * - display tweet.
  */
-trait TraitSirTrevorJsController
+trait SirTrevorJsable
 {
     /**
      * Upload image.
@@ -25,7 +25,7 @@ trait TraitSirTrevorJsController
      *
      * @param Request $request
      */
-    public function upload(Request $request)
+    public function upload(Request $request): void
     {
         if ($request->hasFile('attachment')) {
             // config
@@ -71,14 +71,14 @@ trait TraitSirTrevorJsController
      *
      * @param Request $request
      */
-    public function tweet(Request $request)
+    public function tweet(Request $request): void
     {
         $tweet_id = $request->input('tweet_id');
 
-        if (!empty($tweet_id)) {
+        if (! empty($tweet_id)) {
             $tweet = Twitter::getTweet($tweet_id);
 
-            if (false !== $tweet && !empty($tweet)) {
+            if (false !== $tweet && ! empty($tweet)) {
                 $return = [
                     'id_str' => $tweet_id,
                     'text' => '',

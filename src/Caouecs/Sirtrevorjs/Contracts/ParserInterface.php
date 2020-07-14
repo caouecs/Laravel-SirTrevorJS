@@ -17,8 +17,6 @@ interface ParserInterface
      * Render markdown to html.
      *
      * @param string $text
-     *
-     * @return string
      */
-    public function toHtml(string $text);
+    public function toHtml(string $text): string;
 }
