@@ -80,6 +80,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
             'text' => $text,
             'width' => $size[0],
             'height' => $size[1],
+            'title' => $this->data['title'] ?? '',
         ]);
     }
 

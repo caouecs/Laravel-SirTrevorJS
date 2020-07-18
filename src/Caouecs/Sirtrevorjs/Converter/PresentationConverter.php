@@ -44,6 +44,7 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
     {
         return $this->view('presentation.slideshare', [
             'remote_id' => $this->data['remote_id'],
+            'title' => $this->data['title'] ?? 'Slideshare',
         ]);
     }
 

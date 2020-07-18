@@ -57,6 +57,7 @@ class SoundConverter extends BaseConverter implements ConverterInterface
         return $this->view('sound.spotify', [
             'remote' => $this->data['remote_id'],
             'options' => $this->config['spotify'],
+            'title' => $this->data['title'] ?? 'Spotify',
         ]);
     }
 }

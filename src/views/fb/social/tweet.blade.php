@@ -1,5 +1,5 @@
 <figure class="op-interactive">
-  <iframe>
+  <iframe title="{!! $data['title'] ?? '' !!}">
   @if (! empty($data['text']))
     <p>{!! $data['text'] !!}</p>
     &mdash; {!! $data['user']['name'] !!} (&#64;{!! $data['user']['screen_name'] !!})

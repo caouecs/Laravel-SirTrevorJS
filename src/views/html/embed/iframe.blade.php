@@ -1,1 +1,1 @@
-<iframe width="{!! $width !!}" height="{!! $height !!}" src="{!! $src !!}" frameborder="0" scrolling="no"></iframe>
+<iframe title="{!! $title !!}" width="{!! $width !!}" height="{!! $height !!}" src="{!! $src !!}"></iframe>

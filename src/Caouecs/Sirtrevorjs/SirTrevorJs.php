@@ -8,7 +8,6 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use App;
 use HTML;
 
 /**
@@ -198,15 +197,14 @@ class SirTrevorJs
         /*
          * Block types
          */
+        $blocktypes = self::$blocktypes;
+
         // params
         if (isset($params['blocktypes']) && ! empty($params['blocktypes']) && is_array($params['blocktypes'])) {
             $blocktypes = $params['blocktypes'];
         // config
         } elseif (isset($config['blocktypes']) && ! empty($config['blocktypes']) && is_array($config['blocktypes'])) {
             $blocktypes = $config['blocktypes'];
-        // default
-        } else {
-            $blocktypes = self::$blocktypes;
         }
 
         return [
@@ -235,13 +233,8 @@ class SirTrevorJs
             return $params[$type];
         }
 
-        // config
-        if (isset($config[$type]) && ! empty($config[$type])) {
-            return $config[$type];
-        }
-
-        // default
-        return self::$$type;
+        // config and default
+        return isset($config[$type]) && ! empty($config[$type]) ? $config[$type] : self::$$type;
     }
 
     /**
@@ -253,7 +246,7 @@ class SirTrevorJs
      */
     public static function render(string $text): string
     {
-        return App::make('caouecs.sirtrevorjs.converter')->toHtml($text);
+        return app('caouecs.sirtrevorjs.converter')->toHtml($text);
     }
 
     /**
@@ -312,11 +305,8 @@ class SirTrevorJs
             }
         }
 
-        if (empty($return) || 'array' === $output) {
-            return $return;
-        }
-
-        return json_encode($return, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return count($return) === 0 || 'array' === $output ? $return
+            : json_encode($return, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
     /**

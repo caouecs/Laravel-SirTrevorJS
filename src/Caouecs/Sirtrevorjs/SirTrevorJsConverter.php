@@ -178,16 +178,16 @@ class SirTrevorJsConverter
 
         if (is_array($input)) {
             // blocks
-            $blocks = $this->getBlocks();
+            $listBlocks = $this->getBlocks();
 
             // loop trough the data blocks
             foreach ($input['data'] as $block) {
                 // no data, problem
-                if (! isset($block['data']) || ! array_key_exists($block['type'], $blocks)) {
+                if (! isset($block['data']) || ! array_key_exists($block['type'], $listBlocks)) {
                     break;
                 }
 
-                $class = $blocks[$block['type']];
+                $class = $listBlocks[$block['type']];
                 $converter = new $class($this->parser, $this->config, $block, $this->output);
                 $converter->setView($this->view);
                 $text .= $converter->render();

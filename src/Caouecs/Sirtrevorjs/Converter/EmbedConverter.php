@@ -51,6 +51,7 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
             'src' => $this->data['src'],
             'width' => $this->data['width'],
             'height' => $this->data['height'],
+            'title' => $this->data['title'] ?? '',
         ]);
     }
 
