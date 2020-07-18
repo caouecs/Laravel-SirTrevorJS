@@ -305,7 +305,7 @@ class SirTrevorJs
             }
         }
 
-        return count($return) === 0 || 'array' === $output ? $return
+        return empty($return) || 'array' === $output ? $return
             : json_encode($return, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
