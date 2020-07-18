@@ -10,7 +10,8 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 This package is available through `Packagist` and `Composer`.
 
- > **For PHP 7** version, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~3.0.0"`
+ > **For PHP 7** version with new API, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~4.0.0"`
+ > **For PHP 7** version, use the [branch v3.0](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v3.0) : `"caouecs/sirtrevorjs": "~3.0.0"`
 
  > **For Laravel >= 5.2** version *parser*, use the [branch v2.5](https://github.com/caouecs/Laravel-SirTrevorJS/tree/2.5) : `"caouecs/sirtrevorjs": "~2.5.0"`
 
