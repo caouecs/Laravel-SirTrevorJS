@@ -4,7 +4,7 @@ Laravel-SirTrevorJS
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=caouecs_Laravel-SirTrevorJS&metric=alert_status)](https://sonarcloud.io/dashboard?id=caouecs_Laravel-SirTrevorJS)
 
 
-Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5](http://laravel.com) project.
+Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5/6/7](http://laravel.com) project.
 
 ## Installation
 
