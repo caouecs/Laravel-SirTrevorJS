@@ -1,6 +1,6 @@
 @extends('sirtrevorjs::html.video.base')
 
 @section('video')
-  <iframe width="575" height="324" src="https://cache.vevo.com/m/html/embed.html?video={!! $remote !!}"
+  <iframe loading="lazy" width="575" height="324" src="https://cache.vevo.com/m/html/embed.html?video={!! $remote !!}"
     allowfullscreen></iframe>
 @stop
