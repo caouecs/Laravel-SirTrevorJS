@@ -1,8 +1,6 @@
-Laravel-SirTrevorJS
-====================
+# Laravel-SirTrevorJS
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=caouecs_Laravel-SirTrevorJS&metric=alert_status)](https://sonarcloud.io/dashboard?id=caouecs_Laravel-SirTrevorJS)
-
 
 Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5/6/7](http://laravel.com) project.
 
@@ -137,7 +135,7 @@ This class need a parser, a configuration and a view by default.
 You can use the binding of this class :
 
 ```php
-    App::make('caouecs.sirtrevorjs.converter')
+    app('caouecs.sirtrevorjs.converter')
 ```
 
 ### Html
@@ -145,7 +143,7 @@ You can use the binding of this class :
 Convert text from Sir Trevor Js to html :
 
 ```php
-    string App::make('caouecs.sirtrevorjs.converter')->toHtml($text)
+    string app('caouecs.sirtrevorjs.converter')->toHtml($text)
 ```
 
 These methods return a string with html and js codes.
@@ -155,7 +153,7 @@ These methods return a string with html and js codes.
 Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org):
 
 ```php
-    string App::make('caouecs.sirtrevorjs.converter')->toAmp($text);
+    string app('caouecs.sirtrevorjs.converter')->toAmp($text);
 ```
 
 All modules have an amp's version, if it exists an equivalence.
@@ -167,7 +165,7 @@ This method returns an array ( *text* and *js*).
 Convert text from Sir Trevor Js to [Facebook Instant Articles](https://developers.facebook.com/docs/instant-articles/reference):
 
 ```php
-    string App::make('caouecs.sirtrevorjs.converter')->toFb($text);
+    string app('caouecs.sirtrevorjs.converter')->toFb($text);
 ```
 
 All modules have an FBArticles's version, if it exists an equivalence.
