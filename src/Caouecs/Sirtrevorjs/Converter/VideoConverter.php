@@ -8,14 +8,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
-use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
+use Caouecs\Sirtrevorjs\Contracts\Parsable;
 use Caouecs\Sirtrevorjs\Exception\NoProviderRemoteId;
 
 /**
  * Videos for Sir Trevor Js.
  */
-class VideoConverter extends BaseConverter implements ConverterInterface
+class VideoConverter extends BaseConverter implements Convertible
 {
     /**
      * Provider name.
@@ -112,12 +112,12 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     /**
      * Construct.
      *
-     * @param ParserInterface $parser Parser instance
-     * @param array           $config Config of Sir Trevor Js
-     * @param array           $data   Data of video
-     * @param string          $output Type of output (amp, fb, html)
+     * @param Parsable $parser Parser instance
+     * @param array    $config Config of Sir Trevor Js
+     * @param array    $data   Data of video
+     * @param string   $output Type of output (amp, fb, html)
      */
-    public function __construct(ParserInterface $parser, array $config, array $data, string $output = 'html')
+    public function __construct(Parsable $parser, array $config, array $data, string $output = 'html')
     {
         if (! is_array($data) || ! isset($data['data']['source']) || ! isset($data['data']['remote_id'])) {
             throw new NoProviderRemoteId();

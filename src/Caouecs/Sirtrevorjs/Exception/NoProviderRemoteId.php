@@ -17,9 +17,6 @@ class NoProviderRemoteId extends Exception
 {
     /**
      * Construct.
-     *
-     * @param string $message
-     * @param int    $code
      */
     public function __construct()
     {

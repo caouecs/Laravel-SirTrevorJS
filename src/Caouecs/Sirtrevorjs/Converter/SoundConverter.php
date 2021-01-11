@@ -8,12 +8,12 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
  * Sound for Sir Trevor Js.
  */
-class SoundConverter extends BaseConverter implements ConverterInterface
+class SoundConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types for sound.
@@ -40,7 +40,7 @@ class SoundConverter extends BaseConverter implements ConverterInterface
     {
         $theme = $this->config['soundcloud'] ?? '';
 
-        if ('full' !== $theme) {
+        if ($theme !== 'full') {
             $theme = 'small';
         }
 

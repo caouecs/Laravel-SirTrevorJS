@@ -11,12 +11,10 @@ namespace Caouecs\Sirtrevorjs\Contracts;
 /**
  * Parser interface.
  */
-interface ParserInterface
+interface Parsable
 {
     /**
      * Render markdown to html.
-     *
-     * @param string $text
      */
     public function toHtml(string $text): string;
 }

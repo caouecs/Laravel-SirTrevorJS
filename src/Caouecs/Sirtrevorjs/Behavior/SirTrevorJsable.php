@@ -22,8 +22,6 @@ trait SirTrevorJsable
      * Upload image.
      *
      * @internal you can define `directory_upload` in config file
-     *
-     * @param Request $request
      */
     public function upload(Request $request): void
     {
@@ -35,7 +33,7 @@ trait SirTrevorJsable
             $file = $request->file('attachment');
 
             // Problem on some configurations
-            $file = (!method_exists($file, 'getClientOriginalName')) ? $file['file'] : $file;
+            $file = ! method_exists($file, 'getClientOriginalName') ? $file['file'] : $file;
 
             // filename
             $filename = $file->getClientOriginalName();
@@ -68,8 +66,6 @@ trait SirTrevorJsable
 
     /**
      * Tweet.
-     *
-     * @param Request $request
      */
     public function tweet(Request $request): void
     {
@@ -78,7 +74,7 @@ trait SirTrevorJsable
         if (! empty($tweet_id)) {
             $tweet = Twitter::getTweet($tweet_id);
 
-            if (false !== $tweet && ! empty($tweet)) {
+            if ($tweet !== false && ! empty($tweet)) {
                 $return = [
                     'id_str' => $tweet_id,
                     'text' => '',

@@ -8,18 +8,16 @@
 
 namespace Caouecs\Sirtrevorjs\Parser;
 
-use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
+use Caouecs\Sirtrevorjs\Contracts\Parsable;
 use ParsedownExtra;
 
 /**
  * Parser by ParsedownExtra.
  */
-class ParsedownExtraParser extends ParsedownExtra implements ParserInterface
+class ParsedownExtraParser extends ParsedownExtra implements Parsable
 {
     /**
      * Convert to Html.
-     *
-     * @param string $text
      */
     public function toHtml(string $text): string
     {

@@ -9,9 +9,9 @@
 namespace Caouecs\Sirtrevorjs\Contracts;
 
 /**
- * Interface ConverterInterface.
+ * Interface Convertible.
  */
-interface ConverterInterface
+interface Convertible
 {
     /**
      * Render.

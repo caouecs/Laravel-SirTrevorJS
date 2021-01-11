@@ -8,14 +8,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 use Exception;
 use Log;
 
 /**
  * Images for Sir Trevor Js.
  */
-class ImageConverter extends BaseConverter implements ConverterInterface
+class ImageConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types.
@@ -105,7 +105,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
         /*
          * Pin
          */
-        if ('pin' === $this->data['provider']) {
+        if ($this->data['provider'] === 'pin') {
             return $this->view('image.pin', [
                 'remote_id' => $this->data['remote_id'],
             ]);

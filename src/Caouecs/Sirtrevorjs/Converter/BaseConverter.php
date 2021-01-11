@@ -8,7 +8,7 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
+use Caouecs\Sirtrevorjs\Contracts\Parsable;
 use View;
 
 /**
@@ -19,7 +19,7 @@ class BaseConverter
     /**
      * Parser instance.
      *
-     * @var ParserInterface
+     * @var Parsable
      */
     protected $parser;
 
@@ -75,12 +75,12 @@ class BaseConverter
     /**
      * Construct.
      *
-     * @param ParserInterface $parser Parser instance
-     * @param array           $config Config of Sir Trevor Js
-     * @param array           $data   Data of element
-     * @param string          $output Type of output (amp, fb, html)
+     * @param Parsable $parser Parser instance
+     * @param array    $config Config of Sir Trevor Js
+     * @param array    $data   Data of element
+     * @param string   $output Type of output (amp, fb, html)
      */
-    public function __construct(ParserInterface $parser, array $config, array $data, string $output = 'html')
+    public function __construct(Parsable $parser, array $config, array $data, string $output = 'html')
     {
         $this->config = $config;
         $this->data = $data['data'] ?? '';
@@ -105,8 +105,6 @@ class BaseConverter
 
     /**
      * Set view.
-     *
-     * @param string $view View
      */
     public function setView(string $view = ''): void
     {

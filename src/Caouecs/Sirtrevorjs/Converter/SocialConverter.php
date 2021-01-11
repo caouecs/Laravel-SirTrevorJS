@@ -8,12 +8,12 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
  * Social Network for Sir Trevor Js.
  */
-class SocialConverter extends BaseConverter implements ConverterInterface
+class SocialConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types for social network.

@@ -8,12 +8,12 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
  * Modelisation for Sir Trevor Js.
  */
-class ModelisationConverter extends BaseConverter implements ConverterInterface
+class ModelisationConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types for modelisation.
