@@ -151,7 +151,7 @@ class SirTrevorJs
         $return = '';
 
         /*
-         * Others files
+         * Other files
          */
         if (isset($config['script']) && is_array($config['script'])) {
             foreach ($config['script'] as $arr) {

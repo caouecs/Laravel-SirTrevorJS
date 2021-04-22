@@ -130,14 +130,14 @@ class BaseConverter
         }
 
         if (! empty($this->view) && View::exists($this->view.'.'.$viewName)) {
-            return view($this->view.'.'.$viewName, $params);
+            return view($this->view.'.'.$viewName, $params)->render();
         }
 
         if (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
-            return view($this->config['view'].'.'.$viewName, $params);
+            return view($this->config['view'].'.'.$viewName, $params)->render();
         }
 
-        return view('sirtrevorjs::html.'.$viewName, $params);
+        return view('sirtrevorjs::html.'.$viewName, $params)->render();
     }
 
     /**
