@@ -25,6 +25,13 @@ class VideoConverter extends BaseConverter implements Convertible
     protected $provider = '';
 
     /**
+     * Title of video.
+     *
+     * @var string
+     */
+    protected $title = '';
+
+    /**
      * Remote id.
      *
      * @var string
@@ -151,7 +158,7 @@ class VideoConverter extends BaseConverter implements Convertible
                 [
                     'remote' => $this->remoteId,
                     'caption' => $this->parser->toHtml($this->caption) ?? '',
-                    'title' => $this->title ?? $this->provider,
+                    'title' => $this->title ?: $this->provider,
                 ],
                 $this->provider
             );
