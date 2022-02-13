@@ -10,14 +10,14 @@
     }
   ],
   "require": {
-    "php": ">=7.0.0",
-    "illuminate/support": "~5",
+    "php": "^7.3|^8.0",
+    "atymic/twitter": "3.*",
     "erusev/parsedown-extra": "~0.7",
-    "thujohn/twitter": "~2.0",
-    "laravelcollective/html": "~5"
+    "illuminate/support": "~8.0",
+    "laravelcollective/html": "~6.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.1.*"
+    "phpunit/phpunit": "^9.0",
   },
   "autoload": {
     "psr-0": {

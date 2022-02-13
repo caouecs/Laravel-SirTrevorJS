@@ -157,7 +157,7 @@ class VideoConverter extends BaseConverter implements Convertible
                 'video.'.$this->provider,
                 [
                     'remote' => $this->remoteId,
-                    'caption' => $this->parser->toHtml($this->caption) ?? '',
+                    'caption' => $this->parser->toHtml($this->caption),
                     'title' => $this->title ?: $this->provider,
                 ],
                 $this->provider

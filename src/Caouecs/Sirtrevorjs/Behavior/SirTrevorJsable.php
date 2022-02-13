@@ -8,8 +8,8 @@
 
 namespace Caouecs\Sirtrevorjs\Behavior;
 
+use Atymic\Twitter\Facades\Twitter;
 use Illuminate\Http\Request;
-use Thujohn\Twitter\Facades\Twitter;
 
 /**
  * Trait Controller Sir Trevor Js
