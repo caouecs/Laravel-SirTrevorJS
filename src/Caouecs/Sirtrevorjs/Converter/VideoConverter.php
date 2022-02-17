@@ -53,13 +53,6 @@ class VideoConverter extends BaseConverter implements Convertible
     protected $output = 'html';
 
     /**
-     * Title.
-     *
-     * @var string
-     */
-    protected $title = '';
-
-    /**
      * Return array js external.
      */
     public function getJsExternal(): array
