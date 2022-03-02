@@ -8,7 +8,7 @@
 
 namespace Caouecs\Sirtrevorjs\Behavior;
 
-use Atymic\Twitter\Facades\Twitter;
+use Atymic\Twitter\Facade\Twitter;
 use Illuminate\Http\Request;
 
 /**
