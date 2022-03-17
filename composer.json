@@ -13,7 +13,7 @@
     "php": "^7.3|^8.0",
     "atymic/twitter": "3.*",
     "erusev/parsedown-extra": "~0.7",
-    "illuminate/support": "~8.0",
+    "illuminate/support": "~8.0|~9.0",
     "laravelcollective/html": "~6.0"
   },
   "require-dev": {
