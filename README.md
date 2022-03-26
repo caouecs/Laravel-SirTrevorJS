@@ -210,7 +210,7 @@ And you need to call this class in your service provider, in register :
 
     $this->app->bind('editor.converter', function ($app) {
         return new App\SirTrevorConverters\SirTrevorJsConverterEditor(
-            new ParsedownExtraParser(),
+            new LaravelParser(),
             config('sir-trevor-js'),
             'html'
         );

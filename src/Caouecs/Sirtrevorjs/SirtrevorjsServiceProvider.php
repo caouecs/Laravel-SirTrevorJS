@@ -8,7 +8,7 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use Caouecs\Sirtrevorjs\Parser\ParsedownExtraParser;
+use Caouecs\Sirtrevorjs\Parser\LaravelParser;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -42,7 +42,7 @@ class SirtrevorjsServiceProvider extends ServiceProvider
     {
         $this->app->bind('caouecs.sirtrevorjs.converter', function () {
             return new SirTrevorJsConverter(
-                new ParsedownExtraParser(),
+                new LaravelParser(),
                 config('sir-trevor-js'),
                 'html'
             );
