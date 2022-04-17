@@ -1,13 +1,15 @@
-Laravel-SirTrevorJS
-====================
+# Laravel-SirTrevorJS
 
-Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5](http://laravel.com) project.
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=caouecs_Laravel-SirTrevorJS&metric=alert_status)](https://sonarcloud.io/dashboard?id=caouecs_Laravel-SirTrevorJS)
+
+Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5/6/7](http://laravel.com) project.
 
 ## Installation
 
 This package is available through `Packagist` and `Composer`.
 
- > **For PHP 7** version, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~3.0.0"`
+ > **For PHP 7** version with new API, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~4.0.0"`
+ > **For PHP 7** version, use the [branch v3.0](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v3.0) : `"caouecs/sirtrevorjs": "~3.0.0"`
 
  > **For Laravel >= 5.2** version *parser*, use the [branch v2.5](https://github.com/caouecs/Laravel-SirTrevorJS/tree/2.5) : `"caouecs/sirtrevorjs": "~2.5.0"`
 
@@ -107,7 +109,7 @@ In return, you can have :
 
 ## Controller
 
-### TraitSirTrevorJsController
+### SirTrevorJsable
 
 This trait proposes two things :
 
@@ -133,7 +135,7 @@ This class need a parser, a configuration and a view by default.
 You can use the binding of this class :
 
 ```php
-    App::make('caouecs.sirtrevorjs.converter')
+    app('caouecs.sirtrevorjs.converter')
 ```
 
 ### Html
@@ -141,7 +143,7 @@ You can use the binding of this class :
 Convert text from Sir Trevor Js to html :
 
 ```php
-    string App::make('caouecs.sirtrevorjs.converter')->toHtml($text)
+    string app('caouecs.sirtrevorjs.converter')->toHtml($text)
 ```
 
 These methods return a string with html and js codes.
@@ -151,7 +153,7 @@ These methods return a string with html and js codes.
 Convert text from Sir Trevor Js to [Amp](https://www.ampproject.org):
 
 ```php
-    string App::make('caouecs.sirtrevorjs.converter')->toAmp($text);
+    string app('caouecs.sirtrevorjs.converter')->toAmp($text);
 ```
 
 All modules have an amp's version, if it exists an equivalence.
@@ -163,7 +165,7 @@ This method returns an array ( *text* and *js*).
 Convert text from Sir Trevor Js to [Facebook Instant Articles](https://developers.facebook.com/docs/instant-articles/reference):
 
 ```php
-    string App::make('caouecs.sirtrevorjs.converter')->toFb($text);
+    string app('caouecs.sirtrevorjs.converter')->toFb($text);
 ```
 
 All modules have an FBArticles's version, if it exists an equivalence.
@@ -208,7 +210,7 @@ And you need to call this class in your service provider, in register :
 
     $this->app->bind('editor.converter', function ($app) {
         return new App\SirTrevorConverters\SirTrevorJsConverterEditor(
-            new ParsedownExtraParser(),
+            new LaravelParser(),
             config('sir-trevor-js'),
             'html'
         );

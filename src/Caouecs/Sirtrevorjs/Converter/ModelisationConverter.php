@@ -8,12 +8,12 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
  * Modelisation for Sir Trevor Js.
  */
-class ModelisationConverter extends BaseConverter implements ConverterInterface
+class ModelisationConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types for modelisation.
@@ -26,23 +26,20 @@ class ModelisationConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [];
     }
 
     /**
      * Sketchfab block.
-     *
-     * @return string
      */
-    public function sketchfabToHtml()
+    public function sketchfabToHtml(): string
     {
         return $this->view('modelisation.sketchfab', [
             'remote_id' => $this->data['remote_id'],
+            'title' => $this->data['title'] ?? 'Sketchfab',
         ]);
     }
 }

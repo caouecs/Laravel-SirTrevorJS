@@ -1,5 +1,5 @@
 <blockquote>
-  @if (!empty($cite))
+  @if (! empty($cite))
     <cite>{!! $cite !!}</cite>
   @endif
 

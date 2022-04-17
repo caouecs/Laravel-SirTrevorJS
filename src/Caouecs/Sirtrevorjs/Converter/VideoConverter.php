@@ -8,14 +8,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
-use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
-use Exception;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
+use Caouecs\Sirtrevorjs\Contracts\Parsable;
+use Caouecs\Sirtrevorjs\Exception\NoProviderRemoteId;
 
 /**
  * Videos for Sir Trevor Js.
  */
-class VideoConverter extends BaseConverter implements ConverterInterface
+class VideoConverter extends BaseConverter implements Convertible
 {
     /**
      * Provider name.
@@ -23,6 +23,13 @@ class VideoConverter extends BaseConverter implements ConverterInterface
      * @var string
      */
     protected $provider = '';
+
+    /**
+     * Title of video.
+     *
+     * @var string
+     */
+    protected $title = '';
 
     /**
      * Remote id.
@@ -47,10 +54,8 @@ class VideoConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [
             'html' => [
@@ -114,15 +119,15 @@ class VideoConverter extends BaseConverter implements ConverterInterface
     /**
      * Construct.
      *
-     * @param ParserInterface $parser Parser instance
-     * @param array           $config Config of Sir Trevor Js
-     * @param array           $data   Data of video
-     * @param string          $output Type of output (amp, fb, html)
+     * @param Parsable $parser Parser instance
+     * @param array    $config Config of Sir Trevor Js
+     * @param array    $data   Data of video
+     * @param string   $output Type of output (amp, fb, html)
      */
-    public function __construct(ParserInterface $parser, array $config, array $data, string $output = 'html')
+    public function __construct(Parsable $parser, array $config, array $data, string $output = 'html')
     {
-        if (!is_array($data) || !isset($data['data']['source']) || !isset($data['data']['remote_id'])) {
-            throw new Exception('Need an array with provider and remote_id', 1);
+        if (! is_array($data) || ! isset($data['data']['source']) || ! isset($data['data']['remote_id'])) {
+            throw new NoProviderRemoteId();
         }
 
         $this->caption = $data['data']['caption'] ?? '';
@@ -132,32 +137,23 @@ class VideoConverter extends BaseConverter implements ConverterInterface
         $this->provider = $data['data']['source'];
         $this->remoteId = $data['data']['remote_id'];
         $this->type = 'video';
+        $this->title = $data['data']['title'] ?? '';
     }
 
     /**
      * Render of video tag.
-     *
-     * @return string
      */
-    public function videoToHtml()
+    public function videoToHtml(): string
     {
-        if (in_array($this->provider, $this->providers)) {
-            $caption = '';
-            if (!empty($this->caption)) {
-                $caption = $this->parser->toHtml($this->caption);
-            }
-
-            // View
-            return $this->view(
+        return ! in_array($this->provider, $this->providers) ? ''
+            : $this->view(
                 'video.'.$this->provider,
                 [
                     'remote' => $this->remoteId,
-                    'caption' => $caption,
+                    'caption' => $this->parser->toHtml($this->caption),
+                    'title' => $this->title ?: $this->provider,
                 ],
                 $this->provider
             );
-        }
-
-        return '';
     }
 }

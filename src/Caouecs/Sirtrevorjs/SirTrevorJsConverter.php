@@ -8,7 +8,7 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
+use Caouecs\Sirtrevorjs\Contracts\Parsable;
 
 /**
  * Class Converter.
@@ -28,7 +28,7 @@ class SirTrevorJsConverter
     /**
      * Parser.
      *
-     * @var ParserInterface
+     * @var Parsable
      */
     protected $parser;
 
@@ -89,12 +89,8 @@ class SirTrevorJsConverter
 
     /**
      * Construct.
-     *
-     * @param ParserInterface $parser
-     * @param array           $config
-     * @param string          $view   View
      */
-    public function __construct(ParserInterface $parser, array $config, string $view = '')
+    public function __construct(Parsable $parser, array $config, string $view = '')
     {
         $this->config = $config;
         $this->parser = $parser;
@@ -103,22 +99,16 @@ class SirTrevorJsConverter
 
     /**
      * Set view.
-     *
-     * @param string $view
      */
-    public function setView(string $view)
+    public function setView(string $view): void
     {
         $this->view = $view;
     }
 
     /**
      * Converts the outputted json from Sir Trevor to Html.
-     *
-     * @param string $json
-     *
-     * @return string
      */
-    public function toHtml(string $json)
+    public function toHtml(string $json): string
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::html';
@@ -131,12 +121,8 @@ class SirTrevorJsConverter
 
     /**
      * Converts the outputted json from Sir Trevor to Amp.
-     *
-     * @param string $json
-     *
-     * @return string
      */
-    public function toAmp(string $json)
+    public function toAmp(string $json): string
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::amp';
@@ -149,12 +135,8 @@ class SirTrevorJsConverter
 
     /**
      * Converts the outputted json from Sir Trevor to Facebook Articles.
-     *
-     * @param string $json
-     *
-     * @return string
      */
-    public function toFb(string $json)
+    public function toFb(string $json): string
     {
         if (empty($this->view)) {
             $this->view = 'sirtrevorjs::fb';
@@ -167,13 +149,8 @@ class SirTrevorJsConverter
 
     /**
      * Convert the outputted json from Sir Trevor.
-     *
-     * @param string $json
-     * @param bool   $externalJs
-     *
-     * @return string
      */
-    public function convert(string $json, bool $externalJs = true)
+    public function convert(string $json, bool $externalJs = true): string
     {
         // convert the json to an associative array
         $input = json_decode($json, true);
@@ -186,16 +163,16 @@ class SirTrevorJsConverter
 
         if (is_array($input)) {
             // blocks
-            $blocks = $this->getBlocks();
+            $listBlocks = $this->getBlocks();
 
             // loop trough the data blocks
             foreach ($input['data'] as $block) {
                 // no data, problem
-                if (!isset($block['data']) || !array_key_exists($block['type'], $blocks)) {
+                if (! isset($block['data']) || ! array_key_exists($block['type'], $listBlocks)) {
                     break;
                 }
 
-                $class = $blocks[$block['type']];
+                $class = $listBlocks[$block['type']];
                 $converter = new $class($this->parser, $this->config, $block, $this->output);
                 $converter->setView($this->view);
                 $text .= $converter->render();
@@ -219,10 +196,8 @@ class SirTrevorJsConverter
 
     /**
      * Return base blocks and custom blocks with good classes.
-     *
-     * @return array
      */
-    protected function getBlocks()
+    protected function getBlocks(): array
     {
         $blocks = [];
 
@@ -230,11 +205,11 @@ class SirTrevorJsConverter
             $blocks[$key] = 'Caouecs\\Sirtrevorjs\\Converter\\'.$value.'Converter';
         }
 
-        if (!empty($this->customBlocks)) {
+        if (! empty($this->customBlocks)) {
             $blocks = array_merge($blocks, $this->customBlocks);
         }
 
-        if (isset($this->config['customBlocks']) && !empty($this->config['customBlocks'])) {
+        if (isset($this->config['customBlocks']) && ! empty($this->config['customBlocks'])) {
             $blocks = array_merge($blocks, $this->config['customBlocks']);
         }
 
@@ -243,10 +218,8 @@ class SirTrevorJsConverter
 
     /**
      * Returns code js.
-     *
-     * @return string
      */
-    public function getCodeJs()
+    public function getCodeJs(): string
     {
         return $this->codeJs;
     }

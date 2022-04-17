@@ -1,7 +1,7 @@
 <figure data-feedback="fb:likes, fb:comments">
-  <img src="{!! $url !!}" />
+  <img src="{!! $url !!}" alt="{!! $alt ?? '' !!}" />
 
-@if (!empty($text))
+@if (! empty($text))
   <figcaption>{!! $text !!}</figcaption>
 @endif
 </figure>

@@ -8,12 +8,12 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
  * Sound for Sir Trevor Js.
  */
-class SoundConverter extends BaseConverter implements ConverterInterface
+class SoundConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types for sound.
@@ -27,24 +27,20 @@ class SoundConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [];
     }
 
     /**
      * Soundcloud block.
-     *
-     * @return string
      */
-    public function soundcloudToHtml()
+    public function soundcloudToHtml(): string
     {
         $theme = $this->config['soundcloud'] ?? '';
 
-        if ('full' !== $theme) {
+        if ($theme !== 'full') {
             $theme = 'small';
         }
 
@@ -55,14 +51,13 @@ class SoundConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Spotify block.
-     *
-     * @return string
      */
-    public function spotifyToHtml()
+    public function spotifyToHtml(): string
     {
         return $this->view('sound.spotify', [
             'remote' => $this->data['remote_id'],
             'options' => $this->config['spotify'],
+            'title' => $this->data['title'] ?? 'Spotify',
         ]);
     }
 }

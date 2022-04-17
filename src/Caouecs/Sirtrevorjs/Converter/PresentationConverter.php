@@ -8,12 +8,12 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
  * Presentation for Sir Trevor Js.
  */
-class PresentationConverter extends BaseConverter implements ConverterInterface
+class PresentationConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types for presentation.
@@ -27,10 +27,8 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [
             'html' => [
@@ -41,22 +39,19 @@ class PresentationConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Slideshare.
-     *
-     * @return string
      */
-    public function slideshareToHtml()
+    public function slideshareToHtml(): string
     {
         return $this->view('presentation.slideshare', [
             'remote_id' => $this->data['remote_id'],
+            'title' => $this->data['title'] ?? 'Slideshare',
         ]);
     }
 
     /**
      * Issuu.
-     *
-     * @return string
      */
-    public function issuuToHtml()
+    public function issuuToHtml(): string
     {
         return $this->view('presentation.issuu', [
             'remote_id' => $this->data['remote_id'],

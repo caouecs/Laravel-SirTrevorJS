@@ -8,7 +8,6 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use App;
 use HTML;
 
 /**
@@ -20,6 +19,7 @@ class SirTrevorJs
      * Textarea class.
      *
      * @var string
+     *
      * @static
      */
     protected static $class = 'sir-trevor';
@@ -28,6 +28,7 @@ class SirTrevorJs
      * Block types.
      *
      * @var array
+     *
      * @static
      */
     protected static $blocktypes = [
@@ -44,6 +45,7 @@ class SirTrevorJs
      * Language of Sir Trevor JS.
      *
      * @var string
+     *
      * @static
      */
     protected static $language = 'en';
@@ -52,6 +54,7 @@ class SirTrevorJs
      * Upload url for images.
      *
      * @var string
+     *
      * @static
      */
     protected static $uploadUrl = '/sirtrevorjs/upload';
@@ -60,6 +63,7 @@ class SirTrevorJs
      * Url for tweets.
      *
      * @var string
+     *
      * @static
      */
     protected static $tweetUrl = '/sirtrevorjs/tweet';
@@ -67,10 +71,7 @@ class SirTrevorJs
     /**
      * Transform text with image bug.
      *
-     * @param string $text Text to fix
-     *
-     * @return string
-     * @static
+     * @return string|bool
      */
     public static function transformText(string $text)
     {
@@ -86,7 +87,7 @@ class SirTrevorJs
                  * This code transforms this array into a string (JSON format)
                  * and after it transforms it into an another array for Sir Trevor
                  */
-                if ('image' === $data['type'] && !isset($data['data']['file'])) {
+                if ($data['type'] === 'image' && ! isset($data['data']['file'])) {
                     $return[] = [
                         'type' => 'image',
                         'data' => json_decode(implode($data['data']), true),
@@ -105,11 +106,8 @@ class SirTrevorJs
     /**
      * Stylesheet files
      *   see config file.
-     *
-     * @return string
-     * @static
      */
-    public static function stylesheets()
+    public static function stylesheets(): string
     {
         // params in config file
         $config = config('sir-trevor-js');
@@ -139,9 +137,6 @@ class SirTrevorJs
      *
      * @param array $params
      *
-     * @return string
-     * @static
-     *
      * Params :
      * - class
      * - blocktypes
@@ -149,14 +144,14 @@ class SirTrevorJs
      * - uploadUrl
      * - tweetUrl
      */
-    public static function scripts(array $params = [])
+    public static function scripts(array $params = []): string
     {
         // params
         $config = self::config($params);
         $return = '';
 
         /*
-         * Others files
+         * Other files
          */
         if (isset($config['script']) && is_array($config['script'])) {
             foreach ($config['script'] as $arr) {
@@ -174,7 +169,7 @@ class SirTrevorJs
         /*
          * Language
          */
-        if ('en' != $config['language']) {
+        if ($config['language'] !== 'en') {
             $return .= HTML::script($config['path'].'locales/'.$config['language'].'.js');
         }
 
@@ -187,13 +182,8 @@ class SirTrevorJs
      * 1 - $params
      * 2 - config file
      * 3 - default
-     *
-     * @param array $params Personnalized params
-     *
-     * @return array
-     * @static
      */
-    public static function config(array $params = [])
+    public static function config(array $params = []): array
     {
         // params in config file
         $config = config('sir-trevor-js');
@@ -201,15 +191,14 @@ class SirTrevorJs
         /*
          * Block types
          */
+        $blocktypes = self::$blocktypes;
+
         // params
-        if (isset($params['blocktypes']) && !empty($params['blocktypes']) && is_array($params['blocktypes'])) {
+        if (isset($params['blocktypes']) && ! empty($params['blocktypes']) && is_array($params['blocktypes'])) {
             $blocktypes = $params['blocktypes'];
         // config
-        } elseif (isset($config['blocktypes']) && !empty($config['blocktypes']) && is_array($config['blocktypes'])) {
+        } elseif (isset($config['blocktypes']) && ! empty($config['blocktypes']) && is_array($config['blocktypes'])) {
             $blocktypes = $config['blocktypes'];
-        // default
-        } else {
-            $blocktypes = self::$blocktypes;
         }
 
         return [
@@ -226,55 +215,36 @@ class SirTrevorJs
 
     /**
      * Define param.
-     *
-     * @param string $type
-     * @param array  $params
-     * @param array  $config
-     *
-     * @return string
      */
-    private static function defineParam(string $type, array $params, array $config = [])
+    private static function defineParam(string $type, array $params, array $config = []): string
     {
         // params
-        if (isset($params[$type]) && !empty($params[$type])) {
+        if (! empty($params[$type])) {
             return $params[$type];
-        // config
-        } elseif (isset($config[$type]) && !empty($config[$type])) {
-            return $config[$type];
         }
 
-        // default
-        return self::$$type;
+        // config and default
+        return ! empty($config[$type]) ? $config[$type] : self::$$type;
     }
 
     /**
      * Convert json from Sir Trevor JS to html.
-     *
-     * @param string $text
-     *
-     * @return string
-     * @static
      */
-    public static function render(string $text)
+    public static function render(string $text): string
     {
-        return App::make('caouecs.sirtrevorjs.converter')->toHtml($text);
+        return app('caouecs.sirtrevorjs.converter')->toHtml($text);
     }
 
     /**
      * Find first image in text from Sir Trevor JS.
-     *
-     * @param string $text
-     *
-     * @return string Url of image
-     * @static
      */
-    public static function findImage(string $text)
+    public static function findImage(string $text): string
     {
         $array = json_decode($text, true);
 
-        if (!empty($array['data'])) {
+        if (! empty($array['data'])) {
             foreach ($array['data'] as $arr) {
-                if ('image' === $arr['type'] && isset($arr['data']['file']['url'])) {
+                if ($arr['type'] === 'image' && isset($arr['data']['file']['url'])) {
                     return $arr['data']['file']['url'];
                 }
             }
@@ -286,19 +256,13 @@ class SirTrevorJs
     /**
      * Find occurences of a type of block in a text.
      *
-     * @param string $text
-     * @param string $blocktype
-     * @param string $output    json or array
-     * @param int    $nbr       Number of occurences ( 0 = all )
-     *
      * @return array|string|bool Returns list of blocks in an array or a json, if exists. Else, returns false
-     * @static
      */
-    public static function find(string $text, string $blocktype, string $output = 'json', int $nbr = 0)
+    public static function find(string $text, string $blocktype, string $output = 'json', int $occurence = 0)
     {
         $array = json_decode($text, true);
 
-        if (!isset($array['data'])) {
+        if (! isset($array['data'])) {
             return false;
         }
 
@@ -306,10 +270,10 @@ class SirTrevorJs
         $_nbr = 1;
 
         foreach ($array['data'] as $arr) {
-            if ($arr['type'] == $blocktype) {
+            if ($arr['type'] === $blocktype) {
                 $return[] = $arr['data'];
 
-                if ($_nbr == $nbr) {
+                if ($_nbr === $occurence) {
                     break;
                 }
 
@@ -317,22 +281,14 @@ class SirTrevorJs
             }
         }
 
-        if (empty($return) || 'array' === $output) {
-            return $return;
-        }
-
-        return json_encode($return, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return empty($return) || $output === 'array' ? $return
+            : json_encode($return, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     }
 
     /**
      * Find first occurence of a type of block in a text.
      *
-     * @param string $text
-     * @param string $blocktype
-     * @param string $output    json or array
-     *
-     * @return array|bool Returns list of blocks in an array if exists. Else, returns false
-     * @static
+     * @return array|bool|string Returns list of blocks in an array if exists. Else, returns false
      */
     public static function first(string $text, string $blocktype, string $output = 'json')
     {

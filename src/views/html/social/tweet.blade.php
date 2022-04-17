@@ -1,5 +1,5 @@
 <blockquote class="twitter-tweet tw-align-center" data-lang="fr">
-@if (!empty($data['text']))
+@if (! empty($data['text']))
   <p lang="en" dir="ltr">{!! $data['text'] !!}</p>
   &mdash; {!! $data['user']['name'] !!} (&#64;{!! $data['user']['screen_name'] !!})
 @endif

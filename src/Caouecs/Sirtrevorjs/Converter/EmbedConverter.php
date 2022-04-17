@@ -8,12 +8,12 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
  * Embed for Sir Trevor Js.
  */
-class EmbedConverter extends BaseConverter implements ConverterInterface
+class EmbedConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types.
@@ -27,10 +27,8 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array of js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [
             'html' => [
@@ -46,24 +44,21 @@ class EmbedConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Render of iframe.
-     *
-     * @return string
      */
-    public function iframeToHtml()
+    public function iframeToHtml(): string
     {
         return $this->view('embed.iframe', [
             'src' => $this->data['src'],
             'width' => $this->data['width'],
             'height' => $this->data['height'],
+            'title' => $this->data['title'] ?? '',
         ]);
     }
 
     /**
      * Render of embedly.
-     *
-     * @return string
      */
-    public function embedlyToHtml()
+    public function embedlyToHtml(): string
     {
         if (filter_var($this->data['url'], FILTER_VALIDATE_URL)) {
             return $this->view('embedly.'.$this->type, [

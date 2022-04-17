@@ -6,26 +6,24 @@
  * @see https://github.com/caouecs/Laravel-SirTrevorJs
  */
 
-namespace Caouecs\Sirtrevorjs\Controller;
+namespace Caouecs\Sirtrevorjs\Behavior;
 
+use Atymic\Twitter\Facade\Twitter;
 use Illuminate\Http\Request;
-use Thujohn\Twitter\Facades\Twitter;
 
 /**
  * Trait Controller Sir Trevor Js
  * - upload image
  * - display tweet.
  */
-trait TraitSirTrevorJsController
+trait SirTrevorJsable
 {
     /**
      * Upload image.
      *
      * @internal you can define `directory_upload` in config file
-     *
-     * @param Request $request
      */
-    public function upload(Request $request)
+    public function upload(Request $request): void
     {
         if ($request->hasFile('attachment')) {
             // config
@@ -35,7 +33,7 @@ trait TraitSirTrevorJsController
             $file = $request->file('attachment');
 
             // Problem on some configurations
-            $file = (!method_exists($file, 'getClientOriginalName')) ? $file['file'] : $file;
+            $file = ! method_exists($file, 'getClientOriginalName') ? $file['file'] : $file;
 
             // filename
             $filename = $file->getClientOriginalName();
@@ -68,17 +66,15 @@ trait TraitSirTrevorJsController
 
     /**
      * Tweet.
-     *
-     * @param Request $request
      */
-    public function tweet(Request $request)
+    public function tweet(Request $request): void
     {
         $tweet_id = $request->input('tweet_id');
 
-        if (!empty($tweet_id)) {
+        if (! empty($tweet_id)) {
             $tweet = Twitter::getTweet($tweet_id);
 
-            if (false !== $tweet && !empty($tweet)) {
+            if ($tweet !== false && ! empty($tweet)) {
                 $return = [
                     'id_str' => $tweet_id,
                     'text' => '',

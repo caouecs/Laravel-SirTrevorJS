@@ -8,12 +8,12 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
  * Text for Sir Trevor Js.
  */
-class TextConverter extends BaseConverter implements ConverterInterface
+class TextConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types for text.
@@ -31,20 +31,16 @@ class TextConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [];
     }
 
     /**
      * Convert text to markdown.
-     *
-     * @return string
      */
-    public function textToHtml()
+    public function textToHtml(): string
     {
         return $this->view('text.text', [
             'text' => $this->parser->toHtml($this->data['text']),
@@ -53,20 +49,16 @@ class TextConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Convert text to markdown.
-     *
-     * @return string
      */
-    public function markdownToHtml()
+    public function markdownToHtml(): string
     {
         return $this->textToHtml();
     }
 
     /**
      * Convert heading.
-     *
-     * @return string
      */
-    public function headingToHtml()
+    public function headingToHtml(): string
     {
         return $this->view('text.heading', [
             'text' => $this->parser->toHtml($this->data['text']),
@@ -75,10 +67,8 @@ class TextConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Converts block quotes to html.
-     *
-     * @return string
      */
-    public function blockquoteToHtml()
+    public function blockquoteToHtml(): string
     {
         // remove the indent thats added by Sir Trevor
         return $this->view('text.blockquote', [
@@ -89,20 +79,16 @@ class TextConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Converts quote to html.
-     *
-     * @return string
      */
-    public function quoteToHtml()
+    public function quoteToHtml(): string
     {
         return $this->blockquoteToHtml();
     }
 
     /**
      * Converts list to html.
-     *
-     * @return string
      */
-    public function listToHtml()
+    public function listToHtml(): string
     {
         return $this->textToHtml();
     }

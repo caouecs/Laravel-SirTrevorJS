@@ -9,9 +9,9 @@
 namespace Caouecs\Sirtrevorjs\Contracts;
 
 /**
- * Interface ConverterInterface.
+ * Interface Convertible.
  */
-interface ConverterInterface
+interface Convertible
 {
     /**
      * Render.
@@ -22,8 +22,6 @@ interface ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal();
+    public function getJsExternal(): array;
 }

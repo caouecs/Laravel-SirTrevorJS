@@ -8,7 +8,7 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ParserInterface;
+use Caouecs\Sirtrevorjs\Contracts\Parsable;
 use View;
 
 /**
@@ -19,7 +19,7 @@ class BaseConverter
     /**
      * Parser instance.
      *
-     * @var ParserInterface
+     * @var Parsable
      */
     protected $parser;
 
@@ -75,12 +75,12 @@ class BaseConverter
     /**
      * Construct.
      *
-     * @param ParserInterface $parser Parser instance
-     * @param array           $config Config of Sir Trevor Js
-     * @param array           $data   Data of element
-     * @param string          $output Type of output (amp, fb, html)
+     * @param Parsable $parser Parser instance
+     * @param array    $config Config of Sir Trevor Js
+     * @param array    $data   Data of element
+     * @param string   $output Type of output (amp, fb, html)
      */
-    public function __construct(ParserInterface $parser, array $config, array $data, string $output = 'html')
+    public function __construct(Parsable $parser, array $config, array $data, string $output = 'html')
     {
         $this->config = $config;
         $this->data = $data['data'] ?? '';
@@ -91,10 +91,8 @@ class BaseConverter
 
     /**
      * Render.
-     *
-     * @return string
      */
-    public function render()
+    public function render(): string
     {
         if (in_array($this->type, $this->types)) {
             $method = $this->type.'ToHtml';
@@ -107,10 +105,8 @@ class BaseConverter
 
     /**
      * Set view.
-     *
-     * @param string $view View
      */
-    public function setView(string $view = '')
+    public function setView(string $view = ''): void
     {
         $this->view = $view;
     }
@@ -122,42 +118,40 @@ class BaseConverter
      * @param array  $params   Params
      * @param string $type     Block type
      */
-    public function view(string $viewName, array $params = [], string $type = '')
+    public function view(string $viewName, array $params = [], string $type = ''): string
     {
         if (empty($type)) {
             $type = $this->type;
         }
 
         $jsExternal = $this->getJsExternal();
-        if (!empty($jsExternal[$this->output][$type])) {
+        if (! empty($jsExternal[$this->output][$type])) {
             $this->codejs[$type] = $jsExternal[$this->output][$type];
         }
 
-        if (!empty($this->view) && View::exists($this->view.'.'.$viewName)) {
-            return view($this->view.'.'.$viewName, $params);
-        } elseif (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
-            return view($this->config['view'].'.'.$viewName, $params);
+        if (! empty($this->view) && View::exists($this->view.'.'.$viewName)) {
+            return view($this->view.'.'.$viewName, $params)->render();
         }
 
-        return view('sirtrevorjs::html.'.$viewName, $params);
+        if (isset($this->config['view']) && View::exists($this->config['view'].'.'.$viewName)) {
+            return view($this->config['view'].'.'.$viewName, $params)->render();
+        }
+
+        return view('sirtrevorjs::html.'.$viewName, $params)->render();
     }
 
     /**
      * Returns code js.
-     *
-     * @return array
      */
-    public function getCodeJs()
+    public function getCodeJs(): array
     {
         return $this->codejs;
     }
 
     /**
      * Returns external js code.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [];
     }

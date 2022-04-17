@@ -8,13 +8,14 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
-use Caouecs\Sirtrevorjs\Contracts\ConverterInterface;
+use Caouecs\Sirtrevorjs\Contracts\Convertible;
 use Exception;
+use Log;
 
 /**
  * Images for Sir Trevor Js.
  */
-class ImageConverter extends BaseConverter implements ConverterInterface
+class ImageConverter extends BaseConverter implements Convertible
 {
     /**
      * List of types.
@@ -29,10 +30,8 @@ class ImageConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Return array js external.
-     *
-     * @return array
      */
-    public function getJsExternal()
+    public function getJsExternal(): array
     {
         return [
             'html' => [
@@ -48,10 +47,8 @@ class ImageConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Converts the image to html.
-     *
-     * @return string
      */
-    public function imageToHtml()
+    public function imageToHtml(): string
     {
         if (empty($this->data['file']['url'])) {
             return '';
@@ -59,7 +56,7 @@ class ImageConverter extends BaseConverter implements ConverterInterface
 
         $text = $this->data['text'] ?? '';
 
-        if (!empty($text)) {
+        if (! empty($text)) {
             $text = $this->parser->toHtml($text);
         }
 
@@ -67,7 +64,11 @@ class ImageConverter extends BaseConverter implements ConverterInterface
 
         try {
             $size = getimagesize($url);
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
+            Log::error('ImageConverter::imageToHtml:: '.$exception->getMessage());
+        }
+
+        if (empty($size) || ! is_array($size)) {
             $size = [
                 $this->config['image.width'] ?? 520,
                 $this->config['image.height'] ?? 200,
@@ -79,15 +80,14 @@ class ImageConverter extends BaseConverter implements ConverterInterface
             'text' => $text,
             'width' => $size[0],
             'height' => $size[1],
+            'title' => $this->data['title'] ?? '',
         ]);
     }
 
     /**
      * Converts GettyImage to html.
-     *
-     * @return string
      */
-    public function gettyimagesToHtml()
+    public function gettyimagesToHtml(): string
     {
         return $this->view('image.gettyimages', [
             'remote_id' => $this->data['remote_id'],
@@ -99,15 +99,13 @@ class ImageConverter extends BaseConverter implements ConverterInterface
 
     /**
      * Converts Pinterest to html.
-     *
-     * @return string
      */
-    public function pinterestToHtml()
+    public function pinterestToHtml(): string
     {
         /*
          * Pin
          */
-        if ('pin' === $this->data['provider']) {
+        if ($this->data['provider'] === 'pin') {
             return $this->view('image.pin', [
                 'remote_id' => $this->data['remote_id'],
             ]);
