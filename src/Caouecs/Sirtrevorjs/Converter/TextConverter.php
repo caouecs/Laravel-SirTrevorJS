@@ -71,9 +71,12 @@ class TextConverter extends BaseConverter implements Convertible
     public function blockquoteToHtml(): string
     {
         // remove the indent thats added by Sir Trevor
+        $text = str_replace("\n>", "\n", $this->data['text']);
+        $text = ltrim($text, '>');
+
         return $this->view('text.blockquote', [
             'cite' => $this->data['cite'] ?? '',
-            'text' => $this->parser->toHtml(ltrim($this->data['text'], '>')),
+            'text' => $this->parser->toHtml($text),
         ]);
     }
 
