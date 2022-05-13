@@ -33,23 +33,27 @@ trait SirTrevorJsable
             $file = $request->file('attachment');
 
             // Problem on some configurations
-            $file = ! method_exists($file, 'getClientOriginalName') ? $file['file'] : $file;
+            $file = $file['file'] ?? $file;
 
             // filename
             $filename = $file->getClientOriginalName();
 
-            // suffixe if file exists
-            $suffixe = '01';
+            // prefix if file exists
+            $prefix = '01';
 
             // verif if file exists
             while (file_exists(public_path($config['directory_upload']).'/'.$filename)) {
-                $filename = $suffixe.'_'.$filename;
+                $filename = $prefix.'_'.$filename;
 
-                ++$suffixe;
+                ++$prefix;
 
-                if ($suffixe < 10) {
-                    $suffixe = '0'.$suffixe;
+                if ($prefix < 10) {
+                    $prefix = '0'.$prefix;
                 }
+            }
+
+            if (method_exists($this, 'afterUpload')) {
+                $this->afterUpload($file, $filename);
             }
 
             if ($file->move(public_path($config['directory_upload']), $filename)) {
