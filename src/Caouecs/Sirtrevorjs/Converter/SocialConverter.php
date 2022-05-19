@@ -8,6 +8,7 @@
 
 namespace Caouecs\Sirtrevorjs\Converter;
 
+use Caouecs\Sirtrevorjs\Api\TweeticApi;
 use Caouecs\Sirtrevorjs\Contracts\Convertible;
 
 /**
@@ -30,13 +31,12 @@ class SocialConverter extends BaseConverter implements Convertible
      */
     public function getJsExternal(): array
     {
-        return [
+        $js = [
             'html' => [
                 'facebook' => '<script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if ('
                     .'d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.'
                     .'facebook.net/en_GB/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document,'
                     .'\'script\',\'facebook-jssdk\'));</script>',
-                'tweet' => '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>',
             ],
             'amp' => [
                 'facebook' => '<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/'
@@ -45,13 +45,28 @@ class SocialConverter extends BaseConverter implements Convertible
                     .'amp-twitter-0.1.js"></script>',
             ],
         ];
+
+        if (! $this->config['tweetic']) {
+            $js['html']['tweet'] = '<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>';
+        }
+
+        return $js;
     }
 
     /**
-     * Tweet.
+     * Tweet with Tweetic API.
      */
     public function tweetToHtml(): string
     {
+        if ($this->config['tweetic']) {
+            $api = new TweeticApi();
+            $data = $api->call($this->data['status_url']);
+
+            if (! empty($data['html'])) {
+                return $data['html'];
+            }
+        }
+
         return $this->view('social.tweet', [
             'data' => $this->data,
         ]);

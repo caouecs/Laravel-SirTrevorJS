@@ -12,6 +12,10 @@ return [
     // by default: /sirtrevorjs/tweet (the controller of this package)
     'tweetUrl' => null,
 
+    // use Tweetic for display
+    // you can use this API to not call widget.js of Twitter when you display a tweet
+    'tweetic' => false,
+
     // block types for Sir Trevor JS
     // by default: ['Text', 'List', 'Quote', 'Image', 'Video', 'Tweet', 'Heading']
     'blocktypes' => [],
