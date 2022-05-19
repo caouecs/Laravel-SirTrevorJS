@@ -2,13 +2,14 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=caouecs_Laravel-SirTrevorJS&metric=alert_status)](https://sonarcloud.io/dashboard?id=caouecs_Laravel-SirTrevorJS)
 
-Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5/6/7](http://laravel.com) project.
+Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) in a [Laravel 5/6/7/8/9](http://laravel.com) project.
 
 ## Installation
 
 This package is available through `Packagist` and `Composer`.
 
  > **For PHP 7** version with new API, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~4.0.0"`
+
  > **For PHP 7** version, use the [branch v3.0](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v3.0) : `"caouecs/sirtrevorjs": "~3.0.0"`
 
  > **For Laravel >= 5.2** version *parser*, use the [branch v2.5](https://github.com/caouecs/Laravel-SirTrevorJS/tree/2.5) : `"caouecs/sirtrevorjs": "~2.5.0"`
