@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -195,6 +197,14 @@ class SirTrevorJsConverter
     }
 
     /**
+     * Returns code js.
+     */
+    public function getCodeJs(): string
+    {
+        return $this->codeJs;
+    }
+
+    /**
      * Return base blocks and custom blocks with good classes.
      */
     protected function getBlocks(): array
@@ -214,13 +224,5 @@ class SirTrevorJsConverter
         }
 
         return $blocks;
-    }
-
-    /**
-     * Returns code js.
-     */
-    public function getCodeJs(): string
-    {
-        return $this->codeJs;
     }
 }
