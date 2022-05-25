@@ -18,7 +18,7 @@ class TweeticApi extends Api
     /**
      * API url.
      */
-    protected $api = 'https://www.tweetic.io/api/tweet';
+    protected string $api = 'https://www.tweetic.io/api/tweet';
 
     /**
      * Call API.
