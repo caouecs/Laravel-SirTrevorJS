@@ -1,5 +1,103 @@
 # Changelog
 
+* v4.1.1
+    * feature: rollback on tweets with text. For smiley, you need an SQL encoding for binaries
+
+* v4.1.0
+    * feature: twitter by tweetic
+
+* v4.0.2
+    * documentation
+
+* v4.0.1
+    * fix: upload image and possibility to call a afterUpload method
+
+* v4.0.0
+    * for PHP 8
+    * for Laravel 9
+    * feature: loading lazy for iframe
+    * feature: #31 from abad93/patch-2
+    * feature: #32 from abad93/patch-1
+    * feature: parser by Laravel Str markdown
+    * feature: atymic/twitter
+    * fix: call to twitter facade
+    * fix: blockquote with multi lines
+
+* v3.0.6
+    * fix: use Parsedown Extra Parser
+
+* v3.0.5
+    * feature: http to https
+
+* v3.0.4
+    * remove: code sponsor
+
+* v3.0.3
+    * feature: blockquote - html5
+    * feature: add alt for images
+
+* v3.0.2
+    * optim: trait controller - tweet
+    * feature: operator
+
+* v3.0.1
+    * feature: Package Auto-Discovery for Laravel 5.5
+
+* v3.0.0
+    * feature: php7
+
+* v2.5.9
+    * feature: https everywhere
+
+* v2.5.8
+    * fix: type of variable for PHP7
+
+* v2.5.7
+    * fix: converter - fb
+
+* v2.5.6
+    * feature: social - tweet template
+
+* v2.5.5
+    * feature: tweet and truncated
+
+* v2.5.4
+    * feature: amp - update for Facebook and Vine
+    * fix: image
+
+* v2.5.3
+    * fix: empty on array
+
+* v2.5.2
+    * feature: image - add width and height
+
+* v2.5.1
+    * fix: service provider - use for ParsedownExtraParser
+
+* v2.5.0
+    * bind the converters
+
+* v2.4.8
+    * fix: fb - social - Facebook view
+    * fix: twitter view
+
+* v2.4.7
+    * fix: composer
+    * fix: base converter
+
+* v2.4.6
+    * preparation for tests
+
+* v2.4.5
+    * fix: amp - gettyimage
+    * fix: #29 laravel collective html package
+
+* v2.4.4
+    * fix: tweet - html - include js
+
+* v2.4.3
+    * fix: tweet - fb - not op-social
+
 * v2.4.2
     * getJsExternal method
 
@@ -9,6 +107,12 @@
 
 * v2.4.0
     * js and amp
+
+* v2.3.6
+    * fix: fb views - Facebook and Twitter
+
+* v2.3.5
+    * feature: views - https by default
 
 * v2.3.4
     * custom blocks in config file
