@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Caouecs\Sirtrevorjs;
 
-use HTML;
+use Collective\Html\HtmlFacade as HTML;
 
 /**
  * Sir Trevor Js.
