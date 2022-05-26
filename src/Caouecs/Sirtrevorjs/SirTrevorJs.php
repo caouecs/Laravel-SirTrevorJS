@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -8,7 +10,7 @@
 
 namespace Caouecs\Sirtrevorjs;
 
-use HTML;
+use Collective\Html\HtmlFacade as HTML;
 
 /**
  * Sir Trevor Js.
@@ -214,20 +216,6 @@ class SirTrevorJs
     }
 
     /**
-     * Define param.
-     */
-    private static function defineParam(string $type, array $params, array $config = []): string
-    {
-        // params
-        if (! empty($params[$type])) {
-            return $params[$type];
-        }
-
-        // config and default
-        return ! empty($config[$type]) ? $config[$type] : self::$$type;
-    }
-
-    /**
      * Convert json from Sir Trevor JS to html.
      */
     public static function render(string $text): string
@@ -293,5 +281,19 @@ class SirTrevorJs
     public static function first(string $text, string $blocktype, string $output = 'json')
     {
         return self::find($text, $blocktype, $output, 1);
+    }
+
+    /**
+     * Define param.
+     */
+    private static function defineParam(string $type, array $params, array $config = []): string
+    {
+        // params
+        if (! empty($params[$type])) {
+            return $params[$type];
+        }
+
+        // config and default
+        return ! empty($config[$type]) ? $config[$type] : self::$$type;
     }
 }

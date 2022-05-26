@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -9,7 +11,7 @@
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\Parsable;
-use View;
+use Illuminate\Contracts\View\View;
 
 /**
  * Base of converters for Sir Trevor Js.

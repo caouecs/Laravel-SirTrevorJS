@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -81,7 +83,7 @@ trait SirTrevorJsable
             if ($tweet !== false && ! empty($tweet)) {
                 $return = [
                     'id_str' => $tweet_id,
-                    'text' => '',
+                    'text' => ! $tweet->truncated ? $tweet->text : '',
                     'created_at' => $tweet->created_at,
                     'user' => [
                         'name' => $tweet->user->name,

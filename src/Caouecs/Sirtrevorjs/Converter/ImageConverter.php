@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -10,7 +12,7 @@ namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\Convertible;
 use Exception;
-use Log;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Images for Sir Trevor Js.

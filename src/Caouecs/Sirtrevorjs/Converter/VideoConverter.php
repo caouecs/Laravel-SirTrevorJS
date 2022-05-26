@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Laravel-SirTrevorJs.
  *
@@ -51,29 +53,6 @@ class VideoConverter extends BaseConverter implements Convertible
      * @var string
      */
     protected $output = 'html';
-
-    /**
-     * Return array js external.
-     */
-    public function getJsExternal(): array
-    {
-        return [
-            'html' => [
-                'vine' => '<script async src="https://platform.vine.co/static/scripts/embed.js" charset="utf-8">'
-                    .'</script>',
-            ],
-            'amp' => [
-                'dailymotion' => '<script async custom-element="amp-dailymotion" src="https://cdn.ampproject.org/'
-                    .'v0/amp-dailymotion-0.1.js"></script>',
-                'vimeo' => '<script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/'
-                    .'amp-vimeo-0.1.js"></script>',
-                'vine' => '<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/'
-                    .'wamp-vine-0.1.js"></script>',
-                'youtube' => '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/'
-                    .'amp-youtube-0.1.js"></script>',
-            ],
-        ];
-    }
 
     /**
      * List of types for video.
@@ -138,6 +117,29 @@ class VideoConverter extends BaseConverter implements Convertible
         $this->remoteId = $data['data']['remote_id'];
         $this->type = 'video';
         $this->title = $data['data']['title'] ?? '';
+    }
+
+    /**
+     * Return array js external.
+     */
+    public function getJsExternal(): array
+    {
+        return [
+            'html' => [
+                'vine' => '<script async src="https://platform.vine.co/static/scripts/embed.js" charset="utf-8">'
+                    .'</script>',
+            ],
+            'amp' => [
+                'dailymotion' => '<script async custom-element="amp-dailymotion" src="https://cdn.ampproject.org/'
+                    .'v0/amp-dailymotion-0.1.js"></script>',
+                'vimeo' => '<script async custom-element="amp-vimeo" src="https://cdn.ampproject.org/v0/'
+                    .'amp-vimeo-0.1.js"></script>',
+                'vine' => '<script async custom-element="amp-vine" src="https://cdn.ampproject.org/v0/'
+                    .'wamp-vine-0.1.js"></script>',
+                'youtube' => '<script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/'
+                    .'amp-youtube-0.1.js"></script>',
+            ],
+        ];
     }
 
     /**
