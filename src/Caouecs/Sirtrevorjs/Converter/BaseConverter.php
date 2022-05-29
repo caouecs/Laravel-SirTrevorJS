@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace Caouecs\Sirtrevorjs\Converter;
 
 use Caouecs\Sirtrevorjs\Contracts\Parsable;
-use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\View;
 
 /**
  * Base of converters for Sir Trevor Js.
