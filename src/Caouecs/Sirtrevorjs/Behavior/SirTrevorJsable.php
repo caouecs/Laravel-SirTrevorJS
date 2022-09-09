@@ -38,21 +38,23 @@ trait SirTrevorJsable
             $file = $file['file'] ?? $file;
 
             // filename
-            $filename = $file->getClientOriginalName();
+            $filename = $fileNameCheck = $file->getClientOriginalName();
 
             // prefix if file exists
-            $prefix = '01';
+            $prefix = 0;
 
             // verif if file exists
-            while (file_exists(public_path($config['directory_upload']).'/'.$filename)) {
-                $filename = $prefix.'_'.$filename;
-
+            while (file_exists(public_path($config['directory_upload']).'/'.$fileNameCheck)) {
                 ++$prefix;
 
                 if ($prefix < 10) {
                     $prefix = '0'.$prefix;
                 }
+
+                $fileNameCheck = $prefix.'_'.$filename;
             }
+
+            $filename = $fileNameCheck;
 
             if (method_exists($this, 'afterUpload')) {
                 $this->afterUpload($file, $filename);
@@ -61,7 +63,7 @@ trait SirTrevorJsable
             if ($file->move(public_path($config['directory_upload']), $filename)) {
                 $return = [
                     'file' => [
-                        'url' => '/'.$config['directory_upload'].'/'.$filename,
+                        'url' => $config['directory_upload'].'/'.$filename,
                     ],
                 ];
 
