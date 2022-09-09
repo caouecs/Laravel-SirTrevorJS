@@ -29,7 +29,7 @@ trait SirTrevorJsable
     {
         if ($request->hasFile('attachment')) {
             // config
-            $config = config('sir-trevor-js');
+            $config = method_exists($this, 'defineConfig') ? $this->defineConfig() : config('sir-trevor-js');
 
             // file
             $file = $request->file('attachment');
