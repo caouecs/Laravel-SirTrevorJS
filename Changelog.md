@@ -1,5 +1,12 @@
 # Changelog
 
+* v4.1.3
+    * feature: you can define a method defineConfig to define other configuration file for the upload. Useful if you have multi configuration in your website
+    * fix: prefix for images
+
+* v4.1.2
+    * fix: View:exists
+
 * v4.1.1
     * feature: rollback on tweets with text. For smiley, you need an SQL encoding for binaries
 

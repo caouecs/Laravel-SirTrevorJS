@@ -66,8 +66,7 @@ class ImageConverter extends BaseConverter implements Convertible
 
         try {
             $size = getimagesize($url);
-        } catch (Exception $exception) {
-            Log::error('ImageConverter::imageToHtml:: '.$exception->getMessage());
+        } catch (Exception) {
         }
 
         if (empty($size) || ! is_array($size)) {
