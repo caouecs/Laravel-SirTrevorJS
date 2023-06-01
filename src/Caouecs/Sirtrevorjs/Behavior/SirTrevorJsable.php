@@ -80,7 +80,7 @@ trait SirTrevorJsable
         $tweet_id = $request->input('tweet_id');
 
         if (! empty($tweet_id)) {
-            $tweet = Twitter::getTweet($tweet_id);
+            $tweet = Twitter::getTweet($tweet_id, []);
 
             if ($tweet !== false && ! empty($tweet)) {
                 $return = [
