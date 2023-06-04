@@ -77,26 +77,44 @@ trait SirTrevorJsable
      */
     public function tweet(Request $request): void
     {
-        $tweet_id = $request->input('tweet_id');
+        // url of tweet.
+        $tweetUrl = $request->input('tweet_id');
 
-        if (! empty($tweet_id)) {
-            $tweet = Twitter::getTweet($tweet_id, []);
+        if (! empty($tweetUrl)) {
+            $tweetUrl = explode('?', $tweetUrl);
+            $tweetUrl = $tweetUrl[0];
 
-            if ($tweet !== false && ! empty($tweet)) {
-                $return = [
-                    'id_str' => $tweet_id,
-                    'text' => ! $tweet->truncated ? $tweet->text : '',
-                    'created_at' => $tweet->created_at,
-                    'user' => [
-                        'name' => $tweet->user->name,
-                        'screen_name' => $tweet->user->screen_name,
-                        'profile_image_url' => $tweet->user->profile_image_url,
-                        'profile_image_url_https' => $tweet->user->profile_image_url_https,
-                    ],
-                ];
+            $url = 'https://publish.twitter.com/oembed?url='.urlencode($tweetUrl).'&format=json';
 
-                echo json_encode($return);
-            }
+            $result = file_get_contents($url);
+            $decodedData = json_decode($result);
+
+            // Tweet ID.
+            $arrTweetID = explode('status/', $tweetUrl);
+            $arrTweetID = explode('?', $arrTweetID[1]);
+            $tweetID = $arrTweetID[0] ?? '';
+
+            // Text.
+            $text = strip_tags($decodedData->html ?? '');
+            $arrText = explode('(@', $text);
+            $text = str_replace($decodedData->author_name, '', $arrText[0]);
+
+            // ScreenName.
+            $arrScreenName = explode(')', $arrText[1] ?? '');
+            $screenName = $arrScreenName[0] ?? '';
+            // Date.
+            $date = trim(str_replace("\n", '', $arrScreenName[1] ?? ''));
+
+            echo json_encode([
+                'id_str' => $tweetID,
+                'text' => $text,
+                'created_at' => $date,
+                'status_url' => $tweetUrl,
+                'user' => [
+                    'name' => $decodedData->author_name,
+                    'screen_name' => $screenName,
+                ],
+            ]);
         }
     }
 }
