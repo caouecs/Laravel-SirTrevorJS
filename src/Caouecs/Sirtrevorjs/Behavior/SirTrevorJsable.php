@@ -38,7 +38,9 @@ trait SirTrevorJsable
             $file = $file['file'] ?? $file;
 
             // filename
-            $filename = $fileNameCheck = $file->getClientOriginalName();
+            $fileNameCheck = str_replace(['.jpeg', '.JPG'], '.jpg', $file->getClientOriginalName());
+            $fileNameCheck = str_replace([' ', '(', ')'], '-', $fileNameCheck);
+            $filename = $fileNameCheck;
 
             // prefix if file exists
             $prefix = 0;
