@@ -8,9 +8,7 @@ Integrate the tool [Sir Trevor JS](http://madebymany.github.io/sir-trevor-js/) i
 
 This package is available through `Packagist` and `Composer`.
 
- > **For PHP 8** version with Tweetic API for Twitter, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~4.1.0"`
-
- > **For PHP 8** version with new API, use the [branch v4.0](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v4.0) : `"caouecs/sirtrevorjs": "~4.0.0"`
+ > **For PHP 8** version, use the [branch master](https://github.com/caouecs/Laravel-SirTrevorJS/tree/master) : `"caouecs/sirtrevorjs": "~4.1.0"`
 
  > **For PHP 7** version, use the [branch v3.0](https://github.com/caouecs/Laravel-SirTrevorJS/tree/v3.0) : `"caouecs/sirtrevorjs": "~3.0.0"`
 
@@ -37,8 +35,6 @@ If you want to use routing, controllers, views, binding directly in your project
 ### Twitter
 
 To get tweets, this project uses [thujohn/twitter](https://github.com/thujohn/twitter). Please visit the page of the project to know how to install and configure.
-
-To display tweets without widget.js from Twitter, you can active [Tweetic API](https://www.tweetic.io). See `tweetic` param from `config/sir-trevor-js`.
 
 ## Configuration file
 

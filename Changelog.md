@@ -1,5 +1,8 @@
 # Changelog
 
+* v4.2
+    * rollback on tweetic
+
 * v4.1.3
     * feature: you can define a method defineConfig to define other configuration file for the upload. Useful if you have multi configuration in your website
     * fix: prefix for images
