@@ -39,6 +39,9 @@ trait SirTrevorJsable
 
             // filename
             $fileNameCheck = str_replace(['.jpeg', '.JPG'], '.jpg', $file->getClientOriginalName());
+            $fileNameCheck = str_replace('.GIF', '.gif', $fileNameCheck);
+            $fileNameCheck = str_replace('.PNG', '.png', $fileNameCheck);
+            $fileNameCheck = str_replace('.WEBP', '.webp', $fileNameCheck);
             $fileNameCheck = str_replace([' ', '(', ')'], '-', $fileNameCheck);
             $filename = $fileNameCheck;
 
