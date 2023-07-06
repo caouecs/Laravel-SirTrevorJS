@@ -10,7 +10,6 @@ declare(strict_types=1);
 
 namespace Caouecs\Sirtrevorjs\Behavior;
 
-use Atymic\Twitter\Facade\Twitter;
 use Illuminate\Http\Request;
 
 /**
