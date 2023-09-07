@@ -1,6 +1,9 @@
 # Changelog
 
-* v4.2
+* v4.3.0
+    * add transformerText function in Parsable
+
+* v4.2.0
     * rollback on tweetic
 
 * v4.1.3
