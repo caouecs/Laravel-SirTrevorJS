@@ -19,4 +19,9 @@ interface Parsable
      * Render markdown to html.
      */
     public function toHtml(string $text): string;
+
+    /**
+     * Transform text if necessary.
+     */
+    public function transformer(string $text): string;
 }

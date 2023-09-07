@@ -25,4 +25,12 @@ class LaravelParser implements Parsable
     {
         return strval(Str::of($text)->markdown());
     }
+
+    /**
+     * Transformer.
+     */
+    public function transformer(string $text = ''): string
+    {
+        return $text;
+    }
 }
