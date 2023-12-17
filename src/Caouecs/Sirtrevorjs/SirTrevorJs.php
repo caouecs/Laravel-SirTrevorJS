@@ -94,6 +94,10 @@ class SirTrevorJs
                         'type' => 'image',
                         'data' => json_decode(implode($data['data']), true),
                     ];
+                } elseif ($data['type'] === 'tweet') {
+                    $data['data']['text'] = str_replace('&quot', '', $data['data']['text']);
+
+                    $return[] = $data;
                 } else {
                     $return[] = $data;
                 }
