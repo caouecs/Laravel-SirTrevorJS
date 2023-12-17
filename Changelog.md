@@ -1,5 +1,8 @@
 # Changelog
 
+* v4.3.1
+    * fix: tweets with &quot;
+
 * v4.3.0
     * add transformerText function in Parsable
 
