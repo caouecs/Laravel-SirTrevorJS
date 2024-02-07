@@ -1,10 +1,13 @@
 # Changelog
 
+* v4.3.2
+    * feature: specific url for image after upload
+
 * v4.3.1
     * fix: tweets with &quot;
 
 * v4.3.0
-    * add transformerText function in Parsable
+    * feature: add transformerText function in Parsable
 
 * v4.2.0
     * rollback on tweetic
