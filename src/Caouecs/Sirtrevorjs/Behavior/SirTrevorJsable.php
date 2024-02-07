@@ -60,14 +60,17 @@ trait SirTrevorJsable
 
             $filename = $fileNameCheck;
 
+            // url return for image if you want to update it.
+            $urlReturn = '';
+
             if (method_exists($this, 'afterUpload')) {
-                $this->afterUpload($file, $filename);
+                $urlReturn = $this->afterUpload($file, $filename);
             }
 
             if ($file->move(public_path($config['directory_upload']), $filename)) {
                 $return = [
                     'file' => [
-                        'url' => $config['directory_upload'].'/'.$filename,
+                        'url' => $urlReturn ?: $config['directory_upload'].'/'.$filename,
                     ],
                 ];
 
